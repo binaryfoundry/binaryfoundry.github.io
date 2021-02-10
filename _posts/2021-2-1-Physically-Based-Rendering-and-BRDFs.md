@@ -325,7 +325,7 @@ In this naive implementation, gold looks much better, it is now nicely achromati
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/gold-b.png?style=centerme)
 
-However, the problem now is rough surfaces glow brightly around the edges where they should not. This is because roughness should be causing energy to dissipate, as it is not, conservation of energy for grazing angles is lost.
+However, the problem now is rough surfaces glow brightly around the edges where they should not as roughness should be causing energy to dissipate, conservation of energy for grazing angles is lost.
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/fa2sm.png?style=centerme)
 
