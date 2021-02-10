@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ProjectVector</title>
+  <meta name="viewport" content="target-densitydpi=high-dpi,
+         initial-scale=1,
+         minimum-scale=1,
+         maximum-scale=1,
+         user-scalable=yes,
+         width=800" />
+
+    <link href="style/box2d.css" rel="stylesheet" type="text/css" />
+  <!--[if IE]><script type="text/javascript" src="lib/excanvas.js"></script><![endif]-->
+    <script src="lib/prototype-1.6.0.2.js"></script>
+    <script src="lib/jquery-1.7.1.min.js"></script>
+    <script src="lib/tween.js"></script>
+    <script src="lib/closure-library/closure/goog/base.js"></script>
+    <script src='lib/fluid_solver.js'></script>
+    <script src="lib/event_dispatcher.js"></script>
+    <script src="lib/request_animation_frame.js"></script>
+    <script src="lib/stats.js"></script>
+    <script src="lib/array_clone.js"></script>
+    <script src="lib/alea.js"></script>
+    <script src="deps.js"></script>
+
+    <script src='engine/engine.js'></script>
+    <script src='engine/camera.js'></script>
+    <script src='engine/level.js'></script>
+    <script src='engine/entity.js'></script>
+    <script src='engine/asset_manager.js'></script>
+    <script src='engine/collision.js'></script>
+    <script src='engine/display_node.js'></script>
+    <script src='engine/display_container.js'></script>
+    <script src='engine/object_pool.js'></script>
+    <script src='engine/component_manager.js'></script>
+    <script src='engine/timer_registery.js'></script>
+    <script src='engine/particle.js'></script>
+    <script src='engine/particle_manager.js'></script>
+
+    <script src='game/game.js'></script>
+    <script src='game/graphics/canvasRenderer.js'></script>
+    <script src='game/resources/models.js'></script>
+    <script src='game/resources/sprite_animations.js'></script>
+    <script src='game/resources/demo_data.js'></script>
+    <script src='game/particles/particle_fluid_logic_controller.js'></script>
+    <script src='game/particles/particle_basic_renderer_controller.js'></script>
+    <script src='game/particles/particle_image_renderer_controller.js'></script>
+    <script src='game/particles/particle_sprite_renderer_controller.js'></script>
+    <script src='game/input/controls.js'></script>
+    <script src='game/ui/ui_elephant.js'></script>
+    <script src='game/ui/ui_transformer.js'></script>
+    <script src='game/ui/ui_toggle.js'></script>
+    <script src='game/ui/ui_basic.js'></script>
+    <script src='game/ui/ui_level.js'></script>
+    <script src='game/ui/ui_background.js'></script>
+    <script src='game/ui/ui_button.js'></script>
+    <script src='game/ui/ui_number.js'></script>
+    <script src='game/ui/ui_string.js'></script>
+    <script src='game/levels/geomwars_level.js'></script>
+    <script src='game/entities/geomwars_entity.js'></script>
+    <script src='game/entities/player.js'></script>
+    <script src='game/entities/projectile.js'></script>
+    <script src='game/entities/enemy.js'></script>
+    <script src='game/entities/explosion.js'></script>
+    <script src='game/entities/components/bodyComponent.js'></script>
+    <script src='game/entities/components/cameraFollow.js'></script>
+    <script src='game/entities/components/controlMove.js'></script>
+    <script src='game/entities/components/circleBody.js'></script>
+    <script src='game/entities/components/squareBody.js'></script>
+    <script src='game/entities/components/basicSprite.js'></script>
+    <script src='game/entities/components/weapon.js'></script>
+    <script src='game/entities/components/vectorDraw3D.js'></script>
+    <script src='game/entities/components/simpleSprite.js'></script>
+    <script src='game/entities/components/dot.js'></script>
+
+    <script>
+      var $j = jQuery.noConflict();
+      $j(document).ready(function() {
+          var canvas = $j("#gameCanvas");
+          var context = {
+              canvas: canvas,
+              timeStep: 1.0 / 30,
+              iteration: 10,
+              random: new Alea('dsvjSDNklvSLDNKvzsdnk'),
+              paused: true,
+              gameMode: 'play',  //'play', 'demo'
+              startMenu: true,
+              blur: false,
+              particleCount: 45,
+              calcBackground: true,
+              fluidSolverResolution: 14,  // 8 - 14
+              backgroundAccuracy: 6, // Range: 2 - 6
+              drawBackground: true,
+              drawParticles: true,
+              debugDraw: false
+          };
+          var initalAssets = [
+              ["toggle_back", "game/resources/test/toggle_back.png"],
+              ["toggle_slider", "game/resources/test/toggle_slider.png"],
+              ["sprites_1", "game/resources/test/sprites_1.png"],
+              ["play_up", "game/resources/test/play_up.png"],
+              ["play_down", "game/resources/test/play_down.png"],
+              ["title_background", "game/resources/img/hexes.jpg"],
+              ["title", "game/resources/img/PV_0001_Title.png"],
+              ["btn_play_up", "game/resources/img/PV_0002_Play.png"],
+              ["btn_play_down", "game/resources/img/PV_0002_Play_Down.png"],
+              ["continue_up", "game/resources/img/PV_0002_Continue.png"],
+              ["continue_down", "game/resources/img/PV_0002_Continue_Down.png"],
+              ["btn_sound", "game/resources/img/PV_0003_Sound.png"],
+              ["player", "game/resources/img/PV_0004_Player.png"],
+              ["bullet", "game/resources/img/PV_0005_Bullet.png"],
+              ["enemy1", "game/resources/img/PV_0006_Enemy01.png"],
+              ["exp1_01", "game/resources/img/PV_0007_Enemy01-Explosion01.png"],
+              ["exp1_02", "game/resources/img/PV_0008_Enemy01-Explosion02.png"],
+              ["exp1_03", "game/resources/img/PV_0009_Enemy01-Explosion03.png"],
+              ["enemy2", "game/resources/img/PV_0010_Enemy02.png"],
+              ["exp2_01", "game/resources/img/PV_0011_Enemy02-Explosion01.png"],
+              ["exp2_02", "game/resources/img/PV_0012_Enemy02-Explosion02.png"],
+              ["exp2_03", "game/resources/img/PV_0013_Enemy02-Explosion03.png"],
+              ["enemy3", "game/resources/img/PV_0014_Enemy03.png"],
+              ["exp3_01", "game/resources/img/PV_0015_Enemy03-Explosion01.png"],
+              ["exp3_02", "game/resources/img/PV_0016_Enemy03-Explosion02.png"],
+              ["exp3_03", "game/resources/img/PV_0017_Enemy03-Explosion03.png"],
+              ["enemy4", "game/resources/img/PV_0018_Enemy04.png"],
+              ["exp4_01", "game/resources/img/PV_0019_Enemy04-Explosion01.png"],
+              ["exp4_02", "game/resources/img/PV_0020_Enemy04-Explosion02.png"],
+              ["exp4_03", "game/resources/img/PV_0021_Enemy04-Explosion03.png"],
+              ["d0", "game/resources/img/PV_0022_Digit0.png"],
+              ["d1", "game/resources/img/PV_0023_Digit1.png"],
+              ["d2", "game/resources/img/PV_0024_Digit2.png"],
+              ["d3", "game/resources/img/PV_0025_Digit3.png"],
+              ["d4", "game/resources/img/PV_0026_Digit4.png"],
+              ["d5", "game/resources/img/PV_0027_Digit5.png"],
+              ["d6", "game/resources/img/PV_0028_Digit6.png"],
+              ["d7", "game/resources/img/PV_0029_Digit7.png"],
+              ["d8", "game/resources/img/PV_0030_Digit8.png"],
+              ["d9", "game/resources/img/PV_0031_Digit9.png"],
+              ["btn_pause_up", "game/resources/img/pause_btn_up.png"],
+              ["btn_pause_down", "game/resources/img/pause_btn_down.png"],
+              ["btn_quit", "game/resources/img/Button-Stop-icon.png"],
+              ["hexes", "game/resources/img/hexes.jpg"],
+              ["bp0", "game/resources/img/bp0.png"],
+              ["bp1", "game/resources/img/bp1.png"],
+              ["bp2", "game/resources/img/bp2.png"],
+              ["bp3", "game/resources/img/bp3.png"],
+              ["bp4", "game/resources/img/bp4.png"],
+              ["bp5", "game/resources/img/bp5.png"],
+              ["bp6", "game/resources/img/bp6.png"],
+              ["bp7", "game/resources/img/bp7.png"],
+              ["bp8", "game/resources/img/bp8.png"]
+          ];
+          context.renderer = new CanvasRenderer(context, canvas);
+          var engine = new Engine();
+          context.engine = engine;
+          engine.initalise(context, initalAssets, function() {
+              engine.start(context, new Game());
+          });
+      });
+    </script>
+  </head>
+
+  <body>
+    <canvas id='gameCanvas' width='800' height='480'></canvas>
+  </body>
+</html>

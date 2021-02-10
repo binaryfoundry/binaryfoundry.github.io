@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Maze Q Learner</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <meta name="viewport" content="target-densitydpi=high-dpi,
+         initial-scale=1,
+         minimum-scale=1,
+         maximum-scale=1,
+         user-scalable=yes,
+         width=800" />
+  </head>
+  <style>
+    canvas {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout:none;                /* prevent callout to copy image, etc when tap to hold */
+      -webkit-text-size-adjust:none;             /* prevent webkit from resizing text to fit */
+      -webkit-tap-highlight-color:rgba(0,0,0,0); /* prevent tap highlight color / shadow */
+      -webkit-user-select:none; /* prevent copy paste, to allow, change 'none' to 'text' */
+      display: block;
+      border: 0px none  #000000;
+    }
+    body {
+      margin: 0;
+    }
+  </style>
+  <body>
+    <canvas id="myCanvas" width="800" height="800">
+    </canvas>
+  </body>
+
+  <script type="text/javascript">
+  // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+  // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+  // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+  // MIT license
+  (function() {
+      var lastTime = 0;
+      var vendors = ['ms', 'moz', 'webkit', 'o'];
+      for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+          window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+          window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
+                                     || window[vendors[x]+'CancelRequestAnimationFrame'];
+      }
+      if (!window.requestAnimationFrame)
+          window.requestAnimationFrame = function(callback, element) {
+              var currTime = new Date().getTime();
+              var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+              var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+                timeToCall);
+              lastTime = currTime + timeToCall;
+              return id;
+          };
+      if (!window.cancelAnimationFrame)
+          window.cancelAnimationFrame = function(id) {
+              clearTimeout(id);
+          };
+  }());
+  </script>
+  <script type="text/javascript">
+    function newMaze(x, y) {
+      var totalCells = x*y;
+      var cells = new Array();
+      var unvis = new Array();
+      for (var i = 0; i < y; i++) {
+        cells[i] = new Array();
+        unvis[i] = new Array();
+        for (var j = 0; j < x; j++) {
+          cells[i][j] = [0,0,0,0];
+          unvis[i][j] = true;
+        }
+      }
+      var currentCell = [
+        Math.floor(Math.random()*y),
+        Math.floor(Math.random()*x)];
+      var path = [currentCell];
+      unvis[currentCell[0]][currentCell[1]] = false;
+      var visited = 1;
+      while (visited < totalCells) {
+        var pot =
+          [[currentCell[0]-1, currentCell[1],   0, 2],
+           [currentCell[0],   currentCell[1]+1, 1, 3],
+           [currentCell[0]+1, currentCell[1],   2, 0],
+           [currentCell[0],   currentCell[1]-1, 3, 1]];
+        var neighbors = new Array();
+        for (var l = 0; l < 4; l++) {
+          if (pot[l][0] > -1 &&
+            pot[l][0] < y &&
+            pot[l][1] > -1 &&
+            pot[l][1] < x &&
+            unvis[pot[l][0]][pot[l][1]]) {
+            neighbors.push(pot[l]);
+          }
+        }
+        if (neighbors.length) {
+          next = neighbors[Math.floor(Math.random()*neighbors.length)];
+          cells[currentCell[0]][currentCell[1]][next[2]] = 1;
+          cells[next[0]][next[1]][next[3]] = 1;
+          unvis[next[0]][next[1]] = false;
+          visited++;
+          currentCell = [next[0], next[1]];
+          path.push(currentCell);
+        }
+        else {
+          currentCell = path.pop();
+        }
+      }
+      return cells;
+    }
+
+    function newMazeNetwork(w, h, maxReward) {
+      var nodes = [];
+      var m = newMaze(w, h);
+      for (var y = 0; y < h; y++) {
+        for (var x = 0; x < w; x++) {
+          var node = {
+            reward: 0,
+            maxQ: 0,
+            goal: false,
+            edges: [],
+            position: [
+              x,
+              y
+            ]
+          }
+          nodes.push(node);
+          var c = m[y][x];
+          m[y][x] = {
+            edges: c,
+            node: node
+          };
+        }
+      }
+
+      nodes[nodes.length-1].goal = true;
+      nodes[nodes.length-1].reward = maxReward;
+      nodes[nodes.length-1].maxQ = maxReward;
+
+      function insertEdge(a, b) {
+        a.edges.push({
+          node: b,
+          R: b.reward,
+          Q: 0,
+          M: 0
+        });
+      }
+
+      for (var y = 0; y < h; y++) {
+        for (var x = 0; x < w; x++) {
+          var cell = m[y][x];
+          var edges = cell.edges;
+          var node = cell.node;
+          if (edges[0] && m[y-1][x]) {
+            insertEdge(node, m[y-1][x].node);
+          }
+          if (edges[1] && m[y][x+1]) {
+            insertEdge(node, m[y][x+1].node);
+          }
+          if (edges[2] && m[y+1][x]) {
+            insertEdge(node, m[y+1][x].node);
+          }
+          if (edges[3] && m[y][x-1]) {
+            insertEdge(node, m[y][x-1].node);
+          }
+        }
+      }
+      return nodes;
+    }
+
+    // http://mnemstudio.org/path-finding-q-learning-tutorial.htm
+    // http://amunategui.github.io/reinforcement-learning/
+
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var sc = 38;
+    var maxReward = 230.0;
+    var gamma = 0.9;
+    var network = newMazeNetwork(20, 20, maxReward);
+    var stateCurrent = selectRandomElement(network);
+
+    function linearQ(q) {
+      if (q <= 0.0000000001)
+        return 0;
+      var ln = -Math.log(maxReward/q) / Math.log(0.9);
+      var r = (maxReward-ln);
+      return r<0.1 ? 0.1 : r;
+    }
+
+    function drawNetwork(network, path) {
+      ctx.lineWidth = 2;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      network.forEach(function (node) {
+        node.edges.forEach(function (edge) {
+          var edgeNode = edge.node;
+          var x0 = (node.position[0] * sc) + sc;
+          var y0 = (node.position[1] * sc) + sc;
+          var x1 = (edgeNode.position[0] * sc) + sc;
+          var y1 = (edgeNode.position[1] * sc) + sc;
+          var hx = x1 - x0;
+          var hy = y1 - y0;
+          var d = Math.sqrt(hx * hx + hy * hy);
+          ctx.beginPath();
+          var grad = ctx.createRadialGradient(x0, y0, 0, x1, y1, 1);
+          var s1 =(linearQ(edgeNode.maxQ)) / maxReward;
+          var s0 = (linearQ(node.maxQ)) / maxReward;
+          var ca0 = 'rgba('+Math.floor(Math.max(0, 1.0-s0) * 255);
+          var ca1 = Math.floor(s0 * 255);
+          var cb0 = 'rgba('+Math.floor(Math.max(0, 1.0-s1) * 255);
+          var cb1 = Math.floor(s1 * 255);
+          grad.addColorStop(0, ca0+','+ca1+','+0+',255)');
+          grad.addColorStop(1, cb0+','+cb1+','+0+',255)');
+          ctx.strokeStyle = grad;
+          ctx.moveTo(x0, y0);
+          ctx.lineTo(x1, y1);
+          ctx.stroke();
+          ctx.closePath();
+        });
+      });
+    }
+
+    function drawPath(path, isFinal = false) {
+      ctx.lineWidth = 4;
+      ctx.strokeStyle= isFinal ? "#000000" : "#808080";
+      ctx.beginPath();
+      ctx.moveTo((path[0][0] * sc) + sc, (path[0][1] * sc) + sc);
+      path.forEach(function (pos) {
+        ctx.lineTo((pos[0] * sc) + sc, (pos[1] * sc) + sc);
+      });
+      ctx.stroke();
+      ctx.closePath();
+    }
+
+    function selectRandomElement(arr) {
+      return arr[~~(arr.length * Math.random())];
+    }
+
+    function selectEdge(edges) {
+      if (edges.length <= 1) {
+        return edges[0];
+      }
+      var candidates = [];
+      var minM = Number.MAX_VALUE;
+      edges.forEach((edge, index) => {
+        if (edge.M < minM) {
+          minM = edge.M;
+        }
+      });
+      candidates = edges.filter(edge => edge.M <= minM);
+      return selectRandomElement(candidates);
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function getMaxQ(node) {
+      var maxQ = 0;
+      node.edges.forEach(edge => {
+        if (edge.Q > maxQ) {
+          maxQ = edge.Q;
+        }
+      });
+      return maxQ;
+    }
+
+    async function onComplete() {
+      var path = [];
+      stateCurrent = network[0];
+      path.push(stateCurrent.position);
+      while (!stateCurrent.goal) {
+        var stateNext = null;
+        maxQ = -1;
+        stateCurrent.edges.forEach((edge, i) => {
+          if (edge.Q > maxQ) {
+            maxQ = edge.Q;
+            stateNext = edge.node;
+          }
+        });
+        stateCurrent = stateNext;
+        path.push(stateCurrent.position)
+      }
+      drawNetwork(network);
+      drawPath(path, true);
+      await sleep(2000);
+      network = newMazeNetwork(20, 20, maxReward);
+      stateCurrent = selectRandomElement(network);
+      update();
+    }
+
+    async function update() {
+      var path = [stateCurrent.position];
+      for (var k=0; k<10; k++) {
+        var selectedEdge = selectEdge(stateCurrent.edges);
+        stateNext = selectedEdge.node;
+        selectedEdge.Q = selectedEdge.R + gamma * getMaxQ(stateNext);
+        stateCurrent.maxQ = getMaxQ(stateCurrent);
+        selectedEdge.M++;
+
+        var reverseEdge;
+        stateNext.edges.forEach(edge => {
+          if (edge.node == stateCurrent) {
+            reverseEdge = edge;
+          }
+        });
+        reverseEdge.M++;
+        reverseEdge.Q = reverseEdge.R + gamma * getMaxQ(stateCurrent);
+        stateNext.maxQ = getMaxQ(stateNext);
+
+        stateCurrent = stateNext;
+        path.push(stateCurrent.position);
+      }
+      drawNetwork(network);
+      drawPath(path);
+      await sleep(20);
+      if (network[0].maxQ <= 0) {
+        requestAnimationFrame(update);
+      }
+      else {
+        onComplete();
+      }
+    }
+    update();
+  </script>
+</html>

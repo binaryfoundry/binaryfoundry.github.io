@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Spin The Wheel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <meta name="viewport" content="target-densitydpi=high-dpi,
+         initial-scale=1,
+         minimum-scale=1,
+         maximum-scale=1,
+         user-scalable=yes,
+         width=100%" />
+  </head>
+  <style>\
+    * { margin: 0; padding: 0;}
+    canvas {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout:none;                /* prevent callout to copy image, etc when tap to hold */
+      -webkit-text-size-adjust:none;             /* prevent webkit from resizing text to fit */
+      -webkit-tap-highlight-color:rgba(0,0,0,0); /* prevent tap highlight color / shadow */
+      -webkit-user-select:none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+      display: block;
+      border: 0px none #000000;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    html, body {margin: 0; height: 100%; overflow: hidden}
+  </style>
+  <body>
+    <canvas id="myCanvas" width="800" height="800">
+    </canvas>
+  </body>
+  <script src="lowlag.js"></script>
+  <script src="pizzicato.min.js"></script>
+  <script type="text/javascript">
+  // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+  // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+  // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+  // MIT license
+  (function() {
+      var lastTime = 0;
+      var vendors = ['ms', 'moz', 'webkit', 'o'];
+      for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+          window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+          window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
+                                     || window[vendors[x]+'CancelRequestAnimationFrame'];
+      }
+      if (!window.requestAnimationFrame)
+          window.requestAnimationFrame = function(callback, element) {
+              var currTime = new Date().getTime();
+              var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+              var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+                timeToCall);
+              lastTime = currTime + timeToCall;
+              return id;
+          };
+      if (!window.cancelAnimationFrame)
+          window.cancelAnimationFrame = function(id) {
+              clearTimeout(id);
+          };
+  }());
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  function wrapRange(min, max, value) {
+    var maxLessMin = max - min;
+    return ((value - min) % maxLessMin + maxLessMin) % maxLessMin + min;
+  }
+  </script>
+  <script type="text/javascript">
+    function lerp(v0, v1, t) {
+      return v0*(1-t)+v1*t
+    }
+
+    var canvas = document.getElementById('myCanvas');
+
+    var context = canvas.getContext('2d');
+    context.imageSmoothingEnabled = true;
+
+    var wheel = new Image();
+    var arrow = new Image();
+    var logo = new Image();
+    var lights0 = new Image();
+    var lights1 = new Image();
+
+    var clickSound = new Pizzicato.Sound('./click.mp3', function() {
+    });
+
+    lowLag.init();
+    lowLag.load("win.wav");
+    lowLag.load("die.wav");
+    lowLag.load("powerup.wav");
+    lowLag.load("click.mp3");
+
+    lowLag.load("bad0.wav");
+    lowLag.load("bad1.wav");
+    lowLag.load("bad2.wav");
+    lowLag.load("bad3.wav");
+    lowLag.load("bad4.wav");
+    lowLag.load("bad5.wav");
+    lowLag.load("bad6.wav");
+    lowLag.load("bad7.wav");
+    lowLag.load("bad8.wav");
+    lowLag.load("bad9.wav");
+    lowLag.load("bad10.wav");
+    lowLag.load("bad11.wav");
+    lowLag.load("bad12.wav");
+    lowLag.load("bad13.wav");
+    lowLag.load("bad14.wav");
+    lowLag.load("bad15.wav");
+    lowLag.load("bad16.wav");
+    lowLag.load("bad17.wav");
+
+    lowLag.load("good0.wav");
+    lowLag.load("good1.wav");
+    lowLag.load("good2.wav");
+    lowLag.load("good3.wav");
+    lowLag.load("good4.wav");
+    lowLag.load("good5.wav");
+
+    lowLag.load("neutral0.wav");
+    lowLag.load("neutral1.wav");
+    lowLag.load("neutral2.wav");
+    lowLag.load("neutral3.wav");
+    lowLag.load("neutral4.wav");
+    lowLag.load("neutral5.wav");
+    lowLag.load("neutral6.wav");
+    lowLag.load("neutral7.wav");
+    lowLag.load("neutral8.wav");
+
+    var clickTimeout = 0;
+    var frameCount = 0;
+    var lightsWinEnabled = false;
+    var lightsWin = false;
+    var lightsWinCount = 0;
+    var lightsStatus = false;
+    var screenX = 0;
+    var screenY = 0;
+    var screenXPrev = 0;
+    var screenYPrev = 0;
+    var isDrag = false;
+    var drag = 0.005;
+    var boundaryAcc = 0.00015;
+    var margin = 0.4;
+    var velocity = 0;
+    var velocityPrev = 0;
+    var rotationPrev = 0;
+    var rotation = 0;
+    var spinDirection = 0;
+    var isSpinning = false;
+
+    var myDown = function() {
+      isDrag = true;
+      lightsWin = false;
+      lightsWinEnabled = false;
+      velocity = 0;
+      lightsWin = false;
+    };
+
+    var myUp = function() {
+      isDrag = false;
+      lightsWinEnabled = true;
+      lightsWin = false;
+    };
+
+    var myMove = function(evt) {
+      screenXPrev = screenX;
+      screenYPrev = screenY;
+      screenX = evt.clientX;
+      screenY = evt.clientY;
+      if (isDrag) {
+        var x0 = screenXPrev - (canvas.width / 2);
+        var y0 = screenYPrev - (canvas.height / 2);
+        var x1 = screenX - (canvas.width / 2);
+        var y1 = screenY - (canvas.height / 2);
+        var d0 = Math.sqrt(x0 * x0 + y0 * y0);
+        var d1 = Math.sqrt(x1 * x1 + y1 * y1);
+        var a1 = Math.atan2(y1, x1);
+        var a0 = Math.atan2(y0, x0);
+        var newVelocity = a1 - a0;
+        velocity = newVelocity;
+        spinDirection = velocity > 0 ? 1 : -1;
+        if (Math.abs(velocity) > 0.01) {
+          isSpinning = true;
+        }
+      }
+    };
+
+    document.body.addEventListener("touchstart", function (e) {
+      if (e.target == canvas) {
+        e.preventDefault();
+      }
+    }, false);
+    document.body.addEventListener("touchend", function (e) {
+      if (e.target == canvas) {
+        e.preventDefault();
+      }
+    }, false);
+    document.body.addEventListener("touchmove", function (e) {
+      if (e.target == canvas) {
+        e.preventDefault();
+      }
+    }, false);
+
+    canvas.addEventListener("mousedown", myDown);
+    canvas.addEventListener("mouseup", myUp);
+    canvas.addEventListener("mousemove", myMove);
+    canvas.addEventListener("mouseleave", myUp);
+    canvas.addEventListener("mouseout", myUp);
+
+    canvas.addEventListener("touchstart", function (e) {
+      mousePos = getTouchPos(canvas, e);
+      var touch = e.touches[0];
+      var mouseEvent = new MouseEvent("mousedown", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      canvas.dispatchEvent(mouseEvent);
+    }, false);
+
+    canvas.addEventListener("touchend", function (e) {
+      var mouseEvent = new MouseEvent("mouseup", {});
+      canvas.dispatchEvent(mouseEvent);
+    }, false);
+
+    canvas.addEventListener("touchmove", function (e) {
+      var touch = e.touches[0];
+      var mouseEvent = new MouseEvent("mousemove", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      canvas.dispatchEvent(mouseEvent);
+    }, false);
+
+    //canvas.touchleave = myUp;
+    //canvas.touchout = myUp;
+
+    var typeMap = {
+      0: 'blue',
+      1: 'green',
+      2: 'red'
+    };
+
+    async function update() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var diameter = canvas.height;
+      var offx = (canvas.width - diameter)/2;
+      var offy = (canvas.height - diameter)/2;
+
+      rotationPrev = rotation;
+      velocityPrev = velocity;
+      velocity *= 1.0 - drag;
+      rotation += velocity;
+
+      var rotationDegrees = rotation * (180 / Math.PI);
+      var rotationDegreesPrev = rotationPrev * (180 / Math.PI);
+
+      var rotationDegreesWrapped = wrapRange(0, 360, -rotationDegrees);
+      var selected = Math.floor(rotationDegreesWrapped / 30) % 12;
+      var selectedType = typeMap[selected % 3];
+
+
+      var boundary0 = (rotationDegreesWrapped / 30) % 1;
+      var boundary1 = 1 - boundary0;
+
+
+      if (boundary0 < margin) {
+        velocity -= Math.pow(lerp(1, 0, boundary0 / margin), 2) * boundaryAcc;
+        isBoundary = true;
+      }
+
+      if (boundary1 < margin) {
+        velocity += Math.pow(lerp(1, 0, boundary1 / margin), 2) * boundaryAcc;
+        isBoundary = true;
+      }
+
+      if (lightsWinEnabled && isSpinning) {
+        var stopCondition1 = (velocity > 0 && spinDirection <0) || (velocity <0 && spinDirection >0);
+        //var stopCondition2 = Math.abs(velocity) < 0.003 && boundary0 > 0.2 && boundary1 > 0.2;
+
+        if (stopCondition1) {
+          lightsWinEnabled = false;
+          lightsWinCount = 50;
+          lightsWin = true;
+          isSpinning = false;
+
+          var delay = 1000;
+          if (selectedType == 'red') {
+            delay = 3000;
+            lowLag.play("die.wav");
+          }
+          else if (selectedType == 'blue') {
+            lowLag.play("powerup.wav");
+          }
+          else if (selectedType == 'green') {
+            delay = 6000;
+            lowLag.play("win.wav");
+          }
+
+          setTimeout(function () {
+            if (selectedType == 'red') {
+              lowLag.play('bad'+getRandomInt(0, 17)+'.wav');
+            }
+            else if (selectedType == 'blue') {
+              lowLag.play('neutral'+getRandomInt(0, 8)+'.wav');
+            }
+            else if (selectedType == 'green') {
+              lowLag.play('good'+getRandomInt(0, 5)+'.wav');
+            }
+          }, delay);
+        }
+      }
+
+      var isPlayClick =
+        (velocity > 0 && Math.floor(rotationDegrees / 30) > Math.floor(rotationDegreesPrev) / 30) ||
+        (velocity < 0 && Math.ceil(rotationDegrees / 30) < Math.ceil(rotationDegreesPrev) / 30);
+
+      if (isPlayClick && clickTimeout <= 0) {
+        var sound = clickSound.clone();
+        sound.volume = 0.22;
+        sound.play();
+        clickTimeout = 4;
+      }
+
+      if (lightsWin) {
+        lightsWinCount--;
+        if (lightsWinCount % 3 == 0) {
+          lightsStatus = !lightsStatus;
+        }
+        if (lightsWinCount <= 0) {
+          lightsStatus = false;
+        }
+      }
+      else {
+        if (Math.abs(velocity) > 0.0001 && !isDrag) {
+          if (frameCount % 10 == 0) {
+            lightsStatus = !lightsStatus;
+          }
+        }
+        else {
+          lightsStatus = isDrag;
+        }
+      }
+
+      context.save();
+      context.fillStyle = "orange";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.translate(offx, offy);
+      context.translate(diameter/2, diameter/2);
+      context.rotate(rotation);
+      context.scale(1.2, 1.2);
+      context.translate(-diameter/2, -diameter/2);
+      context.drawImage(wheel, 0, 0, diameter, diameter);
+      context.drawImage(lightsStatus ? lights0 : lights1, 0, 0, diameter, diameter);
+      context.restore();
+
+      context.save();
+      context.translate(offx, offy-(diameter * 0.075));
+      context.drawImage(arrow, 0, 0, diameter, diameter);
+      context.restore();
+
+      context.save();
+      context.translate(offx, offy);
+      context.translate(diameter/2, diameter/2);
+      context.scale(1.5, 1.5);
+      context.translate(-diameter/2, -diameter/2);
+      context.drawImage(logo, 0, 0, diameter, diameter);
+      context.restore();
+
+      frameCount++;
+      clickTimeout--;
+      requestAnimationFrame(update);
+    }
+
+    var loadCounter = 0;
+    var imageLoaded = function() {
+      loadCounter++;
+      if (loadCounter == 5) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    wheel.onload = imageLoaded;
+    arrow.onload = imageLoaded;
+    logo.onload = imageLoaded;
+    lights0.onload = imageLoaded;
+    lights1.onload = imageLoaded;
+
+    arrow.src = 'arrow.png';
+    wheel.src = 'wheel.png';
+    logo.src = 'logo.png';
+    lights0.src = 'lights0.png';
+    lights1.src = 'lights1.png';
+
+  </script>
+</html>

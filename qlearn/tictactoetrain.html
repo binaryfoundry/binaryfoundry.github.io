@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>TicTacToe Q Learner</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="target-densitydpi=high-dpi,
+         initial-scale=1,
+         minimum-scale=1,
+         maximum-scale=1,
+         user-scalable=yes,
+         width=800" />
+  </head>
+  <style>
+    canvas {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout:none;                /* prevent callout to copy image, etc when tap to hold */
+      -webkit-text-size-adjust:none;             /* prevent webkit from resizing text to fit */
+      -webkit-tap-highlight-color:rgba(0,0,0,0); /* prevent tap highlight color / shadow */
+      -webkit-user-select:none; /* prevent copy paste, to allow, change 'none' to 'text' */
+      display: block;
+      border: 0px none  #000000;
+    }
+    body {
+      margin: 0;
+    }
+  </style>
+  <body>
+    <canvas id="myCanvas" width="800" height="800">
+    </canvas>
+  </body>
+  <script type="text/javascript">
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    String.prototype.replaceAt=function(index, replacement) {
+      return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+    }
+
+    function drawCircle(x, y, radius, linewidth, color) {
+      context.strokeStyle = color;
+      context.lineWidth = linewidth || 1;
+      context.beginPath();
+      context.arc(x, y, radius, 0, 360, false);
+      context.stroke();
+      context.closePath();
+    };
+
+    function drawSquare(x, y, size, color) {
+      context.fillStyle = color;
+      context.fillRect(x, y, x+size, y+size);
+    };
+
+    function drawLine(x1, y1, x2, y2, linewidth, color) {
+      context.strokeStyle = color || Color.red;
+      context.lineWidth   = linewidth || 1;
+      context.beginPath();
+      context.moveTo(x1, y1);
+      context.lineTo(x2, y2);
+      context.stroke();
+      context.closePath();
+    };
+
+    var s = 800 / 3;
+    var m = 30;
+
+    function drawCross(x1, y1, x2, y2, linewidth, color) {
+      drawLine(x1+m, y1+m, x2-m, y2-m, linewidth, color);
+      drawLine(x2-m, y1+m, x1+m, y2-m, linewidth, color);
+    };
+
+    function drawX(x, y, size) {
+      drawCross(x, y, (x+size), (y+size), 4, '#000');
+    }
+
+    function drawO(x, y, size) {
+      var half = size / 2;
+      drawCircle((x+half), (y+half), (half - (half/4)), 4, '#000');
+    }
+
+    function checkGameStatus(board) {
+      var positions = [
+        [0,0], [1,0], [2,0],
+        [0,1], [1,1], [2,1],
+        [0,2], [1,2], [2,2]
+      ];
+
+      var checkCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [6, 4, 2]];
+
+      function checkWin(s, p) {
+        var c1 = s.charAt(p[0]);
+        if (c1 == '-') return false;
+        var c2 = s.charAt(p[1]);
+        if (c1 != c2) return false;
+        var c3 = s.charAt(p[2]);
+        if (c1 != c3) return false;
+        return c1;
+      }
+
+      function checkStalemate(s) {
+        for (var i = 0; i < 9; i++) {
+          if (s.charAt(i) == '-') {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      for (var i = 0; i<checkCombos.length; i++) {
+        var combo = checkCombos[i];
+        var winStatus = checkWin(board, combo);
+        if (winStatus) {
+          var pos0 = positions[combo[0]];
+          var pos1 = positions[combo[2]];
+          drawLine(
+            (pos0[0] * s) + (s/2),
+            (pos0[1] * s) + (s/2),
+            (pos1[0] * s) + (s/2),
+            (pos1[1] * s) + (s/2),
+            8,
+            '#f00');
+          return winStatus;
+        }
+      }
+      if (checkStalemate(board)) {
+        return '-';
+      }
+      return false;
+    }
+
+    function drawBoard(b) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      drawLine(m, s, 800-m, s, 4, '#000');
+      drawLine(m, s*2, 800-m, s*2, 4, '#000');
+      drawLine(s, m, s, 800-m, 4, '#000');
+      drawLine(s*2, m, s*2, 800-m, 4, '#000');
+      for (var y=0; y<3; y++) {
+        for (var x=0; x<3; x++) {
+          if (b.charAt(x+(y*3)) == 'X') {
+            drawX(x * s, y * s, s);
+          }
+          else if (b.charAt(x+(y*3)) == 'O') {
+            drawO(x * s, y * s, s);
+          }
+        }
+      }
+    }
+
+    var gamma = 0.8;
+    var epochs = 800000;
+
+    var boardPrevState = "---------";
+    var boardState = "---------";
+    var turnCount = 0;
+    var network = {};
+
+    function getNode(network, id, winner) {
+      var node = network[id];
+      if (!node) {
+        node = {
+          id: id,
+          edges: {},
+          P: winner == 'X' ? 100 : 0,
+        };
+        network[id] = node;
+      }
+      return node;
+    }
+
+    function getMaxW(node) {
+      if (node.P != 0) return node.P;
+      var max = 0;
+      Object.values(node.edges).forEach(edge => {
+        if (edge.W > max) {
+          max = edge.W;
+        }
+      });
+      return max;
+    }
+
+    var moveRandom = () => {
+      var moveIndex = ~~(Math.random() * 9);
+      while (moveIndex == -1 || boardState.charAt(moveIndex) != '-') {
+        moveIndex = ~~(Math.random() * 9);
+      }
+      return moveIndex;
+    };
+
+    var setState = (moveIndex, player) => {
+      if (moveIndex >= 0) {
+        boardState = boardState.replaceAt(moveIndex, player);
+      }
+    };
+
+    function insertEdge(a, b) {
+      if (!b.edges[a.id]) {
+        b.edges[a.id] = {
+          node: a,
+          P: 0,
+          W: 0
+        };
+      }
+      return b.edges[a.id];
+    }
+
+    async function update() {
+      boardPrevState = boardState;
+      setState(moveRandom(), turnCount++ % 2 == 0 ? 'O' : 'X');
+      var winner = checkGameStatus(boardState);
+      var nodePrev = getNode(network, boardPrevState);
+      var node = getNode(network, boardState, winner);
+      var edge = insertEdge(node, nodePrev);
+      edge.W = edge.P + gamma * getMaxW(node);
+            drawBoard(boardState);
+      var winner = checkGameStatus(boardState);
+
+      await sleep(100);
+      if (winner) {
+        boardState = "---------";
+        turnCount = 0;
+        await sleep(1000);
+      }
+      update();
+    }
+
+    update();
+  </script>
+</html>
