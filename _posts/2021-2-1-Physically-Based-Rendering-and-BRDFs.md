@@ -454,8 +454,6 @@ Along with the tone mapping it can be useful to mimic 'shutter speed', to contro
 return float4(ToneMapACES(output * _Exposure), _Albedo.a);
 ```
 
-# Final Result
-
 [GitHub Gist](https://gist.github.com/mechanicsfoundry/a1eeca36922b71fe1942751879ab8ab6)
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/final.png?style=centerme)
