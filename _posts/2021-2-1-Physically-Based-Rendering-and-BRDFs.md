@@ -82,7 +82,7 @@ float3 diffuse_lambert(float3 n, float3 l)
 
 ### Albedo colour
 
-The 'albedo' term represents wavelengths of light absorbed by a material's surface upon diffusion, what we typically understand as the surface colour.
+The 'albedo' term represents wavelengths of light absorbed by a material's surface upon collision, what we typically understand as the surface colour.
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/diffsp.PNG?style=centerme)
 
