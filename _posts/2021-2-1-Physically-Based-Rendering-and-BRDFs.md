@@ -478,7 +478,6 @@ float4 frag (v2f i) : SV_Target
 }
 ```
 
-![_config.yml]({{ site.baseurl }}/images/pbr/image10.png)
 ![_config.yml]({{ site.baseurl }}/images/pbr/image11.png)
 
 # Appendix
