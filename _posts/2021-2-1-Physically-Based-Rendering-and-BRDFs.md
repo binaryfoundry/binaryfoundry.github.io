@@ -484,7 +484,7 @@ float4 frag (v2f i) : SV_Target
 
 ## Radiometric Units
 
-As integrating over a hemisphere means somehow summing up over all possible angles, and dividing by pi, a division by pi should really be factored in to light colour to be fully energy conserving.
+As integrating over a hemisphere means somehow summing up over all possible angles, and dividing by pi. So a division by pi should really be factored in to light colour to be fully energy conserving.
 
 For example in the Lambertian case:
 
@@ -495,7 +495,7 @@ float3 diffuse_img(float3 n)
 }
 ```
 
-But particularly for games the division is simpily dropped to make lighting input units normalized to 1. Introducing the pi division means lighting units are supplied in terms of luminous flux (lumens) instead, which is harder for an artist to work with.
+Introducing the pi division means lighting units are supplied in terms of luminous flux (lumens) instead, which is harder for an artist to work with. Particularly for games the division is simpily dropped to make lighting input units normalized to 1.
 
 ## Environment Map Representations
 
