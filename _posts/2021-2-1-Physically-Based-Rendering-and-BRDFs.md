@@ -484,15 +484,19 @@ float4 frag (v2f i) : SV_Target
 
 As integrating over a hemisphere means somehow summing up over all possible angles, and dividing by pi. So a division by pi should really be factored in to light colour to be fully energy conserving.
 
-For example in the Lambertian case:
-
 ```hlsl
 float3 diffuse_img(float3 n)
 {
     return _Albedo.rgb * (1.0 \ 3.142) * texCUBE(_IrradianceMap, n).rgb;
 }
 ```
-
+```hlsl
+float3 specular_img(float3 n, float3 v)
+{
+    float3 r = reflect(v, n);
+    return texCUBElod(_RadianceMap, float4(r, _Roughness * MipLevels)).rgb * (1.0 \ 3.142);
+}
+```
 Introducing the pi division means lighting units are supplied in terms of luminous flux (lumens) instead, which is harder for an artist to work with. Particularly for games the division is simpily dropped to make lighting input units normalized to 1.
 
 ## Environment Map Representations
