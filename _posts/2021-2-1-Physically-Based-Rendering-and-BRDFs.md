@@ -190,17 +190,19 @@ The Phong model contains two problematic heuristics.
 
 Lets deal with both of these problems. It's easier to think about these problems if we now switch to 'image based' rather than point lighting. Also, with the infinitely small point light it becomes invisible as the shininess parameter becomes perfectly mirror-like.
 
-Two cubemaps need to be generated from a regular cubemap, this is done using offline tools such as Cmgen in [Filament](https://github.com/google/filament), which will bake the properties of the BRDFs in to new cubemaps, this is what makes this model an approximation of Cook-Torrance rather than a direct implementation. This is our source 'regular' cubemap.
+Two separate special lighting environment maps need to be generated from a regular environment map, this is done using offline tools such as Cmgen in [Filament](https://github.com/google/filament), which will bake the properties of the BRDFs in to new environment maps, this is what makes this model an approximation of Cook-Torrance rather than a direct implementation.
+
+Here is our source 'regular' environment map.
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/envmap0.png?style=centerme)
 
 ### Image Based Diffuse Term
 
-The 'irradiance' map is created by convolving the regular cubemap.
+The 'irradiance' map is created by convolving the regular environment map.
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/envmap1.png?style=centerme)
 
-Sampling the cubemap for the image based diffuse term is straight-forward.
+Sampling the environment map for the image based diffuse term is straight-forward.
 
 ```hlsl
 float3 diffuse_img(float3 n)
@@ -211,7 +213,7 @@ float3 diffuse_img(float3 n)
 
 ### Image Based Specular Term
 
-The 'radiance' map for specular reflections is baked into the mapmaps of a cube map, so with increasing roughness a blurrier reflection can be looked up.
+The 'radiance' map for specular reflections is baked into the mapmaps of an environment map, so with increasing roughness a blurrier reflection can be looked up.
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/radmips.png?style=centerme)
 
@@ -335,7 +337,7 @@ On a microscopic level small facets should mask and shadow light rays.
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/fresnel2.png?style=centerme)
 
-In this approximation of Cook-Torrance calculations are split and baked into the environment cubemap, and in to a lookup table of Fresnel given surface roughness and viewing angle. This is the 'split sum' approximation.
+In this approximation of Cook-Torrance calculations are split and baked into the environment map, and in to a lookup table of Fresnel given surface roughness and viewing angle. This is the 'split sum' approximation.
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/dfg_2.png?style=centerme)
 
@@ -501,9 +503,9 @@ Introducing the pi division means lighting units are supplied in terms of lumino
 
 ## Environment Map Representations
 
-### Real Time Rendered Cubemaps
+### Real Time Rendered Environment Cubemaps
 
-It might not always be possible to use a baked cubemap, sometimes a more dynamic scene is needed and environment cubemaps need to be updated at runtime. A dynamic environment map can be used to approximate a pre-baked one with some lookup adjustments.
+It might not always be possible to use a baked environment map, sometimes a more dynamic scene is needed and environment maps need to be updated at runtime. A dynamic environment cubemap can be used to approximate a pre-baked one with some lookup adjustments.
 
 #### Irradiance Map
 
