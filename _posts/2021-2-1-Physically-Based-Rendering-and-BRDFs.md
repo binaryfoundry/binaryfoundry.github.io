@@ -290,7 +290,7 @@ The Fresnel effect increases specularity and decreases the amount of albedo adso
 
 ![_config.yml]({{ site.baseurl }}/images/pbr/fresnel1.jpg?style=centerme)
 
-![_config.yml]({{ site.baseurl }}/images/pbr/fwater.jpg?style=centerme)
+![_config.yml]({{ site.baseurl }}/images/pbr/fwater2.jpg?style=centerme)
 
 ### Incorrect Fresnel
 
