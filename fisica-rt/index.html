@@ -6,7 +6,13 @@
   <div style="position: absolute; top: 10px; right: 10px;">
     <a href="https://github.com/mechanicsfoundry/fisica-rt">https://github.com/mechanicsfoundry/fisica-rt</a>
   </div>
-  <div class=container id=container><canvas id=canvas oncontextmenu=event.preventDefault()></canvas></div><script>var Module = {
+  <div class=container id=container><canvas id=canvas oncontextmenu=event.preventDefault()></canvas></div><script>
+    const gl = document.createElement('canvas').getContext('webgl2');
+    if (!gl) {
+      alert('your browser/OS/drivers do not support WebGL2');
+      return;
+    }
+    var Module = {
         preRun: [],
         postRun: [],
         print: (function() {
