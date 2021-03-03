@@ -94,9 +94,6 @@
 
     layout(std140) uniform scene{
         int num_geometry;
-        int padding_0;
-        int padding_1;
-        int padding_2;
     };
 
     struct Ray {
