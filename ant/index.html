@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,  minimal-ui, initial-scale=1, shrink-to-fit=no">
+
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <title>Antstream</title>
+
+        <link rel="shortcut icon" href="/antstream-favicon.png">
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <script src="/ant.js"></script>
+        <script src="/controls.js" type="text/javascript"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- MY CUSTOM CSS -->
+        <link rel="stylesheet" type="text/css" href="/_ant_stream.css?r=9898i98">
+    </head>
+
+    <body>
+        <div id="videoContent" class="bg-middle main">
+            <canvas id="controlsCanvas" width="200" height="200" style="z-index:100; border:0; position:absolute;">
+            </canvas>
+            <div style="width:100%; height:100%">
+                <div class="d-flex" style="width:100%; height:100%">
+                    <video id="remoteVideo" hidden="true" class="bg-dark-1 remote-video" onmouseover="showButtons(event);" onmouseleave="hideButtons(event);" playsinline autoplay muted></video>
+                    <video id="previewVideo" style="display: none;" class="bg-dark-1 preview-video" width="320" height="240" muted autoplay></video>
+                    <a id="startBtnId" style="z-index:101;" hidden="true" class="startBtn" href="#" onClick="startCall();" title="play video"></a>
+                    <a id="stopBtnId" class="stopBtn" style="display: none;" href="#" onClick="endCall();" onmouseover="showButtons(event);" title="pause video"></a>
+                    <a id="fsMaxBtnId" class="fs fsMaxBtn" style="display:none" href="#" onClick="maximiseScreen();"  title="Maximise to Full Screen" onmouseover="showButtons(event);"></a>
+                    <a id="fsMinBtnId" class="fs fsMinBtn" style="display:none" href="#" onClick="minimiseScreen();"  title="Minimise Full Screen" onmouseover="showButtons(event);"></a>
+                    <div id="spinner-id" class="spinner" style="display: none;" onClick="terminateIfCallNotStarted(true);"></div>
+                </div>
+            </div>
+
+            <div class="row" hidden="true">
+                <div class="col d-flex justify-content-center">
+                    <div class="container p-0 text-white webrtcDetails">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading text-right">
+                                    <a id="settings-icon-id" data-toggle="collapse" href="#collapse1" class="settings-icon">
+                                        &#9881;
+                                    </a>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse">
+                                    <div class="input-group input-group-sm font-weight-lighter">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text" id="inputGroup-sizing-sm">WebRTC Server</span>
+                                        </div>
+                                        <input id="webrtcServerInputId" type="text" value="54-77-252-135.xip.antstream.com" class="form-control font-weight-lighter" aria-label="WebRTC Server" aria-describedby="inputGroup-sizing-sm"/>
+                                      </div>
+                                      <div class="input-group input-group-sm px-0 py-1">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text font-weight-lighter" id="inputGroup-sizing-sm">WebRTC Address</span>
+                                        </div>
+                                        <input id="webrtcAddressInputId" list="destinationList" type="text" value="local:" onchange="destChanged();" onselect="destChanged();" class="form-control" aria-label="WebRTC Address" aria-describedby="inputGroup-sizing-sm"/>
+                                        <datalist id="destinationList">
+                                            <option value="ivr:">
+                                            <option value="loopback:">
+                                            <option value="mcu:*">
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron jumbotron-fluid text-center bg-dark-1 footer">
+        </div>
+    </body>
+    <script type="text/javascript">
+        initControls();
+    </script>
+</html>

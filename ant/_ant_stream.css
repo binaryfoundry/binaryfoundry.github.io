@@ -1,0 +1,197 @@
+body{
+    line-height: 1.2;
+    overflow: hidden;
+}
+
+.bg-dark-1 {
+    background-color: #010b13;
+}
+
+.bg-middle {
+    background-color: #192734;
+}
+
+nav .navbar-nav li{
+    padding: 0px 17px;
+}
+
+nav .navbar-nav li a{
+    color: white !important;
+}
+
+.header {
+    margin-bottom:0; 
+    height: 8vh !important;
+    padding: 0;
+}
+
+.footer {
+    margin-bottom:0; 
+    height: 8vh;
+    padding: 0.3vh;
+}
+  
+.navbar-brand-name > img {
+    display: inline-block;
+    width: auto;
+    height: 7vh;
+    margin-top: -0.45vh;
+}
+
+.preview-video {
+    margin-left: 20px;
+    background-size: cover;
+    object-fit: fill;
+}
+
+.main {
+    height: 100vh !important;
+}
+
+.webrtcDetails {
+    width: 55vw;
+}
+
+.remote-video {
+    position:absolute;
+    background-size: cover;
+    object-fit: fill;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+@media screen and (orientation:portrait) {
+    .remote-video {
+        width: 100vw;
+    }
+    .main {
+    }
+
+    .fs {
+        left: calc(100vw - 35px - 4vh) !important;
+    }
+
+    .webrtcDetails {
+        width: calc(100vw - 4vh) !important;
+        margin-top: 1vh;
+    }
+    .settings-icon {
+        margin-right: -2px !important;
+    }
+}
+
+@media screen and (orientation:landscape) {
+
+}
+
+@media only screen and (min-width: 200px) and (max-width: 812px) and (orientation : landscape) {
+
+}
+
+
+.startBtn {
+    background-image:url(video_play.png);
+    background-repeat:no-repeat;
+    width: 115px;
+    height:115px;
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    background-size:contain;
+    background-position: center;
+}
+
+.stopBtn {
+    background-image:url(video_pause.png);
+    background-repeat:no-repeat;
+    width: 65px;
+    height:65px;
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+    z-index: 999;
+}
+
+.spinner {
+    background-image:ajax-loader-arrow.gif;
+    background-repeat:no-repeat;
+    width: 55px;
+    height:55px;
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+    z-index: 999;
+}
+
+.fsMinBtn {
+    background-image:url(fsMinBtn.png);
+    background-repeat:no-repeat;
+    width: 35px;
+    height:35px;
+    position:absolute;
+    left: calc(55vw - 35px);
+    right:0%;
+    top: calc(75.37vh - 35px);
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+    z-index: 999;
+}
+
+.fsMaxBtn {
+    background-image:url(fsMaxBtn.png);
+    background-repeat:no-repeat;
+    width: 35px;
+    height:35px;
+    position:absolute;
+    left: calc(55vw - 35px);
+    right:0%;
+    top: calc(75.37vh - 35px);
+    bottom:0%;
+    margin:auto;
+    background-size:contain;
+    background-position: center;
+    z-index: 999;
+}
+
+
+.menu-separator {
+    margin-left: 15px;
+    margin-right: -10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .menu-separator {
+       display: none;
+    }
+  }
+
+.float-right {
+    float: right !important;
+    margin-left: 20px;
+}
+
+.py-4-5 {
+    padding-bottom: 2rem!important;
+    padding-top: 2rem!important;
+}
+
+.settings-icon {
+    margin-right: -14px;
+    margin-top: -12px;
+}
+
