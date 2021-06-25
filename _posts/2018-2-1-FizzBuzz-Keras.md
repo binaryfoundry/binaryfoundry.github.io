@@ -9,4 +9,4 @@ Recently my lunch hour afforded some time for one of my favourite things, promot
 
 New front end APIs abstracting much of the setup required for Deep Learning takes away somewhat from Joel's joke, but I predict democratization will lead to much more advanced #DerpLearning.
 
-This image shows Keras output vs a correct FizzBuzz. In some effort to maintain the geek comedy, there are still some errors but adjusting parameters for a correct output is trivial. [Here is the Gist](https://gist.github.com/mechanicsfoundry/3bd4e3c1ee13b7e35f454689b0ef2fa1) on GitHub.
+This image shows Keras output vs a correct FizzBuzz. In some effort to maintain the geek comedy, there are still some errors but adjusting parameters for a correct output is trivial. [Here is the Gist](https://gist.github.com/binaryfoundry/3bd4e3c1ee13b7e35f454689b0ef2fa1) on GitHub.
