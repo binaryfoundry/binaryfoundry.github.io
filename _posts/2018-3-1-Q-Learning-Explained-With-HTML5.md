@@ -11,7 +11,7 @@ This post is about a very simple learning algorithm called Q-Learning, although 
 
 <div>
     <center>
-        <iframe scrolling="no" src="https://mechanicsfoundry.github.io/qlearn/tictactoe.html" width="800" height="800"></iframe>
+        <iframe scrolling="no" src="https://binaryfoundry.github.io/qlearn/tictactoe.html" width="800" height="800"></iframe>
     </center>
 </div>
 
