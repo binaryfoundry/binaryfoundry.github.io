@@ -44,7 +44,7 @@ Q = StateReward + LearningRate * MaximumQFromStatesAvailableActions
 
 <div>
     <center>
-        <iframe scrolling="no" src="https://mechanicsfoundry.github.io/qlearn/maze.html" width="800" height="800"></iframe>
+        <iframe scrolling="no" src="https://binaryfoundry.github.io/qlearn/maze.html" width="800" height="800"></iframe>
     </center>
 </div>
 
@@ -56,7 +56,7 @@ Training the AI for Tic Tac Toe works in exactly the same way, turns are made ra
 
 <div>
     <center>
-        <iframe scrolling="no" src="https://mechanicsfoundry.github.io/qlearn/tictactoetrain.html" width="800" height="800"></iframe>
+        <iframe scrolling="no" src="https://binaryfoundry.github.io/qlearn/tictactoetrain.html" width="800" height="800"></iframe>
     </center>
 </div>
 
@@ -76,7 +76,7 @@ This concept is similar to Simulated Annealing [^3]. In a heated metal, excited 
 
 <div>
     <center>
-        <img src="https://mechanicsfoundry.github.io/images/anneal.gif"/>
+        <img src="https://binaryfoundry.github.io/images/anneal.gif"/>
     </center>
 </div>
 
