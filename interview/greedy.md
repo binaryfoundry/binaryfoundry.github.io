@@ -1,8 +1,6 @@
-# Greedy
+# Jump Game
 
-## Jump Game
-
-### Greedy.
+## Greedy.
 
 ```cpp
 bool canJump(vector<int>& nums) {
@@ -19,7 +17,7 @@ bool canJump(vector<int>& nums) {
 
 ```
 
-### Backtracking
+## Backtracking
 
 ```cpp
 bool canJumpFromPosition(int position, vector<int>& nums) {
@@ -43,7 +41,7 @@ bool canJump(vector<int> nums) {
 
 ```
 
-### DP
+## DP
 
 ```cpp
 unordered_map<int, bool> memo;
@@ -76,7 +74,7 @@ bool canJump(vector<int> nums) {
 
 ```
 
-## Jump Game 2 Min Jumps
+# Jump Game 2 Min Jumps
 
 ```cpp
 // We will use proof by contradiction to verify that the greedy algorithm is correct. Our statement is: if at any step, we make a different choice than what our greedy algorithm would make, we can find a better solution to the problem.

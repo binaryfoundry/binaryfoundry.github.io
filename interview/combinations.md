@@ -1,5 +1,4 @@
-
-## List all Permutations:
+# List all Permutations:
 
 ```cpp
 void permutations(vector<int> nums, int size, int depth = 0) {
@@ -32,7 +31,7 @@ void counting(vector<int> nums, string o = "", int depth = 0) {
 
 ```
 
-## Next Permutation
+# Next Permutation
 
 https://leetcode.com/problems/next-permutation/solution/
 
@@ -76,7 +75,7 @@ private void swap(int[] nums, int i, int j) {
 
 ```
 
-## List all Combinations:
+# List all Combinations:
 
 https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
 https://leetcode.com/problems/combinations/
@@ -92,7 +91,7 @@ void combinations(vector<int> nums, string o = "", int depth = 0) {
 
 ```
 
-## Letter Combinations
+# Letter Combinations
 
 https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
@@ -135,7 +134,7 @@ vector<string> letterCombinations(string digits) {
 
 ```
 
-## Subsets
+# Subsets
 
 Has solution.
 https://leetcode.com/problems/subsets/
@@ -161,7 +160,7 @@ vector<vector<int>> subsets(vector<int>& nums) {
 
 ```
 
-## Letter Combinations of a Phone Number
+# Letter Combinations of a Phone Number
 
 ```cpp
 const vector<string> grammar = {

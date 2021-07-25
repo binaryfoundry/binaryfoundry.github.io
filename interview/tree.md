@@ -1,6 +1,4 @@
-# Binary Trees
-
-## BFS
+# BFS
 
 Can also go right to left.
 
@@ -41,7 +39,7 @@ while (!q.empty()) {
 
 ```
 
-## Validate BST
+# Validate BST
 
 ```cpp
 int prev = -INT_MAX;
@@ -56,7 +54,7 @@ bool isValidBST(TreeNode* root) {
 
 ```
 
-## Same Tree
+# Same Tree
 
 https://leetcode.com/problems/same-tree
 
@@ -72,7 +70,7 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
 }
 ```
 
-## Merge Binary Trees
+# Merge Binary Trees
 
 https://leetcode.com/problems/merge-two-binary-trees/
 
@@ -117,7 +115,7 @@ public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
 
 ```
 
-## Is Binary Tree Mirror
+# Is Binary Tree Mirror
 
 ```cpp
 bool isMirror(TreeNode* t1, TreeNode* t2) {
@@ -134,7 +132,7 @@ bool isSymmetric(TreeNode* root) {
 
 ```
 
-## Binary Tree Vertical Order Traversal
+# Binary Tree Vertical Order Traversal
 
 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
 
@@ -173,7 +171,9 @@ vector<vector<int>> verticalOrder(TreeNode* root) {
 
 ```
 
-## Lowest Common Ancestor
+# Lowest Common Ancestor
+
+Treat as a tortoise/hare cycle detection problem.
 
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 
@@ -181,8 +181,7 @@ https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 
 Node* lowestCommonAncestor(Node* p, Node * q) {
     Node* pp = p, *qq = q;
-    while(pp!=qq)
-    {
+    while(pp!=qq) {
         pp = pp->parent ? pp->parent : q;
         qq = qq->parent ? qq->parent : p;
     }
@@ -191,8 +190,7 @@ Node* lowestCommonAncestor(Node* p, Node * q) {
 
 ```
 
-
-## Unique Binary Search Trees
+# Unique Binary Search Trees
 
 Catalan numbers get big fast, consider a 32-bit LUT.
 https://leetcode.com/problems/unique-binary-search-trees/solution/
@@ -221,13 +219,13 @@ int numTrees(int n) {
 ```
 
 ```cpp
+const vector<uint64_t> catalan = { 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190, 6564120420, 24466267020, 91482563640, 343059613650, 1289904147324, 4861946401452, 18367353072152, 69533550916004, 263747951750360, 1002242216651368 };
 int numTrees(int n) {
-    vector<uint64_t> catalan = { 1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190, 6564120420, 24466267020, 91482563640, 343059613650, 1289904147324, 4861946401452, 18367353072152, 69533550916004, 263747951750360, 1002242216651368 };
     return catalan[n];
 }
 ```
 
-## Flatten Binary Tree to Linked List
+# Flatten Binary Tree to Linked List
 
 Stack.
 https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
@@ -266,11 +264,11 @@ public void flatten(TreeNode root) {
 
 ```
 
-## Univalued Binary Tree
+# Univalued Binary Tree
 
 A tree is univalued if both its children are univalued, plus the root node has the same value as the child nodes.
 
-## Longest Univalue Path
+# Longest Univalue Path
 
 Remember to start from base.
 https://leetcode.com/problems/longest-univalue-path/
@@ -304,7 +302,7 @@ int postorder(TreeNode* root) {
 ```
 
 
-## Binary Tree Path Sum
+# Binary Tree Path Sum
 
 ```cpp
 int target = 0;
@@ -330,7 +328,7 @@ bool hasPathSum(TreeNode* root, int targetSum) {
 
 ```
 
-## Invert Binary Tree
+# Invert Binary Tree
 
 ```cpp
 TreeNode* invertTree(TreeNode* root) {
@@ -345,7 +343,7 @@ TreeNode* invertTree(TreeNode* root) {
 
 ```
 
-## Binary Tree Diameter
+# Binary Tree Diameter
 
 https://leetcode.com/problems/diameter-of-binary-tree/solution/
 
@@ -369,11 +367,11 @@ int diameterOfBinaryTree(TreeNode* root) {
 
 ```
 
-## Is Sub Tree
+# Is Sub Tree
 
 https://www.geeksforgeeks.org/check-if-a-binary-tree-is-subtree-of-another-binary-tree/?ref=lbp
 
-## Symmetric Tree
+# Symmetric Tree
 
 Pass in root as parameter twice.
 https://leetcode.com/problems/symmetric-tree/

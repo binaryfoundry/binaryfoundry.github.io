@@ -1,6 +1,4 @@
-# Sub Arrays
-
-## Maximum Subarray
+# Maximum Subarray
 
 Remove negative prefix along sliding window
 
@@ -22,7 +20,7 @@ int maxSubArray(vector<int>& nums) {
 
 ```
 
-## Sub Array Sum
+# Sub Array Sum
 
 https://leetcode.com/problems/continuous-subarray-sum/
 
@@ -54,7 +52,7 @@ bool checkSubarraySum(vector<int>& nums, int k) {
 
 ```
 
-## kth Smallest Subarray Sum
+# kth Smallest Subarray Sum
 
 https://leetcode.com/problems/kth-smallest-subarray-sum/
 
@@ -82,11 +80,11 @@ int kthSmallestSubarraySum(vector<int>& nums, int k) {
 
 ```
 
-## Subarray Sum Equals K
+# Subarray Sum Equals K
 
 https://leetcode.com/problems/subarray-sum-equals-k/
 
-### Using Cumulative Sum
+## Using Cumulative Sum
 
 ```cpp
 int subarraySumA(vector<int>& nums, int k) {
@@ -109,7 +107,7 @@ int subarraySumA(vector<int>& nums, int k) {
 
 ```
 
-### Using Hashmap
+## Using Hashmap
 
 [3,4,7,2,-3,1,4,2]
 

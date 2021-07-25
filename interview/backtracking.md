@@ -1,6 +1,4 @@
-# Backtracking
-
-## N-Queens
+# N-Queens
 
 ```java
 private int size;
@@ -15,7 +13,7 @@ private int backtrack(int row, Set<Integer> diagonals, Set<Integer> antiDiagonal
     if (row == size) {
         return 1;
     }
-    
+
     int solutions = 0;
     for (int col = 0; col < size; col++) {
         int currDiagonal = row - col;

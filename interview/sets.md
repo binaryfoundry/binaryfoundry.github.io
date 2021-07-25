@@ -1,6 +1,4 @@
-# Sets
-
-## Intersection of Two Arrays
+# Intersection of Two Arrays
 
 https://leetcode.com/problems/intersection-of-two-arrays/solution/
 https://leetcode.com/problems/intersection-of-two-arrays-ii/solution/
@@ -25,7 +23,7 @@ vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
 
 ```
 
-## Accounts Merge
+# Accounts Merge
 
 TODO
 

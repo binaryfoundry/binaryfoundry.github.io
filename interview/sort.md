@@ -1,17 +1,15 @@
-# Sorting
-
 As others have noted, worst case of Quicksort is O(n^2), while mergesort and heapsort stay at O(nlogn). On the average case, however, all three are O(nlogn); so they're for the vast majority of cases comparable.
 
 What makes Quicksort better on average is that the inner loop implies comparing several values with a single one, while on the other two both terms are different for each comparison. In other words, Quicksort does half as many reads as the other two algorithms. On modern CPUs performance is heavily dominated by access times, so in the end Quicksort ends up being a great first choice.
 
-## Big Data Sort
+# Big Data Sort
 
 Merge sort
 Radix sort
 https://en.wikipedia.org/wiki/Smoothsort
 https://www.geeksforgeeks.org/algorithms-searching-and-sorting-question-16/
 
-## Counting Sort
+# Counting Sort
 
 ```cpp
 #define K 4
@@ -37,7 +35,7 @@ void sortColors(vector<int>& nums) {
 ```
 
 
-## kthSmallest
+# kthSmallest
 
 ```cpp
 int kthSmallest(TreeNode* root, int k) {
@@ -176,7 +174,7 @@ class Solution {
 ```
 
 
-## Sort Colors
+# Sort Colors
 
 Counting sort.
 https://leetcode.com/problems/sort-colors
@@ -202,7 +200,7 @@ void sortColors(vector<int>& nums) {
 
 ```
 
-## Min Stack
+# Min Stack
 
 ```cpp
 class MinStack {

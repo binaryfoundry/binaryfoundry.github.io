@@ -1,6 +1,4 @@
-# Bits
-
-## 1 Bits
+# 1 Bits
 
 ```cpp
 int hammingWeight(uint32_t n) {
@@ -8,7 +6,7 @@ int hammingWeight(uint32_t n) {
 }
 ```
 
-## Power of Two
+# Power of Two
 
 https://leetcode.com/problems/power-of-two
 
@@ -18,7 +16,7 @@ bool isPowerOfTwo(int n) {
 }
 ```
 
-## Popcount
+# Popcount
 
 ```cpp
 #include <iostream>
@@ -41,7 +39,7 @@ int main() {
 
 ```
 
-## Reverse Bits
+# Reverse Bits
 
 ```cpp
 uint32_t reverseBits(uint32_t n) {

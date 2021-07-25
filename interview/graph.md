@@ -1,6 +1,4 @@
-# Graphs
-
-## Is Graph Bipartite?
+# Is Graph Bipartite?
 
 TODO
 
@@ -42,7 +40,7 @@ bool isBipartite(vector<vector<int>>& graph) {
 
 ```
 
-## Shortest Path Between Buildings
+# Shortest Path Between Buildings
 
 https://leetcode.com/explore/interview/card/facebook/52/trees-and-graphs/3026
 Disktra shortest path. Flood fill, signed distance field.
@@ -134,7 +132,7 @@ int shortestDistance(vector<vector<int>>& grid) {
 ```
 
 
-## Unfinished A*
+# Unfinished A*
 
 ```cpp
 class Solution {
@@ -204,13 +202,13 @@ public:
 
 ```
 
-## Dijkstra’s shortest path
+# Dijkstra’s shortest path
 
 We maintain two sets, one set contains vertices included in shortest path tree, other set includes vertices not yet included in shortest path tree. At every step of the algorithm, we find a vertex which is in the other set (set of not yet included) and has a minimum distance from the source.
 
 https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
 
-## Alien Dictionary
+# Alien Dictionary
 
 Kahn's Algorithm
 
@@ -220,7 +218,7 @@ Kahn's Algorithm
 
 https://leetcode.com/problems/alien-dictionary/
 
-## Clone
+# Clone
 
 ```java
 class Solution {

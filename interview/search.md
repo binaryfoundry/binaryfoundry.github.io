@@ -1,6 +1,4 @@
-# Binary Search
-
-## First Bad Version
+# First Bad Version
 
 https://www.geeksforgeeks.org/binary-search/
 
@@ -37,7 +35,7 @@ int findPeakElement(vector<int>& nums) {
 
 ```
 
-## First and Last Position of Element in Sorted Array
+# First and Last Position of Element in Sorted Array
 
 Find bound.
 
@@ -82,7 +80,7 @@ vector<int> searchRange(vector<int>& nums, int target) {
 
 ```
 
-## Rotated Sorted Array
+# Rotated Sorted Array
 
 1. Take an index in the middle mid as a pivot.
 2. If nums[mid] == target, the job is done, return mid.

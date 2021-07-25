@@ -1,12 +1,10 @@
-# Strings
-
-## Find the Difference
+# Find the Difference
 
 XOR a[i] and b[i+1], init properly.
 
 https://leetcode.com/problems/find-the-difference/
 
-## Minimum Remove to Make Valid Parentheses
+# Minimum Remove to Make Valid Parentheses
 
 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/solution/
 
@@ -23,7 +21,7 @@ function is_balanced_parentheses(string)
     return balance == 0
 ```
 
-## Longest Common Prefix
+# Longest Common Prefix
 
 Quadratic scan is easy solution. Binary Search Better.
 https://leetcode.com/problems/longest-common-prefix/
@@ -56,7 +54,7 @@ private boolean isCommonPrefix(String[] strs, int len){
 }
 ```
 
-## Valid Palindrome II
+# Valid Palindrome II
 
 ```cpp
 bool palin(string s,int index) //this function delete s[i] or s[j] 
@@ -89,7 +87,7 @@ bool validPalindrome(string s) {
 
 ```
 
-## To Hex
+# To Hex
 
 ```cpp
 char hexChar(int x) {
@@ -113,7 +111,7 @@ string toHex(int num) {
 
 ```
 
-## Group Anagrams
+# Group Anagrams
 
 Map key by bit hash.
 http://leetcode.com/problems/group-anagrams/
@@ -142,12 +140,12 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 
 ```
 
-## Minimum Window Substring
+# Minimum Window Substring
 
 Left and right pointer sliding window.
 https://leetcode.com/problems/minimum-window-substring/
 
-## Longest Substring Without Repeating Characters
+# Longest Substring Without Repeating Characters
 
 Sliding window with character LUT.
 lastIndex contains the last time a character was seen, so the window start.
@@ -155,7 +153,7 @@ If a substring from index i to j - 1 is already checked to have no duplicate cha
 
 https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
-## Verifying an Alien Dictionary
+# Verifying an Alien Dictionary
 
 Build lookup table map from english to alien for O(1) guaranteed.
 https://leetcode.com/problems/verifying-an-alien-dictionary/

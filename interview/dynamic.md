@@ -1,8 +1,6 @@
-# Dynamic Programming
-
 First, the question is asking for the maximum or minimum of something. Second, we have to make decisions that may depend on previously made decisions, which is very typical of a problem involving subsequences.
 
-## Top 5 DP Patterns
+# Top 5 DP Patterns
 
 https://www.youtube.com/watch?v=mBNrRy2_hVs&list=WL
 
@@ -12,9 +10,7 @@ https://www.youtube.com/watch?v=mBNrRy2_hVs&list=WL
 * Longest Common Subsequence
 * Pallendromes
 
-# Dynamic Programming
-
-## Fib DP
+# Fib DP
 
 ```cpp
 unordered_map<int, int> memo;
@@ -31,7 +27,7 @@ int fib(int n) {
 
 ```
 
-## Grid Traveler
+# Grid Traveler
 
 m-1 and n-1 because target is at 1,1 and 0 or 0 is out of bounds.
 
@@ -59,7 +55,7 @@ int uniquePaths(int m, int n) {
 
 ```
 
-## Climbing Stairs (steps)
+# Climbing Stairs (steps)
 
 https://leetcode.com/problems/climbing-stairs/
 
@@ -86,7 +82,7 @@ int climbStairs(int n) {
 
 ```
 
-## Can Sum
+# Can Sum
 
 ```javascript
 var memo = {}
@@ -109,7 +105,7 @@ canSum = (targetSum, numbers) => {
 
 ```
 
-## How Sum
+# How Sum
 
 ```javascript
 var memo = {};
@@ -134,7 +130,7 @@ howSum = (targetSum, numbers) => {
 
 ```
 
-## Coin Change
+# Coin Change
 
 https://leetcode.com/problems/coin-change
 
@@ -197,7 +193,7 @@ int coinChange(vector<int>& coins, int amount) {
 
 ```
 
-## Decode Ways
+# Decode Ways
 
 https://leetcode.com/problems/decode-ways/submissions/
 
@@ -243,7 +239,7 @@ int numDecodings(string s) {
 
 ```
 
-## Longest Increasing Subsequence
+# Longest Increasing Subsequence
 
 DP, size of nums, init to 1. The minimum LIS from all values is 1.
 Quadratic loop i,j+1 max. Return longest from DP.
@@ -274,7 +270,7 @@ int lengthOfLIS(vector<int>& nums) {
 
 ```
 
-## Longest Common Subsequence
+# Longest Common Subsequence
 
 https://leetcode.com/problems/longest-common-subsequence/
 
@@ -322,7 +318,7 @@ int lcs(string X, string Y, int m, int n, int dp[][maximum]) {
 
 ```
 
-## Combination Sum IV
+# Combination Sum IV
 
 https://leetcode.com/problems/combination-sum-iv
 
@@ -358,7 +354,7 @@ class Solution {
 
 ```
 
-## Word Break
+# Word Break
 
 https://leetcode.com/problems/word-break/solution/
 
@@ -390,7 +386,7 @@ bool wordBreak(string s, vector<string>& wordDict) {
 ```
 
 
-## Regex Matching
+# Regex Matching
 
 ```cpp
 // Brute Force
@@ -466,7 +462,7 @@ bool isMatch(string s, string p) {
 }
 ```
 
-## Remove Invalid Parenthesis
+# Remove Invalid Parenthesis
 
 BFS not DFS. BFS makes much more sense.
 
@@ -553,7 +549,7 @@ vector<string> removeInvalidParentheses(string s) {
 B is valid return
 ```
 
-## Word Break II
+# Word Break II
 
 https://leetcode.com/problems/word-break-ii/
 

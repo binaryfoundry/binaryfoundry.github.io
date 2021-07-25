@@ -1,8 +1,6 @@
-# Intervals
-
 Usually think sorting.
 
-## Merge Intervals
+# Merge Intervals
 
 ```cpp
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
@@ -26,7 +24,7 @@ vector<vector<int>> merge(vector<vector<int>>& intervals) {
 
 ```
 
-## Interval Scheduling Problem
+# Interval Scheduling Problem
 
 Use this algo Sort the elements by finish time. Use greedy and include the first interval. Mark its end time.
 

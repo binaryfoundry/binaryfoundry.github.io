@@ -1,6 +1,4 @@
-# Math
-
-## Pow
+# Pow
 
 The code relies on the fact that: x^y == (x*x)^(y/2)
 
@@ -30,13 +28,13 @@ double myPow(double x, int n) {
 }
 ```
 
-### Approximation of e^x
+## Approximation of e^x
 
 ```
 1+x+(1/2*x^2)+(1/6*x^3)+(1/24*x^4)+(1/120*x^5)
 ```
 
-## Int SQRT
+# Int SQRT
 
 Ordinary binary search.
 https://www.geeksforgeeks.org/square-root-of-an-integer/
@@ -87,10 +85,12 @@ int floorSqrt(uint64_t x) {
 }
 ```
 
-### Newton's Method
+## Newton's Method
 
 X2 = X1 - f(X1) / f'(X1)
+
 x0 - (((x0*x0) - x) / (2 * x0));
+
 (x0 + x / x0)
 
 ```java
@@ -109,7 +109,7 @@ public int mySqrt(int x) {
 
 ```
 
-## Inverse SQRT
+# Inverse SQRT
 
 rsqrtss / _mm_rsqrt_ss
 
@@ -133,18 +133,18 @@ float Q_rsqrt( float number )
 
 ```
 
-## Maclaurin Series of Sqrt(1+x)
+# Maclaurin Series of Sqrt(1+x)
 
 ```
 1+(x/2)-(x^2/8)+(x^3/16)
 ```
 
-## Factorial Trailing Zeroes
+# Factorial Trailing Zeroes
 
 List out the factorials, there's not many.
 https://leetcode.com/problems/factorial-trailing-zeroes/
 
-## Basic Calculator II
+# Basic Calculator II
 
 https://leetcode.com/problems/basic-calculator-ii/
 
@@ -189,7 +189,7 @@ int calculate(string s) {
 
 ```
 
-## Add Binary
+# Add Binary
 
 Full adder logic
 https://leetcode.com/problems/add-binary/
@@ -221,7 +221,7 @@ string addBinary(string a, string b) {
 
 ```
 
-## Plus One
+# Plus One
 
 ```cpp
 vector<int> plusOne(vector<int>& digits) {
@@ -244,7 +244,7 @@ vector<int> plusOne(vector<int>& digits) {
 }
 ```
 
-## Roman to Integer
+# Roman to Integer
 
 ```cpp
 int romanToInt(string str) {
@@ -272,7 +272,7 @@ int romanToInt(string str) {
 }
 ```
 
-## Int to Roman
+# Int to Roman
 
 ```cpp
 string intToRoman(int number) {
@@ -292,7 +292,7 @@ string intToRoman(int number) {
 }
 ```
 
-## Two Sum
+# Two Sum
 
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
@@ -323,7 +323,7 @@ Time complexity : O(n). We traverse the list containing nn elements exactly twic
 
 Space complexity : O(n). The extra space required depends on the number of items stored in the hash table, which stores exactly nn elements.
 
-## Two Sum II
+# Two Sum II
 
 ```cpp
 vector<int> twoSum(vector<int>& numbers, int target) {
@@ -343,7 +343,7 @@ vector<int> twoSum(vector<int>& numbers, int target) {
 
 ```
 
-## Three Sum
+# Three Sum
 
 TODO
 
@@ -378,7 +378,7 @@ void twoSumII(vector<int>& nums, int i, vector<vector<int>> &res) {
 
 ```
 
-## Best Time to Buy and Sell Stock
+# Best Time to Buy and Sell Stock
 
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 

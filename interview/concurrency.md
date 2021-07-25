@@ -1,6 +1,4 @@
-# Concurrency
-
-## Ring Buffer
+# Ring Buffer
 
 ```cpp
 #include <atomic>
@@ -72,7 +70,7 @@ tp.join();
 
 ```
 
-## Fizz Buzz
+# Fizz Buzz
 
 ```cpp
 class FooBar {

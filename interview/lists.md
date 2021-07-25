@@ -1,6 +1,4 @@
-# Linked Lists
-
-## Linked List Insert
+# Linked List Insert
 
 Or use sentinel.
 Remember to clear final next to nullptr.
@@ -21,7 +19,7 @@ void insert(ListNode* head) {
 
 ```
 
-## Reverse Linked List
+# Reverse Linked List
 
 This one is trickier than it sounds, can result in cycles.
 
@@ -36,7 +34,7 @@ public ListNode reverseList(ListNode head) {
 
 ```
 
-## Linked List Cycle
+# Linked List Cycle
 
 ```cpp
 bool hasCycle(ListNode *head) {
@@ -52,15 +50,15 @@ bool hasCycle(ListNode *head) {
 }
 ```
 
-## Linked List Cycle II Where Begins
+# Linked List Cycle II Where Begins
 
 https://leetcode.com/problems/linked-list-cycle-ii/
 
-## Reverse Linked List
+# Reverse Linked List
 
 https://leetcode.com/problems/reverse-linked-list/
 
-## Add Two Numbers
+# Add Two Numbers
 
 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 
