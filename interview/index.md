@@ -41,8 +41,9 @@ uint32_t n = 0xFF;
 * Is this a left and right pointer problem like filled water tanks or minimum containing substr?
 * Manhattan distance
 
-https://www.geeksforgeeks.org/fundamentals-of-algorithms/
-https://www.geeksforgeeks.org/greedy-algorithms/
+[https://www.geeksforgeeks.org/fundamentals-of-algorithms/]
+
+[https://www.geeksforgeeks.org/greedy-algorithms/]
 
 With permutations the order matters, with combinations the order does not matter. 123 is a different permutation of 132 but is the same combination.
 
@@ -80,13 +81,15 @@ There are mainly two parts of the space consumption that one should bear in mind
 
 ## Fib Hash
 
-https://probablydance.com/2018/06/16/fibonacci-hashing-the-optimization-that-the-world-forgot-or-a-better-alternative-to-integer-modulo/
+[https://probablydance.com/2018/06/16/fibonacci-hashing-the-optimization-that-the-world-forgot-or-a-better-alternative-to-integer-modulo/]
 
 ## Find the Duplicate Number
 
 Floyd's Tortoise and Hare (Cycle Detection)
-https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/
-https://leetcode.com/problems/find-the-duplicate-number/
+
+[https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/]
+
+[https://leetcode.com/problems/find-the-duplicate-number/]
 
 ```java
 public int findDuplicate(int[] nums) {
@@ -112,33 +115,33 @@ public int findDuplicate(int[] nums) {
 
 ## Remove Duplicates from Sorted List
 
-https://leetcode.com/problems/remove-duplicates-from-sorted-list/
-https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+[https://leetcode.com/problems/remove-duplicates-from-sorted-list/]
+[https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/]
 
 ## First Missing Positive
 
 Create an array of n+1 length, discard nums negative or larger than array.
-https://leetcode.com/problems/first-missing-positive/
+
+[https://leetcode.com/problems/first-missing-positive/]
 
 ## Number of Islands
 
-https://leetcode.com/problems/number-of-islands/
+[https://leetcode.com/problems/number-of-islands/]
 
 ## Missing Number
 
 XOR with 0..n+1, then XOR with all nums.
-https://leetcode.com/problems/missing-number/
+
+[https://leetcode.com/problems/missing-number/]
 
 ## Stack using Queues
 
-Has solution.
-https://leetcode.com/problems/implement-stack-using-queues/
+[https://leetcode.com/problems/implement-stack-using-queues/]
 
 ## Queue using Stacks
 
-Has solution.
-https://leetcode.com/problems/implement-queue-using-stacks/
+[https://leetcode.com/problems/implement-queue-using-stacks/]
 
 ## Car Parking Roofs (Parking Dilemma)
 
-https://www.programmersought.com/article/51466642015/
+[https://www.programmersought.com/article/51466642015/]
