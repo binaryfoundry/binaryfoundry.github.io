@@ -49,7 +49,7 @@ With permutations the order matters, with combinations the order does not matter
 
 # Big O
 
-https://www.bigocheatsheet.com/
+[https://www.bigocheatsheet.com/]
 
 # Solutions
 
