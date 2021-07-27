@@ -24,12 +24,12 @@ bool isPowerOfTwo(int n) {
 using namespace std;
 
 int main() {
-   unsigned long long int input=679043ULL; // just a big number, for demo
-   unsigned char lookup[16]={ 0,1,1,2,1,2,2,3,1,2,2,3,2,3,3,4 };
+   unsigned long long int input = 679043ULL; // just a big number, for demo
+   unsigned char lookup[16] = { 0,1,1,2,1,2,2,3,1,2,2,3,2,3,3,4 };
    unsigned char result = 0;
 
    while (input > 0) {
-       cout << (unsigned int) result << " " << (input&0xf) << " " << input << endl;
+       cout << (unsigned int) result << " " << (input & 0xf) << " " << input << endl;
        result+=lookup[input & 0xf];
        input >>= 4;
    }
