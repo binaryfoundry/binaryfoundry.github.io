@@ -1,157 +1,35 @@
 <!doctypehtml>
 <html lang=en-us>
-    <head>
-        <meta charset=utf-8>
-        <meta content="text/html; charset=utf-8" http-equiv=Content-Type>
-        <title>Threaded Ray-Tracing in One Weekend</title>
-        <style>
-            body,html {
-                width: 100%;
-                height: 100%;
-                padding: 0;
-                margin: 0
-            }
-
-            canvas {
-                display: block
-            }
-        </style>
-    </head>
-    <body>
-        <canvas height=800 id=c width=1200></canvas>
-        <div>
-            <h2>Threaded Ray-Tracing with Emscripten</h2>
-        </div>
-        <div>
-            <a href=https://github.com/binaryfoundry/raytracinginoneweekend-emscripten>https://github.com/binaryfoundry/raytracinginoneweekend-emscripten</a>
-            <p>26/4/2019: Updated with bounding volume hierarchies from Ray Tracing the Next Week.</p>
-        </div>
-        <div>
-            <a href=https://binaryfoundry.github.io/rtow-single-thread>Single Threaded Build</a>
-        </div>
-        <div>
-            <h4>Requires browser with threading enabled such as Chrome 70+. Check log if failing.</h4>
-            <p>Enable "WebAssembly threads support." in <a href="chrome://flags/">chrome://flags/</a></p>
-            <img src="flags.png" width="40%" height="40%"/>
-        </div>
-        <hr>
-        <div>
-            <a href=https://github.com/petershirley/raytracinginoneweekend/releases />Peter Shirley's Books</a>
-        </div>
-        <div>
-            <a href=https://twitter.com/binaryfoundry>https://twitter.com/binaryfoundry</a>
-        </div>
-        <script>
-            var Module = {
-                preRun: [],
-                postRun: [],
-                print: function() {
-                    var t = document.querySelector("#output");
-                    return t && (t.value = ""),
-                    function(e) {
-                        1 < arguments.length && (e = Array.prototype.slice.call(arguments).join(" ")),
-                        console.log(e),
-                        t && (t.value += e + "\n",
-                        t.scrollTop = t.scrollHeight)
-                    }
-                }(),
-                printErr: function(e) {
-                    1 < arguments.length && (e = Array.prototype.slice.call(arguments).join(" ")),
-                    console.log(e)
-                },
-                canvas: function() {
-                    var e = document.getElementById("c")
-                      , t = e.getContext("2d");
-                    return window.ctx = t,
-                    window.canvas = e
-                }(),
-                setStatus: function(e) {
-                    console.log(e)
-                },
-                totalDependencies: 0,
-                monitorRunDependencies: function(e) {
-                    this.totalDependencies = Math.max(this.totalDependencies, e),
-                    Module.setStatus(e ? "Preparing... (" + (this.totalDependencies - e) + "/" + this.totalDependencies + ")" : "All downloads complete.")
-                }
-            };
-            window.onerror = function(e) {
-                window.canvas.height = 0;
-                setTimeout(function() {
-                alert('Error: threads not available, see instructions.');
-                }, 300);
-                Module.setStatus("Exception thrown, see JavaScript console"),
-                Module.setStatus = function(e) {
-                    e && Module.printErr("[post-exception status] " + e)
-                }
-            }
-        </script>
-        <script>
-            var ASSERTIONS = 2
-              , dataURIPrefix = "data:application/octet-stream;base64,";
-            function isDataURI(r) {
-                return String.prototype.startsWith ? r.startsWith(dataURIPrefix) : 0 === r.indexOf(dataURIPrefix)
-            }
-            var decodeBase64 = "function" == typeof atob ? atob : function(r) {
-                var e, t, a, i, n, o, f = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", m = "", s = 0;
-                for (r = r.replace(/[^A-Za-z0-9\+\/\=]/g, ""); e = f.indexOf(r.charAt(s++)) << 2 | (i = f.indexOf(r.charAt(s++))) >> 4,
-                t = (15 & i) << 4 | (n = f.indexOf(r.charAt(s++))) >> 2,
-                a = (3 & n) << 6 | (o = f.indexOf(r.charAt(s++))),
-                m += String.fromCharCode(e),
-                64 !== n && (m += String.fromCharCode(t)),
-                64 !== o && (m += String.fromCharCode(a)),
-                s < r.length; )
-                    ;
-                return m
-            }
-            ;
-            function intArrayFromBase64(e) {
-                if ("boolean" == typeof ENVIRONMENT_IS_NODE && ENVIRONMENT_IS_NODE) {
-                    var t;
-                    try {
-                        t = Buffer.from(e, "base64")
-                    } catch (r) {
-                        t = new Buffer(e,"base64")
-                    }
-                    return new Uint8Array(t.buffer,t.byteOffset,t.byteLength)
-                }
-                try {
-                    for (var r = decodeBase64(e), a = new Uint8Array(r.length), i = 0; i < r.length; ++i)
-                        a[i] = r.charCodeAt(i);
-                    return a
-                } catch (r) {
-                    throw new Error("Converting base64 string to bytes failed.")
-                }
-            }
-            function tryParseAsDataURI(r) {
-                if (isDataURI(r))
-                    return intArrayFromBase64(r.slice(dataURIPrefix.length))
-            }
-            function intArrayFromString(r, e, t) {
-                var a = 0 < t ? t : lengthBytesUTF8(r) + 1
-                  , i = new Array(a)
-                  , n = stringToUTF8Array(r, i, 0, i.length);
-                return e && (i.length = n),
-                i
-            }
-            function intArrayToString(r) {
-                for (var e = [], t = 0; t < r.length; t++) {
-                    var a = r[t];
-                    255 < a && (ASSERTIONS && assert(!1, "Character code " + a + " (" + String.fromCharCode(a) + ")  at offset " + t + " not in 0x00-0xFF."),
-                    a &= 255),
-                    e.push(String.fromCharCode(a))
-                }
-                return e.join("")
-            }
-            var memoryInitializer = "rtow.html.mem";
-            memoryInitializer = Module.locateFile ? Module.locateFile(memoryInitializer, "") : memoryInitializer,
-            Module.memoryInitializerRequestURL = memoryInitializer;
-            var meminitXHR = Module.memoryInitializerRequest = new XMLHttpRequest;
-            meminitXHR.open("GET", memoryInitializer, !0),
-            meminitXHR.responseType = "arraybuffer",
-            meminitXHR.send(null);
-            var script = document.createElement("script");
-            script.src = "rtow.js",
-            document.body.appendChild(script)
-        </script>
-    </body>
+   <head>
+      <meta charset=utf-8>
+      <meta content="text/html; charset=utf-8"http-equiv=Content-Type>
+      <title>Threaded Ray-Tracing in One Weekend</title>
+      <style>body,html{width:100%;height:100%;padding:0;margin:0}canvas{display:block}</style>
+   </head>
+   <body>
+      <canvas height=800 id=c width=1200></canvas>
+      <div>
+          <h2>Threaded Ray-Tracing with Emscripten</h2>
+      </div>
+      <div>
+          <a href=https://github.com/binaryfoundry/raytracinginoneweekend-emscripten>https://github.com/binaryfoundry/raytracinginoneweekend-emscripten</a>
+          <p>26/4/2019: Updated with bounding volume hierarchies from Ray Tracing the Next Week.</p>
+      </div>
+      <div>
+          <a href=https://binaryfoundry.github.io/rtow-single-thread>Single Threaded Build</a>
+      </div>
+      <div>
+          <h4>Requires browser with threading enabled such as Chrome 70+. Check log if failing.</h4>
+          <p>Enable "WebAssembly threads support." in <a href="chrome://flags/">chrome://flags/</a></p>
+          <img src="flags.png" width="40%" height="40%"/>
+      </div>
+      <hr>
+      <div>
+          <a href=https://github.com/petershirley/raytracinginoneweekend/releases />Peter Shirley's Books</a>
+      </div>
+      <div>
+          <a href=https://twitter.com/binaryfoundry>https://twitter.com/binaryfoundry</a>
+      </div>
+      <script>var Module={preRun:[],postRun:[],print:function(){var e=document.querySelector("#output");return e&&(e.value=""),function(t){arguments.length>1&&(t=Array.prototype.slice.call(arguments).join(" ")),console.log(t),e&&(e.value+=t+"\n",e.scrollTop=e.scrollHeight)}}(),printErr:function(e){arguments.length>1&&(e=Array.prototype.slice.call(arguments).join(" ")),console.log(e)},canvas:function(){var e=document.getElementById("c"),t=e.getContext("2d");return window.ctx=t,window.canvas=e,e}(),setStatus:function(e){console.log(e)},totalDependencies:0,monitorRunDependencies:function(e){this.totalDependencies=Math.max(this.totalDependencies,e),Module.setStatus(e?"Preparing... ("+(this.totalDependencies-e)+"/"+this.totalDependencies+")":"All downloads complete.")}};window.onerror=function(e){window.canvas.height=0,setTimeout((function(){alert("Error: WebAssemblyThreads need to be enabled.")}),300),Module.setStatus("Exception thrown, see JavaScript console"),Module.setStatus=function(e){e&&Module.printErr("[post-exception status] "+e)}}</script><script async src=rtow.js></script>
+   </body>
 </html>
