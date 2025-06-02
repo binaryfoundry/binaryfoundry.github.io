@@ -2,11 +2,14 @@ This article is reproduced for posterity from [codeflow.org](https://web.archive
 
 ![]({{ site.baseurl }}/images/scatter/scatterdemo.png?style=centerme)
 
+[Live Demo Link](https://binaryfoundry.github.io/scattering/)
+
 <!-- more -->
 
 ## Contents
 
 * [Repository](#repository)
+* [Demo](#demo)
 * [Screenshots](#screenshots)
 * [Overview](#overview)
 * [Setup](#setup)
@@ -23,6 +26,10 @@ This article is reproduced for posterity from [codeflow.org](https://web.archive
 ## Repository
 
 [https://github.com/binaryfoundry/atmospheric-scattering](https://github.com/binaryfoundry/atmospheric-scattering)
+
+## Demo
+
+[Live Demo Link](https://binaryfoundry.github.io/scattering/)
 
 ## Screenshots
 
