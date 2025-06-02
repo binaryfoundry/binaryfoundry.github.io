@@ -1,12 +1,12 @@
-This article is reproduced for posterity from [http://codeflow.org/entries/2011/apr/13/advanced-webgl-part-2-sky-rendering/](https://web.archive.org/web/20200313091416/http://codeflow.org/entries/2011/apr/13/advanced-webgl-part-2-sky-rendering/), which is now no longer online. It explains how to render a realistic sky in GLSL by ray‐marching through a simplified spherical atmosphere.
+This article is reproduced for posterity from [codeflow.org](https://web.archive.org/web/20200313091416/http://codeflow.org/entries/2011/apr/13/advanced-webgl-part-2-sky-rendering/), which is now no longer online. It explains how to render a realistic sky in GLSL by ray‐marching through a simplified spherical atmosphere.
 
-![]({{ site.baseurl }}/images/scatter/sundown.jpg?style=centerme)
+![]({{ site.baseurl }}/images/scatter/scatterdemo.png?style=centerme)
 
 <!-- more -->
 
 ## Contents
 
-* [Demo](#demo)
+* [Repository](#repository)
 * [Screenshots](#screenshots)
 * [Overview](#overview)
 * [Setup](#setup)
@@ -20,16 +20,20 @@ This article is reproduced for posterity from [http://codeflow.org/entries/2011/
 * [Finishing Up](#finishing-up)
 * [Fine Tuning](#fine-tuning)
 
+## Repository
+
+[https://github.com/binaryfoundry/atmospheric-scattering](https://github.com/binaryfoundry/atmospheric-scattering)
+
 ## Screenshots
 
 ![]({{ site.baseurl }}/images/scatter/sundown.jpg?style=centerme)
-![]({ site.baseurl }}/images/scatter/sunup.jpg?style=centerme)
+![]({{ site.baseurl }}/images/scatter/sunup.jpg?style=centerme)
 
 ## Overview
 
 The idea is to trace a ray for each pixel from the observer position. Along a fixed number of sampling points along that ray, rays are shot towards the sun. The depth of atmosphere traversed is measured. So the collected light at each sample point is known, and hence the reflected light (towards the observer) can be calculated.
 
-![]({ site.baseurl }}/images/scatter/scattering.png?style=centerme)
+![]({{ site.baseurl }}/images/scatter/scattering.png?style=centerme)
 
 This [GPU Gem](https://web.archive.org/web/20200313091416/http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter16.html) gives a much better description of the algorithm than I could give.
 
