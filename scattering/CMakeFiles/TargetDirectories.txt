@@ -1,0 +1,4 @@
+C:/Users/paula/Documents/Projects/atmosphericscattering/bin/web/Release/CMakeFiles/atmospheric-scattering.dir
+C:/Users/paula/Documents/Projects/atmosphericscattering/bin/web/Release/CMakeFiles/atmospheric-scattering-files.dir
+C:/Users/paula/Documents/Projects/atmosphericscattering/bin/web/Release/CMakeFiles/edit_cache.dir
+C:/Users/paula/Documents/Projects/atmosphericscattering/bin/web/Release/CMakeFiles/rebuild_cache.dir
