@@ -1,6 +1,6 @@
 This article is reproduced for posterity from [codeflow.org](https://web.archive.org/web/20200313091416/http://codeflow.org/entries/2011/apr/13/advanced-webgl-part-2-sky-rendering/), which is now no longer online. It explains how to render a realistic sky in GLSL by ray‐marching through a simplified spherical atmosphere.
 
-![]({{ site.baseurl }}/images/scatter/scatterdemo.png?style=centerme)
+![]({{ site.baseurl }}/images/scatter/scatter-demo.png?style=centerme)
 
 [Live Demo Link](https://binaryfoundry.github.io/scattering/)
 
@@ -33,6 +33,7 @@ This article is reproduced for posterity from [codeflow.org](https://web.archive
 
 ## Screenshots
 
+![]({{ site.baseurl }}/images/scatter/scatter-demo-2.png?style=centerme)
 ![]({{ site.baseurl }}/images/scatter/sundown.jpg?style=centerme)
 ![]({{ site.baseurl }}/images/scatter/sunup.jpg?style=centerme)
 
