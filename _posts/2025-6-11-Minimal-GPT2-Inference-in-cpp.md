@@ -3,7 +3,7 @@ layout: post
 title: Minimal GPT2 Inference in C++
 ---
 
-Here's a little project which runs GPT2 inference with every operation rolled out by hand to be inspectable and debuggable, in C++, with no dependences.
+Here's a little project which runs GPT2 inference with every operation rolled out by hand to be inspectable and debuggable, in C++, with no dependences. Ideal for learning about the Transformer mechanism.
 
 <style>
 .video-container {
