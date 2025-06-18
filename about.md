@@ -12,17 +12,6 @@ paulalexanderwelch (at) gmail (dot) com
 
 # Project Showcase
 
-## Fisica
-
-Mass GPU physics simulator. A unique algorithm allows mobile compatible simulation of 100,000~1,000,000 bodies, with stable stacking and constraints on GPU. The key to this algorithm is eliminating the need for bottom up resolution order for stable stacking.
-
-<div>
-    <center>
-        <iframe width="800" height="480" src="https://www.youtube.com/embed/cUgHmEN0szo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <iframe width="800" height="480" src="https://www.youtube.com/embed/Q_8aIRv9rO0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </center>
-</div>
-
 ## Reach3Dx
 
 A Unity like engine I created in 2012/13 and took to GDC. Supports targets for HTML5 and native code for mobile/desktop. The first 3D engine to support HTML5.
