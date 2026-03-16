@@ -174,6 +174,15 @@
                 return String(Math.floor(10000000 + Math.random() * 90000000));
             }
 
+            function buildGuestJoinUrl(roomId) {
+                var url = new URL(window.location.href);
+                url.search = '';
+                url.hash = '';
+                url.searchParams.set('join', '1');
+                url.searchParams.set('room', roomId);
+                return url.toString();
+            }
+
             const state = {
                 role: null,
                 room: null,
@@ -347,6 +356,8 @@
                 state.role = 'host';
                 state.room = makeRoomId();
                 state.targetPeerId = null;
+                var joinUrl = buildGuestJoinUrl(state.room);
+                console.log('WebRTC join URL (share with guest):', joinUrl);
                 setupPeerConnection();
                 await connectSignaling(state.room, state.peerId);
             }
