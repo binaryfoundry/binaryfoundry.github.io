@@ -129,6 +129,16 @@
             noStdioInit: true
         };
         if (window.WEBRTC_JOIN_MODE) Module.noInitialRun = true;
+        // Strip WebRTC query params from argv so the game does not see host=1, room=, join= as CLI args
+        (Module.preRun = Module.preRun || []).push(function() {
+            if (Module['arguments']) {
+                var webRtcKeys = { host: 1, room: 1, join: 1 };
+                Module['arguments'] = Module['arguments'].filter(function(a) {
+                    var key = (String(a).split('=')[0] || '').toLowerCase();
+                    return !webRtcKeys[key];
+                });
+            }
+        });
         window.addEventListener('resize', resize, false);
         window.triggerResize = resize;
         if (document.readyState === 'loading') {
@@ -180,15 +190,6 @@
                 keys: new Set(),
                 gamepads: new Map()
             };
-
-            function setHostUrl(roomId) {
-                const url = new URL(window.location.href);
-                url.search = '';
-                url.hash = '';
-                url.searchParams.set('host', '1');
-                url.searchParams.set('room', roomId);
-                history.replaceState({}, '', url.toString());
-            }
 
             async function createSession(room, peer) {
                 const res = await fetch(SIGNAL_BASE + '/session', {
@@ -346,7 +347,6 @@
                 state.role = 'host';
                 state.room = makeRoomId();
                 state.targetPeerId = null;
-                setHostUrl(state.room);
                 setupPeerConnection();
                 await connectSignaling(state.room, state.peerId);
             }
