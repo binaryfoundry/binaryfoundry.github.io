@@ -50,25 +50,19 @@
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
 
     .small {
       color: #666;
       font-size: 14px;
     }
-
-    code {
-      background: #f3f3f3;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
   </style>
 </head>
 <body>
   <h1>2 Player WebRTC Game</h1>
 
-  <div class="row">
+  <div class="row" id="lobbyRow">
     <button id="hostBtn">Host Game</button>
     <input id="roomInput" placeholder="Room ID" />
     <button id="joinBtn">Join Room</button>
@@ -97,7 +91,6 @@
 
   <script>
     const SIGNAL_BASE = "https://multistuntcar.retrofoundry.workers.dev";
-    const APP_BASE = window.location.origin + window.location.pathname;
 
     const hostBtn = document.getElementById("hostBtn");
     const joinBtn = document.getElementById("joinBtn");
@@ -106,7 +99,6 @@
     const joinLinkInput = document.getElementById("joinLink");
     const hostControls = document.getElementById("hostControls");
     const statusEl = document.getElementById("status");
-
     const hostArea = document.getElementById("hostArea");
     const guestArea = document.getElementById("guestArea");
     const canvas = document.getElementById("gameCanvas");
@@ -114,17 +106,16 @@
     const remoteVideo = document.getElementById("remoteVideo");
 
     const state = {
-      role: null,         // "host" or "guest"
+      role: null,               // "host" or "guest"
       room: null,
       peerId: crypto.randomUUID(),
       targetPeerId: null,
       ws: null,
       pc: null,
       dc: null,
-      connected: false,
-      welcomeRole: null,
       gameStarted: false,
-      gamepadLoopHandle: null
+      gamepadLoopHandle: null,
+      guestBootedFromUrl: false
     };
 
     const game = {
@@ -146,10 +137,22 @@
       return crypto.randomUUID().slice(0, 8);
     }
 
-    function buildJoinLink(roomId) {
-      const url = new URL(APP_BASE);
+    function buildGuestJoinLink(roomId) {
+      const url = new URL(window.location.href);
+      url.search = "";
+      url.hash = "";
+      url.searchParams.set("join", "1");
       url.searchParams.set("room", roomId);
       return url.toString();
+    }
+
+    function setHostUrl(roomId) {
+      const url = new URL(window.location.href);
+      url.search = "";
+      url.hash = "";
+      url.searchParams.set("host", "1");
+      url.searchParams.set("room", roomId);
+      history.replaceState({}, "", url.toString());
     }
 
     function showHostUI() {
@@ -161,6 +164,12 @@
     function showGuestUI() {
       guestArea.classList.remove("hidden");
       hostArea.classList.add("hidden");
+      hostControls.classList.add("hidden");
+    }
+
+    function hideAllGameViews() {
+      hostArea.classList.add("hidden");
+      guestArea.classList.add("hidden");
       hostControls.classList.add("hidden");
     }
 
@@ -199,7 +208,9 @@
       };
 
       pc.ontrack = (event) => {
-        remoteVideo.srcObject = event.streams[0];
+        if (state.role === "guest") {
+          remoteVideo.srcObject = event.streams[0];
+        }
       };
 
       pc.ondatachannel = (event) => {
@@ -237,14 +248,12 @@
 
       ws.onclose = () => {
         setStatus("Disconnected");
-        state.connected = false;
       };
 
       ws.onmessage = async (event) => {
         const msg = JSON.parse(event.data);
 
         if (msg.type === "welcome") {
-          state.welcomeRole = msg.role;
           setStatus(`Connected as ${msg.role}`);
         }
 
@@ -255,6 +264,10 @@
           if (state.role === "host" && others.length && !state.targetPeerId) {
             state.targetPeerId = others[0];
             await startHostOffer();
+          }
+
+          if (state.role === "host" && !others.length) {
+            state.targetPeerId = null;
           }
         }
 
@@ -288,8 +301,6 @@
           setStatus(`Error: ${msg.error}`);
         }
       };
-
-      state.connected = true;
     }
 
     async function startHostOffer() {
@@ -340,19 +351,20 @@
 
     function getPrimaryGamepadState() {
       const pads = [...game.gamepads.values()];
-      if (!pads.length) return null;
-      return pads[0];
+      return pads.length ? pads[0] : null;
     }
 
     function updateGame() {
       let dx = 0;
       let dy = 0;
 
+      // Keyboard
       if (game.keys.has("ArrowLeft") || game.keys.has("a") || game.keys.has("A")) dx -= 1;
       if (game.keys.has("ArrowRight") || game.keys.has("d") || game.keys.has("D")) dx += 1;
       if (game.keys.has("ArrowUp") || game.keys.has("w") || game.keys.has("W")) dy -= 1;
       if (game.keys.has("ArrowDown") || game.keys.has("s") || game.keys.has("S")) dy += 1;
 
+      // Gamepad
       const gp = getPrimaryGamepadState();
       if (gp) {
         const axX = Math.abs(gp.axes?.[0] || 0) > 0.15 ? gp.axes[0] : 0;
@@ -361,10 +373,10 @@
         dx += axX;
         dy += axY;
 
-        if (gp.buttons?.[14]?.pressed) dx -= 1; // dpad left
-        if (gp.buttons?.[15]?.pressed) dx += 1; // dpad right
-        if (gp.buttons?.[12]?.pressed) dy -= 1; // dpad up
-        if (gp.buttons?.[13]?.pressed) dy += 1; // dpad down
+        if (gp.buttons?.[14]?.pressed) dx -= 1;
+        if (gp.buttons?.[15]?.pressed) dx += 1;
+        if (gp.buttons?.[12]?.pressed) dy -= 1;
+        if (gp.buttons?.[13]?.pressed) dy += 1;
       }
 
       game.x += dx * game.speed;
@@ -396,7 +408,7 @@
       ctx.fillStyle = "#fff";
       ctx.font = "18px sans-serif";
       ctx.fillText("Host game running", 20, 30);
-      ctx.fillText("Guest controls with keyboard and gamepad", 20, 58);
+      ctx.fillText("Guest controls with keyboard + gamepad", 20, 58);
 
       const gp = getPrimaryGamepadState();
       if (gp) {
@@ -454,11 +466,10 @@
           shiftKey: e.shiftKey
         });
 
-        // Prevent the page from scrolling when guest uses common game keys.
-        if ([
-          "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
-          "Space", "Spacebar"
-        ].includes(e.key) || e.code === "Space") {
+        if (
+          ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space", "Spacebar"].includes(e.key) ||
+          e.code === "Space"
+        ) {
           e.preventDefault();
         }
       }, { passive: false });
@@ -477,10 +488,10 @@
           shiftKey: e.shiftKey
         });
 
-        if ([
-          "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
-          "Space", "Spacebar"
-        ].includes(e.key) || e.code === "Space") {
+        if (
+          ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space", "Spacebar"].includes(e.key) ||
+          e.code === "Space"
+        ) {
           e.preventDefault();
         }
       }, { passive: false });
@@ -523,7 +534,6 @@
             }
           }
 
-          // Clear disconnected pads that disappeared from navigator.getGamepads()
           for (const index of [...lastSent.keys()]) {
             const stillThere = pads[index];
             if (!stillThere) {
@@ -563,23 +573,26 @@
     async function hostGame() {
       state.role = "host";
       state.room = makeRoomId();
+      state.targetPeerId = null;
       roomInput.value = state.room;
 
-      const joinUrl = buildJoinLink(state.room);
+      const joinUrl = buildGuestJoinLink(state.room);
       joinLinkInput.value = joinUrl;
-      history.replaceState({}, "", `?room=${encodeURIComponent(state.room)}`);
 
+      setHostUrl(state.room);
       showHostUI();
       setupPeerConnection();
       await connectSignaling(state.room, state.peerId);
       startHostGame();
 
+      console.log("Guest join URL:", joinUrl);
       setStatus("Hosting. Share the link. The guest can join any time.");
     }
 
     async function joinGame(roomId) {
       state.role = "guest";
       state.room = roomId;
+      state.targetPeerId = null;
       roomInput.value = roomId;
 
       showGuestUI();
@@ -622,14 +635,23 @@
     setupGuestKeyboardInput();
     setupGuestGamepadInput();
 
+    // Boot logic
+    hideAllGameViews();
+
     const urlParams = new URLSearchParams(window.location.search);
     const roomFromUrl = urlParams.get("room");
-    if (roomFromUrl) {
+    const shouldJoin = urlParams.get("join") === "1";
+
+    if (shouldJoin && roomFromUrl) {
+      state.guestBootedFromUrl = true;
       roomInput.value = roomFromUrl;
+
       joinGame(roomFromUrl).catch((err) => {
         console.error(err);
         setStatus(`Auto-join failed: ${err.message}`);
       });
+    } else {
+      setStatus("Idle");
     }
   </script>
 </body>
