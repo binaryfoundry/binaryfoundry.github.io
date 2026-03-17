@@ -71,7 +71,7 @@ var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIR
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Users\paula\AppData\Local\Temp\tmpkgvratte.js
+// include: C:\Users\paula\AppData\Local\Temp\tmpb4llv1rj.js
 
   if (!Module['expectedDataFileDownloads']) Module['expectedDataFileDownloads'] = 0;
   Module['expectedDataFileDownloads']++;
@@ -207,14 +207,14 @@ Module['FS_createPath']("/data", "Tracks", true, true);
 
   })();
 
-// end include: C:\Users\paula\AppData\Local\Temp\tmpkgvratte.js
-// include: C:\Users\paula\AppData\Local\Temp\tmpazkhmynu.js
+// end include: C:\Users\paula\AppData\Local\Temp\tmpb4llv1rj.js
+// include: C:\Users\paula\AppData\Local\Temp\tmp1bvmdov9.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if ((typeof ENVIRONMENT_IS_WASM_WORKER != 'undefined' && ENVIRONMENT_IS_WASM_WORKER) || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD) || (typeof ENVIRONMENT_IS_AUDIO_WORKLET != 'undefined' && ENVIRONMENT_IS_AUDIO_WORKLET)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: C:\Users\paula\AppData\Local\Temp\tmpazkhmynu.js
+  // end include: C:\Users\paula\AppData\Local\Temp\tmp1bvmdov9.js
 // include: C:\Users\paula\emsdk\upstream\emscripten\src\emrun_prejs.js
 /**
  * @license
@@ -237,13 +237,13 @@ if (globalThis.window) {
   }
 }
 // end include: C:\Users\paula\emsdk\upstream\emscripten\src\emrun_prejs.js
-// include: C:\Users\paula\AppData\Local\Temp\tmpqq2c7diy.js
+// include: C:\Users\paula\AppData\Local\Temp\tmpuvmnxd1g.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: C:\Users\paula\AppData\Local\Temp\tmpqq2c7diy.js
+  // end include: C:\Users\paula\AppData\Local\Temp\tmpuvmnxd1g.js
 
 
 var arguments_ = [];
@@ -9522,7 +9522,6 @@ var ASM_CONSTS = {
 var _malloc = makeInvalidEarlyAccess('_malloc');
 var _SetWebRTCGuestConnected = Module['_SetWebRTCGuestConnected'] = makeInvalidEarlyAccess('_SetWebRTCGuestConnected');
 var _SetWebRTCGuestPlayer2Input = Module['_SetWebRTCGuestPlayer2Input'] = makeInvalidEarlyAccess('_SetWebRTCGuestPlayer2Input');
-var _GetWebRTCSplitScreenActive = Module['_GetWebRTCSplitScreenActive'] = makeInvalidEarlyAccess('_GetWebRTCSplitScreenActive');
 var _main = Module['_main'] = makeInvalidEarlyAccess('_main');
 var _strerror = makeInvalidEarlyAccess('_strerror');
 var ___funcs_on_exit = makeInvalidEarlyAccess('___funcs_on_exit');
@@ -9545,7 +9544,6 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['malloc'] != 'undefined', 'missing Wasm export: malloc');
   assert(typeof wasmExports['SetWebRTCGuestConnected'] != 'undefined', 'missing Wasm export: SetWebRTCGuestConnected');
   assert(typeof wasmExports['SetWebRTCGuestPlayer2Input'] != 'undefined', 'missing Wasm export: SetWebRTCGuestPlayer2Input');
-  assert(typeof wasmExports['GetWebRTCSplitScreenActive'] != 'undefined', 'missing Wasm export: GetWebRTCSplitScreenActive');
   assert(typeof wasmExports['__main_argc_argv'] != 'undefined', 'missing Wasm export: __main_argc_argv');
   assert(typeof wasmExports['strerror'] != 'undefined', 'missing Wasm export: strerror');
   assert(typeof wasmExports['__funcs_on_exit'] != 'undefined', 'missing Wasm export: __funcs_on_exit');
@@ -9564,7 +9562,6 @@ function assignWasmExports(wasmExports) {
   _malloc = createExportWrapper('malloc', 1);
   _SetWebRTCGuestConnected = Module['_SetWebRTCGuestConnected'] = createExportWrapper('SetWebRTCGuestConnected', 1);
   _SetWebRTCGuestPlayer2Input = Module['_SetWebRTCGuestPlayer2Input'] = createExportWrapper('SetWebRTCGuestPlayer2Input', 1);
-  _GetWebRTCSplitScreenActive = Module['_GetWebRTCSplitScreenActive'] = createExportWrapper('GetWebRTCSplitScreenActive', 0);
   _main = Module['_main'] = createExportWrapper('__main_argc_argv', 2);
   _strerror = createExportWrapper('strerror', 1);
   ___funcs_on_exit = createExportWrapper('__funcs_on_exit', 0);
