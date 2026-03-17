@@ -71,7 +71,7 @@ var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIR
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Users\paula\AppData\Local\Temp\tmp7p24iro2.js
+// include: C:\Users\paula\AppData\Local\Temp\tmp9ub2zog6.js
 
   if (!Module['expectedDataFileDownloads']) Module['expectedDataFileDownloads'] = 0;
   Module['expectedDataFileDownloads']++;
@@ -207,14 +207,14 @@ Module['FS_createPath']("/data", "Tracks", true, true);
 
   })();
 
-// end include: C:\Users\paula\AppData\Local\Temp\tmp7p24iro2.js
-// include: C:\Users\paula\AppData\Local\Temp\tmpb13mg11w.js
+// end include: C:\Users\paula\AppData\Local\Temp\tmp9ub2zog6.js
+// include: C:\Users\paula\AppData\Local\Temp\tmpfok_mvk_.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if ((typeof ENVIRONMENT_IS_WASM_WORKER != 'undefined' && ENVIRONMENT_IS_WASM_WORKER) || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD) || (typeof ENVIRONMENT_IS_AUDIO_WORKLET != 'undefined' && ENVIRONMENT_IS_AUDIO_WORKLET)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: C:\Users\paula\AppData\Local\Temp\tmpb13mg11w.js
+  // end include: C:\Users\paula\AppData\Local\Temp\tmpfok_mvk_.js
 // include: C:\Users\paula\emsdk\upstream\emscripten\src\emrun_prejs.js
 /**
  * @license
@@ -237,13 +237,13 @@ if (globalThis.window) {
   }
 }
 // end include: C:\Users\paula\emsdk\upstream\emscripten\src\emrun_prejs.js
-// include: C:\Users\paula\AppData\Local\Temp\tmp0fm2zxs9.js
+// include: C:\Users\paula\AppData\Local\Temp\tmp8xn8c1jr.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: C:\Users\paula\AppData\Local\Temp\tmp0fm2zxs9.js
+  // end include: C:\Users\paula\AppData\Local\Temp\tmp8xn8c1jr.js
 
 
 var arguments_ = [];
@@ -706,6 +706,11 @@ TTY.init();
   // Begin ATPOSTCTORS hooks
   FS.ignorePermissions = false;
   // End ATPOSTCTORS hooks
+}
+
+function preMain() {
+  checkStackCookie();
+  // No ATMAINS hooks
 }
 
 function exitRuntime() {
@@ -8969,6 +8974,8 @@ var stringToUTF8Array = (str, heap, outIdx, maxBytesToWrite) => {
   var _glViewport = _emscripten_glViewport;
 
 
+
+
   var autoResumeAudioContext = (ctx) => {
       for (var event of ['keydown', 'mousedown', 'touchstart']) {
         for (var element of [document, document.getElementById('canvas')]) {
@@ -9514,7 +9521,7 @@ var ASM_CONSTS = {
 var _malloc = makeInvalidEarlyAccess('_malloc');
 var _SetWebRTCGuestConnected = Module['_SetWebRTCGuestConnected'] = makeInvalidEarlyAccess('_SetWebRTCGuestConnected');
 var _SetWebRTCGuestPlayer2Input = Module['_SetWebRTCGuestPlayer2Input'] = makeInvalidEarlyAccess('_SetWebRTCGuestPlayer2Input');
-var _main = makeInvalidEarlyAccess('_main');
+var _main = Module['_main'] = makeInvalidEarlyAccess('_main');
 var _strerror = makeInvalidEarlyAccess('_strerror');
 var ___funcs_on_exit = makeInvalidEarlyAccess('___funcs_on_exit');
 var _fflush = makeInvalidEarlyAccess('_fflush');
@@ -9554,7 +9561,7 @@ function assignWasmExports(wasmExports) {
   _malloc = createExportWrapper('malloc', 1);
   _SetWebRTCGuestConnected = Module['_SetWebRTCGuestConnected'] = createExportWrapper('SetWebRTCGuestConnected', 1);
   _SetWebRTCGuestPlayer2Input = Module['_SetWebRTCGuestPlayer2Input'] = createExportWrapper('SetWebRTCGuestPlayer2Input', 1);
-  _main = createExportWrapper('__main_argc_argv', 2);
+  _main = Module['_main'] = createExportWrapper('__main_argc_argv', 2);
   _strerror = createExportWrapper('strerror', 1);
   ___funcs_on_exit = createExportWrapper('__funcs_on_exit', 0);
   _fflush = createExportWrapper('fflush', 1);
@@ -10249,6 +10256,35 @@ function invoke_iiii(index,a1,a2,a3) {
 
 var calledRun;
 
+function callMain(args = []) {
+  assert(runDependencies == 0, 'cannot call main when async dependencies remain! (listen on Module["onRuntimeInitialized"])');
+  assert(typeof onPreRuns === 'undefined' || onPreRuns.length == 0, 'cannot call main when preRun functions remain to be called');
+
+  var entryFunction = _main;
+
+  args.unshift(thisProgram);
+
+  var argc = args.length;
+  var argv = stackAlloc((argc + 1) * 4);
+  var argv_ptr = argv;
+  for (var arg of args) {
+    HEAPU32[((argv_ptr)>>2)] = stringToUTF8OnStack(arg);
+    argv_ptr += 4;
+  }
+  HEAPU32[((argv_ptr)>>2)] = 0;
+
+  try {
+
+    var ret = entryFunction(argc, argv);
+
+    // if we're not running an evented main loop, it's time to exit
+    exitJS(ret, /* implicit = */ true);
+    return ret;
+  } catch (e) {
+    return handleException(e);
+  }
+}
+
 function stackCheckInit() {
   // This is normally called automatically during __wasm_call_ctors but need to
   // get these values before even running any of the ctors so we call it redundantly
@@ -10286,10 +10322,13 @@ function run(args = arguments_) {
 
     initRuntime();
 
+    preMain();
+
     Module['onRuntimeInitialized']?.();
     consumedModuleProp('onRuntimeInitialized');
 
-    assert(!Module['_main'], 'compiled without a main, but one is present. if you added it from JS, use Module["onRuntimeInitialized"]');
+    var noInitialRun = Module['noInitialRun'] || false;
+    if (!noInitialRun) callMain(args);
 
     postRun();
   }
