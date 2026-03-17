@@ -86,6 +86,14 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 14px;
       }
+      .webrtc-overlay__title {
+        color: #8b949e;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 8px;
+      }
       .webrtc-overlay__status {
         color: #e6edf3;
         margin-bottom: 10px;
@@ -143,6 +151,50 @@
       }
       .webrtc-overlay__copy:active { background: rgba(255, 255, 255, 0.08); }
       .webrtc-overlay__copy.copied { color: #3fb950; border-color: #3fb950; }
+      .webrtc-overlay__volume-row {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .webrtc-overlay__volume-label {
+        display: block;
+        color: #8b949e;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 6px;
+      }
+      .webrtc-overlay__volume-slider {
+        width: 100%;
+        height: 6px;
+        -webkit-appearance: none;
+        appearance: none;
+        background: rgba(0, 0, 0, 0.35);
+        border-radius: 3px;
+        outline: none;
+      }
+      .webrtc-overlay__volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #c9d1d9;
+        cursor: pointer;
+        border: none;
+        transition: background 0.2s;
+      }
+      .webrtc-overlay__volume-slider::-webkit-slider-thumb:hover { background: #fff; }
+      .webrtc-overlay__volume-slider::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #c9d1d9;
+        cursor: pointer;
+        border: none;
+      }
+      .webrtc-overlay__volume-slider::-moz-range-thumb:hover { background: #fff; }
       body.webrtc-join-mode .webrtc-overlay .webrtc-overlay__link-row { display: none !important; }
       /* Join mode: video only, scaled to page with aspect ratio maintained; no game UI */
       body.webrtc-join-mode .emscripten { display: none !important; }
@@ -172,10 +224,15 @@
     </div>
     <video id="webrtcRemoteVideo" autoplay playsinline style="display:none;pointer-events:none;"></video>
     <div class="webrtc-overlay" id="webrtcOverlay" aria-label="WebRTC multiplayer">
+      <div class="webrtc-overlay__title">Multiplayer join link</div>
       <div class="webrtc-overlay__status" id="webrtcStatus">Connecting…</div>
       <div class="webrtc-overlay__link-row" id="webrtcLinkRow" style="display:none">
         <input type="text" readonly class="webrtc-overlay__input" id="webrtcJoinLink" value="" />
         <button type="button" class="webrtc-overlay__copy" id="webrtcCopyBtn">Copy</button>
+      </div>
+      <div class="webrtc-overlay__volume-row">
+        <label class="webrtc-overlay__volume-label" for="webrtcVolume">Volume</label>
+        <input type="range" id="webrtcVolume" class="webrtc-overlay__volume-slider" min="0" max="100" value="100" />
       </div>
     </div>
     <div class="credit-overlay" aria-label="Links">
@@ -254,6 +311,64 @@
             const webrtcLinkRow = document.getElementById('webrtcLinkRow');
             const webrtcJoinLinkInput = document.getElementById('webrtcJoinLink');
             const webrtcCopyBtn = document.getElementById('webrtcCopyBtn');
+            const webrtcVolumeSlider = document.getElementById('webrtcVolume');
+
+            var VOLUME_STORAGE_KEY = 'stuntcar-webrtc-volume';
+
+            function setupWebRTCAudioRouting() {
+                if (state.role !== 'host') return false;
+                var SDL2 = (typeof Module !== 'undefined') ? Module.SDL2 : null;
+                if (!SDL2 || !SDL2.audioContext || !SDL2.audio || !SDL2.audio.scriptProcessorNode) return false;
+                if (SDL2.audio._webrtcRoutingDone) return true;
+                var ctx = SDL2.audioContext;
+                var sp = SDL2.audio.scriptProcessorNode;
+                try { sp.disconnect(); } catch (e) {}
+                var splitter = ctx.createChannelSplitter(2);
+                sp.connect(splitter);
+                var hostGain = ctx.createGain();
+                splitter.connect(hostGain, 0, 0);
+                hostGain.connect(ctx.destination);
+                if (webrtcVolumeSlider) hostGain.gain.value = parseInt(webrtcVolumeSlider.value, 10) / 100;
+                SDL2.audio.gainNode = hostGain;
+                var p2Dest = ctx.createMediaStreamDestination();
+                splitter.connect(p2Dest, 1, 0);
+                state.p2AudioStream = p2Dest.stream;
+                SDL2.audio._webrtcRoutingDone = true;
+                return true;
+            }
+
+            function applyVolume(value01) {
+                if (state.role === 'guest') {
+                    if (remoteVideo) remoteVideo.volume = value01;
+                    return;
+                }
+                var SDL2 = (typeof Module !== 'undefined') ? Module.SDL2 : null;
+                if (!SDL2 || !SDL2.audioContext || !SDL2.audio) return;
+                var audio = SDL2.audio;
+                if (audio.gainNode) {
+                    audio.gainNode.gain.value = value01;
+                }
+            }
+
+            if (webrtcVolumeSlider) {
+                var saved = localStorage.getItem(VOLUME_STORAGE_KEY);
+                if (saved !== null) {
+                    var n = parseInt(saved, 10);
+                    if (!isNaN(n) && n >= 0 && n <= 100) {
+                        webrtcVolumeSlider.value = n;
+                    }
+                }
+                webrtcVolumeSlider.addEventListener('input', function() {
+                    var pct = parseInt(webrtcVolumeSlider.value, 10);
+                    var v = Math.max(0, Math.min(1, pct / 100));
+                    applyVolume(v);
+                    localStorage.setItem(VOLUME_STORAGE_KEY, String(pct));
+                });
+                webrtcVolumeSlider.addEventListener('change', function() {
+                    var pct = parseInt(webrtcVolumeSlider.value, 10);
+                    localStorage.setItem(VOLUME_STORAGE_KEY, String(pct));
+                });
+            }
 
             function setWebRTCStatus(text, className) {
                 if (!webrtcStatusEl) return;
@@ -298,6 +413,9 @@
                 pc: null,
                 dc: null,
                 streamAdded: false,
+                captureStream: null,
+                p2AudioStream: null,
+                p2AudioTrackAdded: false,
                 gamepadLoopHandle: null
             };
 
@@ -372,7 +490,10 @@
                 };
 
                 pc.ontrack = function(event) {
-                    if (state.role === 'guest') remoteVideo.srcObject = event.streams[0];
+                    if (state.role === 'guest') {
+                        remoteVideo.srcObject = event.streams[0];
+                        if (webrtcVolumeSlider) remoteVideo.volume = parseInt(webrtcVolumeSlider.value, 10) / 100;
+                    }
                 };
 
                 pc.ondatachannel = function(event) {
@@ -467,9 +588,17 @@
                 if (!state.streamAdded && canvas) {
                     try {
                         const stream = canvas.captureStream(30);
+                        state.captureStream = stream;
                         for (var i = 0; i < stream.getTracks().length; i++) state.pc.addTrack(stream.getTracks()[i], stream);
                         state.streamAdded = true;
                     } catch (err) { console.error('captureStream failed', err); }
+                }
+                if (!state.p2AudioTrackAdded && state.captureStream && state.p2AudioStream) {
+                    var audioTracks = state.p2AudioStream.getAudioTracks();
+                    for (var t = 0; t < audioTracks.length; t++) {
+                        try { state.pc.addTrack(audioTracks[t], state.captureStream); } catch (e) {}
+                    }
+                    state.p2AudioTrackAdded = true;
                 }
                 if (!state.dc) {
                     state.dc = state.pc.createDataChannel('inputs');
@@ -544,6 +673,15 @@
                 setupPeerConnection();
                 await connectSignaling(state.room, state.peerId);
                 setWebRTCStatus('Hosting — share link with guest', 'hosting');
+                var hostVolumeTries = 0;
+                var hostVolumeInterval = setInterval(function() {
+                    if (state.role === 'host' && setupWebRTCAudioRouting()) {
+                        if (webrtcVolumeSlider) applyVolume(parseInt(webrtcVolumeSlider.value, 10) / 100);
+                        clearInterval(hostVolumeInterval);
+                    } else if (++hostVolumeTries > 40) {
+                        clearInterval(hostVolumeInterval);
+                    }
+                }, 500);
             }
 
             async function startGuest(roomId) {
