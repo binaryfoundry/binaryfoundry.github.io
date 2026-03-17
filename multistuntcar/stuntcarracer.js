@@ -71,7 +71,7 @@ var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIR
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Users\paula\AppData\Local\Temp\tmp6yphkwto.js
+// include: C:\Users\paula\AppData\Local\Temp\tmp0pinhh96.js
 
   if (!Module['expectedDataFileDownloads']) Module['expectedDataFileDownloads'] = 0;
   Module['expectedDataFileDownloads']++;
@@ -207,14 +207,14 @@ Module['FS_createPath']("/data", "Tracks", true, true);
 
   })();
 
-// end include: C:\Users\paula\AppData\Local\Temp\tmp6yphkwto.js
-// include: C:\Users\paula\AppData\Local\Temp\tmpbt4s_4c3.js
+// end include: C:\Users\paula\AppData\Local\Temp\tmp0pinhh96.js
+// include: C:\Users\paula\AppData\Local\Temp\tmpi9nfu09u.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if ((typeof ENVIRONMENT_IS_WASM_WORKER != 'undefined' && ENVIRONMENT_IS_WASM_WORKER) || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD) || (typeof ENVIRONMENT_IS_AUDIO_WORKLET != 'undefined' && ENVIRONMENT_IS_AUDIO_WORKLET)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: C:\Users\paula\AppData\Local\Temp\tmpbt4s_4c3.js
+  // end include: C:\Users\paula\AppData\Local\Temp\tmpi9nfu09u.js
 // include: C:\Users\paula\emsdk\upstream\emscripten\src\emrun_prejs.js
 /**
  * @license
@@ -237,13 +237,13 @@ if (globalThis.window) {
   }
 }
 // end include: C:\Users\paula\emsdk\upstream\emscripten\src\emrun_prejs.js
-// include: C:\Users\paula\AppData\Local\Temp\tmpqbc5huvh.js
+// include: C:\Users\paula\AppData\Local\Temp\tmpod8_i5bt.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: C:\Users\paula\AppData\Local\Temp\tmpqbc5huvh.js
+  // end include: C:\Users\paula\AppData\Local\Temp\tmpod8_i5bt.js
 
 
 var arguments_ = [];
