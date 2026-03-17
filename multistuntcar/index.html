@@ -251,7 +251,7 @@
         const $game = document.querySelector('.game');
         function resize() {
             if (window.WEBRTC_JOIN_MODE) return;
-            if (typeof Module !== 'undefined' && Module.calledRun && Module._GetWebRTCSplitScreenActive && Module._GetWebRTCSplitScreenActive()) return;
+            if (typeof Module !== 'undefined' && Module._GetWebRTCSplitScreenActive && Module._GetWebRTCSplitScreenActive()) return;
             const canvas = document.getElementById('canvas');
             if (!canvas || typeof Module === 'undefined' || !Module.canvas) return;
             const w = Math.max(1, window.innerWidth);
@@ -447,8 +447,7 @@
             const canvasWrapper = document.getElementById('canvasWrapper');
 
             function getWebRTCSplitActive() {
-                if (typeof Module === 'undefined' || !Module.calledRun || !Module._GetWebRTCSplitScreenActive) return false;
-                return Module._GetWebRTCSplitScreenActive() !== 0;
+                return typeof Module !== 'undefined' && Module._GetWebRTCSplitScreenActive && Module._GetWebRTCSplitScreenActive();
             }
 
             function hostStreamCanvasLoop() {
