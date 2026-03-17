@@ -285,16 +285,10 @@
     </div>
     <script type="text/javascript">
       (function() {
-        var TIP_KEY = 'stuntcar-remote-tip-dismissed';
         var el = document.getElementById('remoteMultiplayerTip');
         if (!el) return;
-        if (sessionStorage.getItem(TIP_KEY)) {
-          el.classList.add('hidden');
-          return;
-        }
         function dismiss() {
           el.classList.add('hidden');
-          try { sessionStorage.setItem(TIP_KEY, '1'); } catch (e) {}
           document.removeEventListener('keydown', dismiss);
           document.removeEventListener('click', dismiss, true);
           document.removeEventListener('touchstart', dismiss, true);
