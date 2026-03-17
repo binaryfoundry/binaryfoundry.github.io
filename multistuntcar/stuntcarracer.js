@@ -71,7 +71,7 @@ var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIR
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Users\paula\AppData\Local\Temp\tmp9ub2zog6.js
+// include: C:\Users\paula\AppData\Local\Temp\tmpfws8db_n.js
 
   if (!Module['expectedDataFileDownloads']) Module['expectedDataFileDownloads'] = 0;
   Module['expectedDataFileDownloads']++;
@@ -207,14 +207,14 @@ Module['FS_createPath']("/data", "Tracks", true, true);
 
   })();
 
-// end include: C:\Users\paula\AppData\Local\Temp\tmp9ub2zog6.js
-// include: C:\Users\paula\AppData\Local\Temp\tmpfok_mvk_.js
+// end include: C:\Users\paula\AppData\Local\Temp\tmpfws8db_n.js
+// include: C:\Users\paula\AppData\Local\Temp\tmpceamxist.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if ((typeof ENVIRONMENT_IS_WASM_WORKER != 'undefined' && ENVIRONMENT_IS_WASM_WORKER) || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD) || (typeof ENVIRONMENT_IS_AUDIO_WORKLET != 'undefined' && ENVIRONMENT_IS_AUDIO_WORKLET)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: C:\Users\paula\AppData\Local\Temp\tmpfok_mvk_.js
+  // end include: C:\Users\paula\AppData\Local\Temp\tmpceamxist.js
 // include: C:\Users\paula\emsdk\upstream\emscripten\src\emrun_prejs.js
 /**
  * @license
@@ -237,13 +237,13 @@ if (globalThis.window) {
   }
 }
 // end include: C:\Users\paula\emsdk\upstream\emscripten\src\emrun_prejs.js
-// include: C:\Users\paula\AppData\Local\Temp\tmp8xn8c1jr.js
+// include: C:\Users\paula\AppData\Local\Temp\tmpnhio4ngb.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: C:\Users\paula\AppData\Local\Temp\tmp8xn8c1jr.js
+  // end include: C:\Users\paula\AppData\Local\Temp\tmpnhio4ngb.js
 
 
 var arguments_ = [];
@@ -9093,404 +9093,492 @@ if (Module['wasmBinary']) wasmBinary = Module['wasmBinary'];
   Module['FS_createDevice'] = FS_createDevice;
   Module['FS_createDataFile'] = FS_createDataFile;
   Module['FS_createLazyFile'] = FS_createLazyFile;
-  var missingLibrarySymbols = [
-  'writeI53ToI64Clamped',
-  'writeI53ToI64Signaling',
-  'writeI53ToU64Clamped',
-  'writeI53ToU64Signaling',
-  'convertI32PairToI53',
-  'convertI32PairToI53Checked',
-  'convertU32PairToI53',
-  'getTempRet0',
-  'setTempRet0',
-  'createNamedFunction',
-  'withStackSave',
-  'inetPton4',
-  'inetNtop4',
-  'inetPton6',
-  'inetNtop6',
-  'readSockaddr',
-  'writeSockaddr',
-  'getDynCaller',
-  'asmjsMangle',
-  'HandleAllocator',
-  'addOnInit',
-  'addOnPostCtor',
-  'addOnPreMain',
-  'STACK_SIZE',
-  'STACK_ALIGN',
-  'POINTER_SIZE',
-  'ASSERTIONS',
-  'ccall',
-  'cwrap',
-  'convertJsFunctionToWasm',
-  'getEmptyTableSlot',
-  'updateTableMap',
-  'getFunctionAddress',
-  'addFunction',
-  'removeFunction',
-  'intArrayToString',
-  'AsciiToString',
-  'stringToAscii',
-  'UTF16ToString',
-  'stringToUTF16',
-  'lengthBytesUTF16',
-  'UTF32ToString',
-  'stringToUTF32',
-  'lengthBytesUTF32',
-  'writeArrayToMemory',
-  'fillDeviceOrientationEventData',
-  'registerDeviceOrientationEventCallback',
-  'fillDeviceMotionEventData',
-  'registerDeviceMotionEventCallback',
-  'screenOrientation',
-  'fillOrientationChangeEventData',
-  'registerOrientationChangeEventCallback',
-  'hideEverythingExceptGivenElement',
-  'restoreHiddenElements',
-  'softFullscreenResizeWebGLRenderTarget',
-  'registerPointerlockErrorEventCallback',
-  'fillBatteryEventData',
-  'registerBatteryEventCallback',
-  'jsStackTrace',
-  'getCallstack',
-  'convertPCtoSourceLocation',
-  'wasiRightsToMuslOFlags',
-  'wasiOFlagsToMuslOFlags',
-  'setImmediateWrapped',
-  'safeRequestAnimationFrame',
-  'clearImmediateWrapped',
-  'registerPostMainLoop',
-  'registerPreMainLoop',
-  'getPromise',
-  'makePromise',
-  'idsToPromises',
-  'makePromiseCallback',
-  'findMatchingCatch',
-  'Browser_asyncPrepareDataCounter',
-  'isLeapYear',
-  'ydayFromDate',
-  'arraySum',
-  'addDays',
-  'getSocketFromFD',
-  'getSocketAddress',
-  'FS_mkdirTree',
-  '_setNetworkCallback',
-  'writeGLArray',
-  'registerWebGlEventCallback',
-  'runAndAbortIfError',
-  'ALLOC_NORMAL',
-  'ALLOC_STACK',
-  'allocate',
-  'writeStringToMemory',
-  'writeAsciiToMemory',
-  'allocateUTF8',
-  'allocateUTF8OnStack',
-  'demangle',
-  'stackTrace',
-  'getNativeTypeSize',
-];
-missingLibrarySymbols.forEach(missingLibrarySymbol)
-
-  var unexportedSymbols = [
-  'run',
-  'out',
-  'err',
-  'callMain',
-  'abort',
-  'wasmExports',
-  'HEAPF32',
-  'HEAPF64',
-  'HEAP8',
-  'HEAPU8',
-  'HEAP16',
-  'HEAPU16',
-  'HEAP32',
-  'HEAPU32',
-  'HEAP64',
-  'HEAPU64',
-  'writeStackCookie',
-  'checkStackCookie',
-  'writeI53ToI64',
-  'readI53FromI64',
-  'readI53FromU64',
-  'INT53_MAX',
-  'INT53_MIN',
-  'bigintToI53Checked',
-  'stackSave',
-  'stackRestore',
-  'stackAlloc',
-  'ptrToString',
-  'zeroMemory',
-  'exitJS',
-  'getHeapMax',
-  'growMemory',
-  'ENV',
-  'ERRNO_CODES',
-  'strError',
-  'DNS',
-  'Protocols',
-  'Sockets',
-  'timers',
-  'warnOnce',
-  'readEmAsmArgsArray',
-  'readEmAsmArgs',
-  'runEmAsmFunction',
-  'runMainThreadEmAsm',
-  'jstoi_q',
-  'getExecutableName',
-  'autoResumeAudioContext',
-  'dynCall',
-  'handleException',
-  'keepRuntimeAlive',
-  'runtimeKeepalivePush',
-  'runtimeKeepalivePop',
-  'callUserCallback',
-  'maybeExit',
-  'asyncLoad',
-  'alignMemory',
-  'mmapAlloc',
-  'wasmTable',
-  'wasmMemory',
-  'getUniqueRunDependency',
-  'noExitRuntime',
-  'addOnPreRun',
-  'addOnExit',
-  'addOnPostRun',
-  'freeTableIndexes',
-  'functionsInTableMap',
-  'setValue',
-  'getValue',
-  'PATH',
-  'PATH_FS',
-  'UTF8Decoder',
-  'UTF8ArrayToString',
-  'UTF8ToString',
-  'stringToUTF8Array',
-  'stringToUTF8',
-  'lengthBytesUTF8',
-  'intArrayFromString',
-  'UTF16Decoder',
-  'stringToNewUTF8',
-  'stringToUTF8OnStack',
-  'JSEvents',
-  'registerKeyEventCallback',
-  'specialHTMLTargets',
-  'findEventTarget',
-  'findCanvasEventTarget',
-  'getBoundingClientRect',
-  'fillMouseEventData',
-  'registerMouseEventCallback',
-  'registerWheelEventCallback',
-  'registerUiEventCallback',
-  'registerFocusEventCallback',
-  'fillFullscreenChangeEventData',
-  'registerFullscreenChangeEventCallback',
-  'JSEvents_requestFullscreen',
-  'JSEvents_resizeCanvasForFullscreen',
-  'registerRestoreOldStyle',
-  'setLetterbox',
-  'currentFullscreenStrategy',
-  'restoreOldWindowedStyle',
-  'doRequestFullscreen',
-  'fillPointerlockChangeEventData',
-  'registerPointerlockChangeEventCallback',
-  'requestPointerLock',
-  'fillVisibilityChangeEventData',
-  'registerVisibilityChangeEventCallback',
-  'registerTouchEventCallback',
-  'fillGamepadEventData',
-  'registerGamepadEventCallback',
-  'registerBeforeUnloadEventCallback',
-  'setCanvasElementSize',
-  'getCanvasElementSize',
-  'UNWIND_CACHE',
-  'ExitStatus',
-  'getEnvStrings',
-  'checkWasiClock',
-  'doReadv',
-  'doWritev',
-  'initRandomFill',
-  'randomFill',
-  'safeSetTimeout',
-  'emSetImmediate',
-  'emClearImmediate_deps',
-  'emClearImmediate',
-  'promiseMap',
-  'uncaughtExceptionCount',
-  'exceptionLast',
-  'exceptionCaught',
-  'ExceptionInfo',
-  'Browser',
-  'requestFullscreen',
-  'requestFullScreen',
-  'setCanvasSize',
-  'getUserMedia',
-  'getPreloadedImageData__data',
-  'wget',
-  'MONTH_DAYS_REGULAR',
-  'MONTH_DAYS_LEAP',
-  'MONTH_DAYS_REGULAR_CUMULATIVE',
-  'MONTH_DAYS_LEAP_CUMULATIVE',
-  'SYSCALLS',
-  'preloadPlugins',
-  'FS_createPreloadedFile',
-  'FS_modeStringToFlags',
-  'FS_getMode',
-  'FS_stdin_getChar_buffer',
-  'FS_stdin_getChar',
-  'FS_readFile',
-  'FS',
-  'FS_root',
-  'FS_mounts',
-  'FS_devices',
-  'FS_streams',
-  'FS_nextInode',
-  'FS_nameTable',
-  'FS_currentPath',
-  'FS_initialized',
-  'FS_ignorePermissions',
-  'FS_filesystems',
-  'FS_syncFSRequests',
-  'FS_readFiles',
-  'FS_lookupPath',
-  'FS_getPath',
-  'FS_hashName',
-  'FS_hashAddNode',
-  'FS_hashRemoveNode',
-  'FS_lookupNode',
-  'FS_createNode',
-  'FS_destroyNode',
-  'FS_isRoot',
-  'FS_isMountpoint',
-  'FS_isFile',
-  'FS_isDir',
-  'FS_isLink',
-  'FS_isChrdev',
-  'FS_isBlkdev',
-  'FS_isFIFO',
-  'FS_isSocket',
-  'FS_flagsToPermissionString',
-  'FS_nodePermissions',
-  'FS_mayLookup',
-  'FS_mayCreate',
-  'FS_mayDelete',
-  'FS_mayOpen',
-  'FS_checkOpExists',
-  'FS_nextfd',
-  'FS_getStreamChecked',
-  'FS_getStream',
-  'FS_createStream',
-  'FS_closeStream',
-  'FS_dupStream',
-  'FS_doSetAttr',
-  'FS_chrdev_stream_ops',
-  'FS_major',
-  'FS_minor',
-  'FS_makedev',
-  'FS_registerDevice',
-  'FS_getDevice',
-  'FS_getMounts',
-  'FS_syncfs',
-  'FS_mount',
-  'FS_unmount',
-  'FS_lookup',
-  'FS_mknod',
-  'FS_statfs',
-  'FS_statfsStream',
-  'FS_statfsNode',
-  'FS_create',
-  'FS_mkdir',
-  'FS_mkdev',
-  'FS_symlink',
-  'FS_rename',
-  'FS_rmdir',
-  'FS_readdir',
-  'FS_readlink',
-  'FS_stat',
-  'FS_fstat',
-  'FS_lstat',
-  'FS_doChmod',
-  'FS_chmod',
-  'FS_lchmod',
-  'FS_fchmod',
-  'FS_doChown',
-  'FS_chown',
-  'FS_lchown',
-  'FS_fchown',
-  'FS_doTruncate',
-  'FS_truncate',
-  'FS_ftruncate',
-  'FS_utime',
-  'FS_open',
-  'FS_close',
-  'FS_isClosed',
-  'FS_llseek',
-  'FS_read',
-  'FS_write',
-  'FS_mmap',
-  'FS_msync',
-  'FS_ioctl',
-  'FS_writeFile',
-  'FS_cwd',
-  'FS_chdir',
-  'FS_createDefaultDirectories',
-  'FS_createDefaultDevices',
-  'FS_createSpecialDirectories',
-  'FS_createStandardStreams',
-  'FS_staticInit',
-  'FS_init',
-  'FS_quit',
-  'FS_findObject',
-  'FS_analyzePath',
-  'FS_createFile',
-  'FS_forceLoadFile',
-  'FS_absolutePath',
-  'FS_createFolder',
-  'FS_createLink',
-  'FS_joinPath',
-  'FS_mmapAlloc',
-  'FS_standardizePath',
-  'MEMFS',
-  'TTY',
-  'PIPEFS',
-  'SOCKFS',
-  'tempFixedLengthArray',
-  'miniTempWebGLFloatBuffers',
-  'miniTempWebGLIntBuffers',
-  'heapObjectForWebGLType',
-  'toTypedArrayIndex',
-  'webgl_enable_ANGLE_instanced_arrays',
-  'webgl_enable_OES_vertex_array_object',
-  'webgl_enable_WEBGL_draw_buffers',
-  'webgl_enable_WEBGL_multi_draw',
-  'webgl_enable_EXT_polygon_offset_clamp',
-  'webgl_enable_EXT_clip_control',
-  'webgl_enable_WEBGL_polygon_mode',
-  'GL',
-  'emscriptenWebGLGet',
-  'computeUnpackAlignedImageSize',
-  'colorChannelsInGlTextureFormat',
-  'emscriptenWebGLGetTexPixelData',
-  'emscriptenWebGLGetUniform',
-  'webglGetUniformLocation',
-  'webglPrepareUniformLocationsBeforeFirstUse',
-  'webglGetLeftBracePos',
-  'emscriptenWebGLGetVertexAttrib',
-  '__glGetActiveAttribOrUniform',
-  'AL',
-  'GLUT',
-  'EGL',
-  'GLEW',
-  'IDBStore',
-  'print',
-  'printErr',
-  'jstoi_s',
-];
-unexportedSymbols.forEach(unexportedRuntimeSymbol);
-
   // End runtime exports
   // Begin JS library exports
+  Module['ExitStatus'] = ExitStatus;
+  Module['addOnExit'] = addOnExit;
+  Module['onExits'] = onExits;
+  Module['callRuntimeCallbacks'] = callRuntimeCallbacks;
+  Module['addOnPostRun'] = addOnPostRun;
+  Module['onPostRuns'] = onPostRuns;
+  Module['addOnPreRun'] = addOnPreRun;
+  Module['onPreRuns'] = onPreRuns;
+  Module['addRunDependency'] = addRunDependency;
+  Module['runDependencies'] = runDependencies;
+  Module['removeRunDependency'] = removeRunDependency;
+  Module['dependenciesFulfilled'] = dependenciesFulfilled;
+  Module['runDependencyTracking'] = runDependencyTracking;
+  Module['runDependencyWatcher'] = runDependencyWatcher;
+  Module['getValue'] = getValue;
+  Module['noExitRuntime'] = noExitRuntime;
+  Module['ptrToString'] = ptrToString;
+  Module['setValue'] = setValue;
+  Module['stackRestore'] = stackRestore;
+  Module['stackSave'] = stackSave;
+  Module['warnOnce'] = warnOnce;
+  Module['___assert_fail'] = ___assert_fail;
+  Module['UTF8ToString'] = UTF8ToString;
+  Module['UTF8ArrayToString'] = UTF8ArrayToString;
+  Module['UTF8Decoder'] = UTF8Decoder;
+  Module['findStringEnd'] = findStringEnd;
+  Module['___cxa_throw'] = ___cxa_throw;
+  Module['ExceptionInfo'] = ExceptionInfo;
+  Module['exceptionLast'] = exceptionLast;
+  Module['uncaughtExceptionCount'] = uncaughtExceptionCount;
+  Module['___syscall_chdir'] = ___syscall_chdir;
+  Module['SYSCALLS'] = SYSCALLS;
+  Module['PATH'] = PATH;
+  Module['FS'] = FS;
+  Module['randomFill'] = randomFill;
+  Module['initRandomFill'] = initRandomFill;
+  Module['PATH_FS'] = PATH_FS;
+  Module['TTY'] = TTY;
+  Module['FS_stdin_getChar'] = FS_stdin_getChar;
+  Module['FS_stdin_getChar_buffer'] = FS_stdin_getChar_buffer;
+  Module['intArrayFromString'] = intArrayFromString;
+  Module['lengthBytesUTF8'] = lengthBytesUTF8;
+  Module['stringToUTF8Array'] = stringToUTF8Array;
+  Module['MEMFS'] = MEMFS;
+  Module['mmapAlloc'] = mmapAlloc;
+  Module['zeroMemory'] = zeroMemory;
+  Module['alignMemory'] = alignMemory;
+  Module['FS_modeStringToFlags'] = FS_modeStringToFlags;
+  Module['FS_getMode'] = FS_getMode;
+  Module['strError'] = strError;
+  Module['ERRNO_CODES'] = ERRNO_CODES;
+  Module['FS_createPreloadedFile'] = FS_createPreloadedFile;
+  Module['FS_preloadFile'] = FS_preloadFile;
+  Module['asyncLoad'] = asyncLoad;
+  Module['FS_createDataFile'] = FS_createDataFile;
+  Module['getUniqueRunDependency'] = getUniqueRunDependency;
+  Module['FS_handledByPreloadPlugin'] = FS_handledByPreloadPlugin;
+  Module['preloadPlugins'] = preloadPlugins;
+  Module['___syscall_fcntl64'] = ___syscall_fcntl64;
+  Module['syscallGetVarargP'] = syscallGetVarargP;
+  Module['syscallGetVarargI'] = syscallGetVarargI;
+  Module['___syscall_fstat64'] = ___syscall_fstat64;
+  Module['___syscall_ioctl'] = ___syscall_ioctl;
+  Module['___syscall_lstat64'] = ___syscall_lstat64;
+  Module['___syscall_newfstatat'] = ___syscall_newfstatat;
+  Module['___syscall_openat'] = ___syscall_openat;
+  Module['___syscall_stat64'] = ___syscall_stat64;
+  Module['__abort_js'] = __abort_js;
+  Module['__emscripten_throw_longjmp'] = __emscripten_throw_longjmp;
+  Module['__mmap_js'] = __mmap_js;
+  Module['bigintToI53Checked'] = bigintToI53Checked;
+  Module['INT53_MAX'] = INT53_MAX;
+  Module['INT53_MIN'] = INT53_MIN;
+  Module['__munmap_js'] = __munmap_js;
+  Module['__tzset_js'] = __tzset_js;
+  Module['stringToUTF8'] = stringToUTF8;
+  Module['_clock_time_get'] = _clock_time_get;
+  Module['_emscripten_get_now'] = _emscripten_get_now;
+  Module['_emscripten_date_now'] = _emscripten_date_now;
+  Module['nowIsMonotonic'] = nowIsMonotonic;
+  Module['checkWasiClock'] = checkWasiClock;
+  Module['_eglBindAPI'] = _eglBindAPI;
+  Module['EGL'] = EGL;
+  Module['Browser'] = Browser;
+  Module['callUserCallback'] = callUserCallback;
+  Module['handleException'] = handleException;
+  Module['maybeExit'] = maybeExit;
+  Module['_exit'] = _exit;
+  Module['exitJS'] = exitJS;
+  Module['_proc_exit'] = _proc_exit;
+  Module['keepRuntimeAlive'] = keepRuntimeAlive;
+  Module['runtimeKeepaliveCounter'] = runtimeKeepaliveCounter;
+  Module['getFullscreenElement'] = getFullscreenElement;
+  Module['safeSetTimeout'] = safeSetTimeout;
+  Module['runtimeKeepalivePush'] = runtimeKeepalivePush;
+  Module['runtimeKeepalivePop'] = runtimeKeepalivePop;
+  Module['_eglChooseConfig'] = _eglChooseConfig;
+  Module['_eglCreateContext'] = _eglCreateContext;
+  Module['GL'] = GL;
+  Module['GLctx'] = GLctx;
+  Module['webgl_enable_ANGLE_instanced_arrays'] = webgl_enable_ANGLE_instanced_arrays;
+  Module['webgl_enable_OES_vertex_array_object'] = webgl_enable_OES_vertex_array_object;
+  Module['webgl_enable_WEBGL_draw_buffers'] = webgl_enable_WEBGL_draw_buffers;
+  Module['webgl_enable_EXT_polygon_offset_clamp'] = webgl_enable_EXT_polygon_offset_clamp;
+  Module['webgl_enable_EXT_clip_control'] = webgl_enable_EXT_clip_control;
+  Module['webgl_enable_WEBGL_polygon_mode'] = webgl_enable_WEBGL_polygon_mode;
+  Module['webgl_enable_WEBGL_multi_draw'] = webgl_enable_WEBGL_multi_draw;
+  Module['getEmscriptenSupportedExtensions'] = getEmscriptenSupportedExtensions;
+  Module['_eglCreateWindowSurface'] = _eglCreateWindowSurface;
+  Module['_eglDestroyContext'] = _eglDestroyContext;
+  Module['_eglDestroySurface'] = _eglDestroySurface;
+  Module['_eglGetConfigAttrib'] = _eglGetConfigAttrib;
+  Module['_eglGetDisplay'] = _eglGetDisplay;
+  Module['_eglGetError'] = _eglGetError;
+  Module['_eglInitialize'] = _eglInitialize;
+  Module['_eglMakeCurrent'] = _eglMakeCurrent;
+  Module['_eglQueryString'] = _eglQueryString;
+  Module['stringToNewUTF8'] = stringToNewUTF8;
+  Module['_eglSwapBuffers'] = _eglSwapBuffers;
+  Module['_eglSwapInterval'] = _eglSwapInterval;
+  Module['_emscripten_set_main_loop_timing'] = _emscripten_set_main_loop_timing;
+  Module['MainLoop'] = MainLoop;
+  Module['setMainLoop'] = setMainLoop;
+  Module['_eglTerminate'] = _eglTerminate;
+  Module['_eglWaitGL'] = _eglWaitGL;
+  Module['_eglWaitClient'] = _eglWaitClient;
+  Module['_eglWaitNative'] = _eglWaitNative;
+  Module['_emscripten_asm_const_int'] = _emscripten_asm_const_int;
+  Module['runEmAsmFunction'] = runEmAsmFunction;
+  Module['readEmAsmArgs'] = readEmAsmArgs;
+  Module['readEmAsmArgsArray'] = readEmAsmArgsArray;
+  Module['_emscripten_asm_const_int_sync_on_main_thread'] = _emscripten_asm_const_int_sync_on_main_thread;
+  Module['runMainThreadEmAsm'] = runMainThreadEmAsm;
+  Module['_emscripten_asm_const_ptr_sync_on_main_thread'] = _emscripten_asm_const_ptr_sync_on_main_thread;
+  Module['_emscripten_err'] = _emscripten_err;
+  Module['_emscripten_exit_fullscreen'] = _emscripten_exit_fullscreen;
+  Module['JSEvents'] = JSEvents;
+  Module['specialHTMLTargets'] = specialHTMLTargets;
+  Module['JSEvents_requestFullscreen'] = JSEvents_requestFullscreen;
+  Module['JSEvents_resizeCanvasForFullscreen'] = JSEvents_resizeCanvasForFullscreen;
+  Module['registerRestoreOldStyle'] = registerRestoreOldStyle;
+  Module['getCanvasElementSize'] = getCanvasElementSize;
+  Module['_emscripten_get_canvas_element_size'] = _emscripten_get_canvas_element_size;
+  Module['findCanvasEventTarget'] = findCanvasEventTarget;
+  Module['findEventTarget'] = findEventTarget;
+  Module['stringToUTF8OnStack'] = stringToUTF8OnStack;
+  Module['stackAlloc'] = stackAlloc;
+  Module['setCanvasElementSize'] = setCanvasElementSize;
+  Module['_emscripten_set_canvas_element_size'] = _emscripten_set_canvas_element_size;
+  Module['currentFullscreenStrategy'] = currentFullscreenStrategy;
+  Module['getWasmTableEntry'] = getWasmTableEntry;
+  Module['wasmTableMirror'] = wasmTableMirror;
+  Module['setLetterbox'] = setLetterbox;
+  Module['getBoundingClientRect'] = getBoundingClientRect;
+  Module['_emscripten_exit_pointerlock'] = _emscripten_exit_pointerlock;
+  Module['requestPointerLock'] = requestPointerLock;
+  Module['_emscripten_get_device_pixel_ratio'] = _emscripten_get_device_pixel_ratio;
+  Module['_emscripten_get_element_css_size'] = _emscripten_get_element_css_size;
+  Module['_emscripten_get_gamepad_status'] = _emscripten_get_gamepad_status;
+  Module['fillGamepadEventData'] = fillGamepadEventData;
+  Module['_emscripten_get_heap_max'] = _emscripten_get_heap_max;
+  Module['getHeapMax'] = getHeapMax;
+  Module['_emscripten_get_num_gamepads'] = _emscripten_get_num_gamepads;
+  Module['_emscripten_get_screen_size'] = _emscripten_get_screen_size;
+  Module['_emscripten_glActiveTexture'] = _emscripten_glActiveTexture;
+  Module['_emscripten_glAttachShader'] = _emscripten_glAttachShader;
+  Module['_emscripten_glBeginQueryEXT'] = _emscripten_glBeginQueryEXT;
+  Module['_emscripten_glBindAttribLocation'] = _emscripten_glBindAttribLocation;
+  Module['_emscripten_glBindBuffer'] = _emscripten_glBindBuffer;
+  Module['_emscripten_glBindFramebuffer'] = _emscripten_glBindFramebuffer;
+  Module['_emscripten_glBindRenderbuffer'] = _emscripten_glBindRenderbuffer;
+  Module['_emscripten_glBindTexture'] = _emscripten_glBindTexture;
+  Module['_emscripten_glBindVertexArrayOES'] = _emscripten_glBindVertexArrayOES;
+  Module['_glBindVertexArray'] = _glBindVertexArray;
+  Module['_emscripten_glBindVertexArray'] = _emscripten_glBindVertexArray;
+  Module['_emscripten_glBlendColor'] = _emscripten_glBlendColor;
+  Module['_emscripten_glBlendEquation'] = _emscripten_glBlendEquation;
+  Module['_emscripten_glBlendEquationSeparate'] = _emscripten_glBlendEquationSeparate;
+  Module['_emscripten_glBlendFunc'] = _emscripten_glBlendFunc;
+  Module['_emscripten_glBlendFuncSeparate'] = _emscripten_glBlendFuncSeparate;
+  Module['_emscripten_glBufferData'] = _emscripten_glBufferData;
+  Module['_emscripten_glBufferSubData'] = _emscripten_glBufferSubData;
+  Module['_emscripten_glCheckFramebufferStatus'] = _emscripten_glCheckFramebufferStatus;
+  Module['_emscripten_glClear'] = _emscripten_glClear;
+  Module['_emscripten_glClearColor'] = _emscripten_glClearColor;
+  Module['_emscripten_glClearDepthf'] = _emscripten_glClearDepthf;
+  Module['_emscripten_glClearStencil'] = _emscripten_glClearStencil;
+  Module['_emscripten_glClipControlEXT'] = _emscripten_glClipControlEXT;
+  Module['_emscripten_glColorMask'] = _emscripten_glColorMask;
+  Module['_emscripten_glCompileShader'] = _emscripten_glCompileShader;
+  Module['_emscripten_glCompressedTexImage2D'] = _emscripten_glCompressedTexImage2D;
+  Module['_emscripten_glCompressedTexSubImage2D'] = _emscripten_glCompressedTexSubImage2D;
+  Module['_emscripten_glCopyTexImage2D'] = _emscripten_glCopyTexImage2D;
+  Module['_emscripten_glCopyTexSubImage2D'] = _emscripten_glCopyTexSubImage2D;
+  Module['_emscripten_glCreateProgram'] = _emscripten_glCreateProgram;
+  Module['_emscripten_glCreateShader'] = _emscripten_glCreateShader;
+  Module['_emscripten_glCullFace'] = _emscripten_glCullFace;
+  Module['_emscripten_glDeleteBuffers'] = _emscripten_glDeleteBuffers;
+  Module['_emscripten_glDeleteFramebuffers'] = _emscripten_glDeleteFramebuffers;
+  Module['_emscripten_glDeleteProgram'] = _emscripten_glDeleteProgram;
+  Module['_emscripten_glDeleteQueriesEXT'] = _emscripten_glDeleteQueriesEXT;
+  Module['_emscripten_glDeleteRenderbuffers'] = _emscripten_glDeleteRenderbuffers;
+  Module['_emscripten_glDeleteShader'] = _emscripten_glDeleteShader;
+  Module['_emscripten_glDeleteTextures'] = _emscripten_glDeleteTextures;
+  Module['_emscripten_glDeleteVertexArraysOES'] = _emscripten_glDeleteVertexArraysOES;
+  Module['_glDeleteVertexArrays'] = _glDeleteVertexArrays;
+  Module['_emscripten_glDeleteVertexArrays'] = _emscripten_glDeleteVertexArrays;
+  Module['_emscripten_glDepthFunc'] = _emscripten_glDepthFunc;
+  Module['_emscripten_glDepthMask'] = _emscripten_glDepthMask;
+  Module['_emscripten_glDepthRangef'] = _emscripten_glDepthRangef;
+  Module['_emscripten_glDetachShader'] = _emscripten_glDetachShader;
+  Module['_emscripten_glDisable'] = _emscripten_glDisable;
+  Module['_emscripten_glDisableVertexAttribArray'] = _emscripten_glDisableVertexAttribArray;
+  Module['_emscripten_glDrawArrays'] = _emscripten_glDrawArrays;
+  Module['_emscripten_glDrawArraysInstancedANGLE'] = _emscripten_glDrawArraysInstancedANGLE;
+  Module['_glDrawArraysInstanced'] = _glDrawArraysInstanced;
+  Module['_emscripten_glDrawArraysInstanced'] = _emscripten_glDrawArraysInstanced;
+  Module['_emscripten_glDrawBuffersWEBGL'] = _emscripten_glDrawBuffersWEBGL;
+  Module['_glDrawBuffers'] = _glDrawBuffers;
+  Module['_emscripten_glDrawBuffers'] = _emscripten_glDrawBuffers;
+  Module['tempFixedLengthArray'] = tempFixedLengthArray;
+  Module['_emscripten_glDrawElements'] = _emscripten_glDrawElements;
+  Module['_emscripten_glDrawElementsInstancedANGLE'] = _emscripten_glDrawElementsInstancedANGLE;
+  Module['_glDrawElementsInstanced'] = _glDrawElementsInstanced;
+  Module['_emscripten_glDrawElementsInstanced'] = _emscripten_glDrawElementsInstanced;
+  Module['_emscripten_glEnable'] = _emscripten_glEnable;
+  Module['_emscripten_glEnableVertexAttribArray'] = _emscripten_glEnableVertexAttribArray;
+  Module['_emscripten_glEndQueryEXT'] = _emscripten_glEndQueryEXT;
+  Module['_emscripten_glFinish'] = _emscripten_glFinish;
+  Module['_emscripten_glFlush'] = _emscripten_glFlush;
+  Module['_emscripten_glFramebufferRenderbuffer'] = _emscripten_glFramebufferRenderbuffer;
+  Module['_emscripten_glFramebufferTexture2D'] = _emscripten_glFramebufferTexture2D;
+  Module['_emscripten_glFrontFace'] = _emscripten_glFrontFace;
+  Module['_emscripten_glGenBuffers'] = _emscripten_glGenBuffers;
+  Module['_emscripten_glGenFramebuffers'] = _emscripten_glGenFramebuffers;
+  Module['_emscripten_glGenQueriesEXT'] = _emscripten_glGenQueriesEXT;
+  Module['_emscripten_glGenRenderbuffers'] = _emscripten_glGenRenderbuffers;
+  Module['_emscripten_glGenTextures'] = _emscripten_glGenTextures;
+  Module['_emscripten_glGenVertexArraysOES'] = _emscripten_glGenVertexArraysOES;
+  Module['_glGenVertexArrays'] = _glGenVertexArrays;
+  Module['_emscripten_glGenVertexArrays'] = _emscripten_glGenVertexArrays;
+  Module['_emscripten_glGenerateMipmap'] = _emscripten_glGenerateMipmap;
+  Module['_emscripten_glGetActiveAttrib'] = _emscripten_glGetActiveAttrib;
+  Module['__glGetActiveAttribOrUniform'] = __glGetActiveAttribOrUniform;
+  Module['_emscripten_glGetActiveUniform'] = _emscripten_glGetActiveUniform;
+  Module['_emscripten_glGetAttachedShaders'] = _emscripten_glGetAttachedShaders;
+  Module['_emscripten_glGetAttribLocation'] = _emscripten_glGetAttribLocation;
+  Module['_emscripten_glGetBooleanv'] = _emscripten_glGetBooleanv;
+  Module['emscriptenWebGLGet'] = emscriptenWebGLGet;
+  Module['writeI53ToI64'] = writeI53ToI64;
+  Module['readI53FromI64'] = readI53FromI64;
+  Module['readI53FromU64'] = readI53FromU64;
+  Module['_emscripten_glGetBufferParameteriv'] = _emscripten_glGetBufferParameteriv;
+  Module['_emscripten_glGetError'] = _emscripten_glGetError;
+  Module['_emscripten_glGetFloatv'] = _emscripten_glGetFloatv;
+  Module['_emscripten_glGetFramebufferAttachmentParameteriv'] = _emscripten_glGetFramebufferAttachmentParameteriv;
+  Module['_emscripten_glGetIntegerv'] = _emscripten_glGetIntegerv;
+  Module['_emscripten_glGetProgramInfoLog'] = _emscripten_glGetProgramInfoLog;
+  Module['_emscripten_glGetProgramiv'] = _emscripten_glGetProgramiv;
+  Module['_emscripten_glGetQueryObjecti64vEXT'] = _emscripten_glGetQueryObjecti64vEXT;
+  Module['_emscripten_glGetQueryObjectivEXT'] = _emscripten_glGetQueryObjectivEXT;
+  Module['_emscripten_glGetQueryObjectui64vEXT'] = _emscripten_glGetQueryObjectui64vEXT;
+  Module['_glGetQueryObjecti64vEXT'] = _glGetQueryObjecti64vEXT;
+  Module['_emscripten_glGetQueryObjectuivEXT'] = _emscripten_glGetQueryObjectuivEXT;
+  Module['_glGetQueryObjectivEXT'] = _glGetQueryObjectivEXT;
+  Module['_emscripten_glGetQueryivEXT'] = _emscripten_glGetQueryivEXT;
+  Module['_emscripten_glGetRenderbufferParameteriv'] = _emscripten_glGetRenderbufferParameteriv;
+  Module['_emscripten_glGetShaderInfoLog'] = _emscripten_glGetShaderInfoLog;
+  Module['_emscripten_glGetShaderPrecisionFormat'] = _emscripten_glGetShaderPrecisionFormat;
+  Module['_emscripten_glGetShaderSource'] = _emscripten_glGetShaderSource;
+  Module['_emscripten_glGetShaderiv'] = _emscripten_glGetShaderiv;
+  Module['_emscripten_glGetString'] = _emscripten_glGetString;
+  Module['webglGetExtensions'] = webglGetExtensions;
+  Module['_emscripten_glGetTexParameterfv'] = _emscripten_glGetTexParameterfv;
+  Module['_emscripten_glGetTexParameteriv'] = _emscripten_glGetTexParameteriv;
+  Module['_emscripten_glGetUniformLocation'] = _emscripten_glGetUniformLocation;
+  Module['jstoi_q'] = jstoi_q;
+  Module['webglPrepareUniformLocationsBeforeFirstUse'] = webglPrepareUniformLocationsBeforeFirstUse;
+  Module['webglGetLeftBracePos'] = webglGetLeftBracePos;
+  Module['_emscripten_glGetUniformfv'] = _emscripten_glGetUniformfv;
+  Module['emscriptenWebGLGetUniform'] = emscriptenWebGLGetUniform;
+  Module['webglGetUniformLocation'] = webglGetUniformLocation;
+  Module['_emscripten_glGetUniformiv'] = _emscripten_glGetUniformiv;
+  Module['_emscripten_glGetVertexAttribPointerv'] = _emscripten_glGetVertexAttribPointerv;
+  Module['_emscripten_glGetVertexAttribfv'] = _emscripten_glGetVertexAttribfv;
+  Module['emscriptenWebGLGetVertexAttrib'] = emscriptenWebGLGetVertexAttrib;
+  Module['_emscripten_glGetVertexAttribiv'] = _emscripten_glGetVertexAttribiv;
+  Module['_emscripten_glHint'] = _emscripten_glHint;
+  Module['_emscripten_glIsBuffer'] = _emscripten_glIsBuffer;
+  Module['_emscripten_glIsEnabled'] = _emscripten_glIsEnabled;
+  Module['_emscripten_glIsFramebuffer'] = _emscripten_glIsFramebuffer;
+  Module['_emscripten_glIsProgram'] = _emscripten_glIsProgram;
+  Module['_emscripten_glIsQueryEXT'] = _emscripten_glIsQueryEXT;
+  Module['_emscripten_glIsRenderbuffer'] = _emscripten_glIsRenderbuffer;
+  Module['_emscripten_glIsShader'] = _emscripten_glIsShader;
+  Module['_emscripten_glIsTexture'] = _emscripten_glIsTexture;
+  Module['_emscripten_glIsVertexArrayOES'] = _emscripten_glIsVertexArrayOES;
+  Module['_glIsVertexArray'] = _glIsVertexArray;
+  Module['_emscripten_glIsVertexArray'] = _emscripten_glIsVertexArray;
+  Module['_emscripten_glLineWidth'] = _emscripten_glLineWidth;
+  Module['_emscripten_glLinkProgram'] = _emscripten_glLinkProgram;
+  Module['_emscripten_glPixelStorei'] = _emscripten_glPixelStorei;
+  Module['_emscripten_glPolygonModeWEBGL'] = _emscripten_glPolygonModeWEBGL;
+  Module['_emscripten_glPolygonOffset'] = _emscripten_glPolygonOffset;
+  Module['_emscripten_glPolygonOffsetClampEXT'] = _emscripten_glPolygonOffsetClampEXT;
+  Module['_emscripten_glQueryCounterEXT'] = _emscripten_glQueryCounterEXT;
+  Module['_emscripten_glReadPixels'] = _emscripten_glReadPixels;
+  Module['emscriptenWebGLGetTexPixelData'] = emscriptenWebGLGetTexPixelData;
+  Module['computeUnpackAlignedImageSize'] = computeUnpackAlignedImageSize;
+  Module['colorChannelsInGlTextureFormat'] = colorChannelsInGlTextureFormat;
+  Module['heapObjectForWebGLType'] = heapObjectForWebGLType;
+  Module['toTypedArrayIndex'] = toTypedArrayIndex;
+  Module['_emscripten_glReleaseShaderCompiler'] = _emscripten_glReleaseShaderCompiler;
+  Module['_emscripten_glRenderbufferStorage'] = _emscripten_glRenderbufferStorage;
+  Module['_emscripten_glSampleCoverage'] = _emscripten_glSampleCoverage;
+  Module['_emscripten_glScissor'] = _emscripten_glScissor;
+  Module['_emscripten_glShaderBinary'] = _emscripten_glShaderBinary;
+  Module['_emscripten_glShaderSource'] = _emscripten_glShaderSource;
+  Module['_emscripten_glStencilFunc'] = _emscripten_glStencilFunc;
+  Module['_emscripten_glStencilFuncSeparate'] = _emscripten_glStencilFuncSeparate;
+  Module['_emscripten_glStencilMask'] = _emscripten_glStencilMask;
+  Module['_emscripten_glStencilMaskSeparate'] = _emscripten_glStencilMaskSeparate;
+  Module['_emscripten_glStencilOp'] = _emscripten_glStencilOp;
+  Module['_emscripten_glStencilOpSeparate'] = _emscripten_glStencilOpSeparate;
+  Module['_emscripten_glTexImage2D'] = _emscripten_glTexImage2D;
+  Module['_emscripten_glTexParameterf'] = _emscripten_glTexParameterf;
+  Module['_emscripten_glTexParameterfv'] = _emscripten_glTexParameterfv;
+  Module['_emscripten_glTexParameteri'] = _emscripten_glTexParameteri;
+  Module['_emscripten_glTexParameteriv'] = _emscripten_glTexParameteriv;
+  Module['_emscripten_glTexSubImage2D'] = _emscripten_glTexSubImage2D;
+  Module['_emscripten_glUniform1f'] = _emscripten_glUniform1f;
+  Module['_emscripten_glUniform1fv'] = _emscripten_glUniform1fv;
+  Module['miniTempWebGLFloatBuffers'] = miniTempWebGLFloatBuffers;
+  Module['_emscripten_glUniform1i'] = _emscripten_glUniform1i;
+  Module['_emscripten_glUniform1iv'] = _emscripten_glUniform1iv;
+  Module['miniTempWebGLIntBuffers'] = miniTempWebGLIntBuffers;
+  Module['_emscripten_glUniform2f'] = _emscripten_glUniform2f;
+  Module['_emscripten_glUniform2fv'] = _emscripten_glUniform2fv;
+  Module['_emscripten_glUniform2i'] = _emscripten_glUniform2i;
+  Module['_emscripten_glUniform2iv'] = _emscripten_glUniform2iv;
+  Module['_emscripten_glUniform3f'] = _emscripten_glUniform3f;
+  Module['_emscripten_glUniform3fv'] = _emscripten_glUniform3fv;
+  Module['_emscripten_glUniform3i'] = _emscripten_glUniform3i;
+  Module['_emscripten_glUniform3iv'] = _emscripten_glUniform3iv;
+  Module['_emscripten_glUniform4f'] = _emscripten_glUniform4f;
+  Module['_emscripten_glUniform4fv'] = _emscripten_glUniform4fv;
+  Module['_emscripten_glUniform4i'] = _emscripten_glUniform4i;
+  Module['_emscripten_glUniform4iv'] = _emscripten_glUniform4iv;
+  Module['_emscripten_glUniformMatrix2fv'] = _emscripten_glUniformMatrix2fv;
+  Module['_emscripten_glUniformMatrix3fv'] = _emscripten_glUniformMatrix3fv;
+  Module['_emscripten_glUniformMatrix4fv'] = _emscripten_glUniformMatrix4fv;
+  Module['_emscripten_glUseProgram'] = _emscripten_glUseProgram;
+  Module['_emscripten_glValidateProgram'] = _emscripten_glValidateProgram;
+  Module['_emscripten_glVertexAttrib1f'] = _emscripten_glVertexAttrib1f;
+  Module['_emscripten_glVertexAttrib1fv'] = _emscripten_glVertexAttrib1fv;
+  Module['_emscripten_glVertexAttrib2f'] = _emscripten_glVertexAttrib2f;
+  Module['_emscripten_glVertexAttrib2fv'] = _emscripten_glVertexAttrib2fv;
+  Module['_emscripten_glVertexAttrib3f'] = _emscripten_glVertexAttrib3f;
+  Module['_emscripten_glVertexAttrib3fv'] = _emscripten_glVertexAttrib3fv;
+  Module['_emscripten_glVertexAttrib4f'] = _emscripten_glVertexAttrib4f;
+  Module['_emscripten_glVertexAttrib4fv'] = _emscripten_glVertexAttrib4fv;
+  Module['_emscripten_glVertexAttribDivisorANGLE'] = _emscripten_glVertexAttribDivisorANGLE;
+  Module['_glVertexAttribDivisor'] = _glVertexAttribDivisor;
+  Module['_emscripten_glVertexAttribDivisor'] = _emscripten_glVertexAttribDivisor;
+  Module['_emscripten_glVertexAttribPointer'] = _emscripten_glVertexAttribPointer;
+  Module['_emscripten_glViewport'] = _emscripten_glViewport;
+  Module['_emscripten_has_asyncify'] = _emscripten_has_asyncify;
+  Module['_emscripten_request_fullscreen_strategy'] = _emscripten_request_fullscreen_strategy;
+  Module['doRequestFullscreen'] = doRequestFullscreen;
+  Module['_emscripten_request_pointerlock'] = _emscripten_request_pointerlock;
+  Module['_emscripten_resize_heap'] = _emscripten_resize_heap;
+  Module['growMemory'] = growMemory;
+  Module['_emscripten_run_script'] = _emscripten_run_script;
+  Module['_emscripten_sample_gamepad_data'] = _emscripten_sample_gamepad_data;
+  Module['_emscripten_set_beforeunload_callback_on_thread'] = _emscripten_set_beforeunload_callback_on_thread;
+  Module['registerBeforeUnloadEventCallback'] = registerBeforeUnloadEventCallback;
+  Module['_emscripten_set_blur_callback_on_thread'] = _emscripten_set_blur_callback_on_thread;
+  Module['registerFocusEventCallback'] = registerFocusEventCallback;
+  Module['_emscripten_set_element_css_size'] = _emscripten_set_element_css_size;
+  Module['_emscripten_set_focus_callback_on_thread'] = _emscripten_set_focus_callback_on_thread;
+  Module['_emscripten_set_fullscreenchange_callback_on_thread'] = _emscripten_set_fullscreenchange_callback_on_thread;
+  Module['registerFullscreenChangeEventCallback'] = registerFullscreenChangeEventCallback;
+  Module['fillFullscreenChangeEventData'] = fillFullscreenChangeEventData;
+  Module['_emscripten_set_gamepadconnected_callback_on_thread'] = _emscripten_set_gamepadconnected_callback_on_thread;
+  Module['registerGamepadEventCallback'] = registerGamepadEventCallback;
+  Module['_emscripten_set_gamepaddisconnected_callback_on_thread'] = _emscripten_set_gamepaddisconnected_callback_on_thread;
+  Module['_emscripten_set_keydown_callback_on_thread'] = _emscripten_set_keydown_callback_on_thread;
+  Module['registerKeyEventCallback'] = registerKeyEventCallback;
+  Module['_emscripten_set_keypress_callback_on_thread'] = _emscripten_set_keypress_callback_on_thread;
+  Module['_emscripten_set_keyup_callback_on_thread'] = _emscripten_set_keyup_callback_on_thread;
+  Module['_emscripten_set_main_loop'] = _emscripten_set_main_loop;
+  Module['_emscripten_set_mousedown_callback_on_thread'] = _emscripten_set_mousedown_callback_on_thread;
+  Module['registerMouseEventCallback'] = registerMouseEventCallback;
+  Module['fillMouseEventData'] = fillMouseEventData;
+  Module['_emscripten_set_mouseenter_callback_on_thread'] = _emscripten_set_mouseenter_callback_on_thread;
+  Module['_emscripten_set_mouseleave_callback_on_thread'] = _emscripten_set_mouseleave_callback_on_thread;
+  Module['_emscripten_set_mousemove_callback_on_thread'] = _emscripten_set_mousemove_callback_on_thread;
+  Module['_emscripten_set_mouseup_callback_on_thread'] = _emscripten_set_mouseup_callback_on_thread;
+  Module['_emscripten_set_pointerlockchange_callback_on_thread'] = _emscripten_set_pointerlockchange_callback_on_thread;
+  Module['registerPointerlockChangeEventCallback'] = registerPointerlockChangeEventCallback;
+  Module['fillPointerlockChangeEventData'] = fillPointerlockChangeEventData;
+  Module['_emscripten_set_resize_callback_on_thread'] = _emscripten_set_resize_callback_on_thread;
+  Module['registerUiEventCallback'] = registerUiEventCallback;
+  Module['_emscripten_set_touchcancel_callback_on_thread'] = _emscripten_set_touchcancel_callback_on_thread;
+  Module['registerTouchEventCallback'] = registerTouchEventCallback;
+  Module['_emscripten_set_touchend_callback_on_thread'] = _emscripten_set_touchend_callback_on_thread;
+  Module['_emscripten_set_touchmove_callback_on_thread'] = _emscripten_set_touchmove_callback_on_thread;
+  Module['_emscripten_set_touchstart_callback_on_thread'] = _emscripten_set_touchstart_callback_on_thread;
+  Module['_emscripten_set_visibilitychange_callback_on_thread'] = _emscripten_set_visibilitychange_callback_on_thread;
+  Module['registerVisibilityChangeEventCallback'] = registerVisibilityChangeEventCallback;
+  Module['fillVisibilityChangeEventData'] = fillVisibilityChangeEventData;
+  Module['_emscripten_set_wheel_callback_on_thread'] = _emscripten_set_wheel_callback_on_thread;
+  Module['registerWheelEventCallback'] = registerWheelEventCallback;
+  Module['_emscripten_set_window_title'] = _emscripten_set_window_title;
+  Module['_emscripten_sleep'] = _emscripten_sleep;
+  Module['_environ_get'] = _environ_get;
+  Module['getEnvStrings'] = getEnvStrings;
+  Module['ENV'] = ENV;
+  Module['getExecutableName'] = getExecutableName;
+  Module['_environ_sizes_get'] = _environ_sizes_get;
+  Module['_fd_close'] = _fd_close;
+  Module['_fd_read'] = _fd_read;
+  Module['doReadv'] = doReadv;
+  Module['_fd_seek'] = _fd_seek;
+  Module['_fd_write'] = _fd_write;
+  Module['doWritev'] = doWritev;
+  Module['_glActiveTexture'] = _glActiveTexture;
+  Module['_glAttachShader'] = _glAttachShader;
+  Module['_glBindAttribLocation'] = _glBindAttribLocation;
+  Module['_glBindBuffer'] = _glBindBuffer;
+  Module['_glBindTexture'] = _glBindTexture;
+  Module['_glBlendFunc'] = _glBlendFunc;
+  Module['_glBufferData'] = _glBufferData;
+  Module['_glClear'] = _glClear;
+  Module['_glClearColor'] = _glClearColor;
+  Module['_glClearDepthf'] = _glClearDepthf;
+  Module['_glClearStencil'] = _glClearStencil;
+  Module['_glCompileShader'] = _glCompileShader;
+  Module['_glCreateProgram'] = _glCreateProgram;
+  Module['_glCreateShader'] = _glCreateShader;
+  Module['_glCullFace'] = _glCullFace;
+  Module['_glDeleteProgram'] = _glDeleteProgram;
+  Module['_glDeleteShader'] = _glDeleteShader;
+  Module['_glDeleteTextures'] = _glDeleteTextures;
+  Module['_glDepthMask'] = _glDepthMask;
+  Module['_glDisable'] = _glDisable;
+  Module['_glDisableVertexAttribArray'] = _glDisableVertexAttribArray;
+  Module['_glDrawArrays'] = _glDrawArrays;
+  Module['_glEnable'] = _glEnable;
+  Module['_glEnableVertexAttribArray'] = _glEnableVertexAttribArray;
+  Module['_glFrontFace'] = _glFrontFace;
+  Module['_glGenBuffers'] = _glGenBuffers;
+  Module['_glGenTextures'] = _glGenTextures;
+  Module['_glGetIntegerv'] = _glGetIntegerv;
+  Module['_glGetProgramInfoLog'] = _glGetProgramInfoLog;
+  Module['_glGetProgramiv'] = _glGetProgramiv;
+  Module['_glGetShaderInfoLog'] = _glGetShaderInfoLog;
+  Module['_glGetShaderiv'] = _glGetShaderiv;
+  Module['_glGetUniformLocation'] = _glGetUniformLocation;
+  Module['_glIsEnabled'] = _glIsEnabled;
+  Module['_glLinkProgram'] = _glLinkProgram;
+  Module['_glPixelStorei'] = _glPixelStorei;
+  Module['_glScissor'] = _glScissor;
+  Module['_glShaderSource'] = _glShaderSource;
+  Module['_glTexImage2D'] = _glTexImage2D;
+  Module['_glTexParameterf'] = _glTexParameterf;
+  Module['_glTexParameteri'] = _glTexParameteri;
+  Module['_glTexSubImage2D'] = _glTexSubImage2D;
+  Module['_glUniform1f'] = _glUniform1f;
+  Module['_glUniform1i'] = _glUniform1i;
+  Module['_glUniform3f'] = _glUniform3f;
+  Module['_glUniformMatrix4fv'] = _glUniformMatrix4fv;
+  Module['_glUseProgram'] = _glUseProgram;
+  Module['_glVertexAttrib2f'] = _glVertexAttrib2f;
+  Module['_glVertexAttrib4f'] = _glVertexAttrib4f;
+  Module['_glVertexAttribPointer'] = _glVertexAttribPointer;
+  Module['_glViewport'] = _glViewport;
+  Module['autoResumeAudioContext'] = autoResumeAudioContext;
+  Module['dynCall'] = dynCall;
+  Module['FS_createPath'] = FS_createPath;
+  Module['FS_unlink'] = FS_unlink;
+  Module['FS_createLazyFile'] = FS_createLazyFile;
+  Module['FS_createDevice'] = FS_createDevice;
+  Module['createContext'] = createContext;
   // End JS library exports
 
 // end include: postlibrary.js
@@ -9518,26 +9606,26 @@ var ASM_CONSTS = {
 };
 
 // Imports from the Wasm binary.
-var _malloc = makeInvalidEarlyAccess('_malloc');
+var _malloc = Module['_malloc'] = makeInvalidEarlyAccess('_malloc');
 var _SetWebRTCGuestConnected = Module['_SetWebRTCGuestConnected'] = makeInvalidEarlyAccess('_SetWebRTCGuestConnected');
 var _SetWebRTCGuestPlayer2Input = Module['_SetWebRTCGuestPlayer2Input'] = makeInvalidEarlyAccess('_SetWebRTCGuestPlayer2Input');
 var _main = Module['_main'] = makeInvalidEarlyAccess('_main');
-var _strerror = makeInvalidEarlyAccess('_strerror');
-var ___funcs_on_exit = makeInvalidEarlyAccess('___funcs_on_exit');
-var _fflush = makeInvalidEarlyAccess('_fflush');
-var _emscripten_stack_get_end = makeInvalidEarlyAccess('_emscripten_stack_get_end');
-var _emscripten_stack_get_base = makeInvalidEarlyAccess('_emscripten_stack_get_base');
-var _emscripten_builtin_memalign = makeInvalidEarlyAccess('_emscripten_builtin_memalign');
-var _setThrew = makeInvalidEarlyAccess('_setThrew');
-var _emscripten_stack_init = makeInvalidEarlyAccess('_emscripten_stack_init');
-var _emscripten_stack_get_free = makeInvalidEarlyAccess('_emscripten_stack_get_free');
-var __emscripten_stack_restore = makeInvalidEarlyAccess('__emscripten_stack_restore');
-var __emscripten_stack_alloc = makeInvalidEarlyAccess('__emscripten_stack_alloc');
-var _emscripten_stack_get_current = makeInvalidEarlyAccess('_emscripten_stack_get_current');
-var memory = makeInvalidEarlyAccess('memory');
-var __indirect_function_table = makeInvalidEarlyAccess('__indirect_function_table');
-var wasmMemory = makeInvalidEarlyAccess('wasmMemory');
-var wasmTable = makeInvalidEarlyAccess('wasmTable');
+var _strerror = Module['_strerror'] = makeInvalidEarlyAccess('_strerror');
+var ___funcs_on_exit = Module['___funcs_on_exit'] = makeInvalidEarlyAccess('___funcs_on_exit');
+var _fflush = Module['_fflush'] = makeInvalidEarlyAccess('_fflush');
+var _emscripten_stack_get_end = Module['_emscripten_stack_get_end'] = makeInvalidEarlyAccess('_emscripten_stack_get_end');
+var _emscripten_stack_get_base = Module['_emscripten_stack_get_base'] = makeInvalidEarlyAccess('_emscripten_stack_get_base');
+var _emscripten_builtin_memalign = Module['_emscripten_builtin_memalign'] = makeInvalidEarlyAccess('_emscripten_builtin_memalign');
+var _setThrew = Module['_setThrew'] = makeInvalidEarlyAccess('_setThrew');
+var _emscripten_stack_init = Module['_emscripten_stack_init'] = makeInvalidEarlyAccess('_emscripten_stack_init');
+var _emscripten_stack_get_free = Module['_emscripten_stack_get_free'] = makeInvalidEarlyAccess('_emscripten_stack_get_free');
+var __emscripten_stack_restore = Module['__emscripten_stack_restore'] = makeInvalidEarlyAccess('__emscripten_stack_restore');
+var __emscripten_stack_alloc = Module['__emscripten_stack_alloc'] = makeInvalidEarlyAccess('__emscripten_stack_alloc');
+var _emscripten_stack_get_current = Module['_emscripten_stack_get_current'] = makeInvalidEarlyAccess('_emscripten_stack_get_current');
+var memory = Module['memory'] = makeInvalidEarlyAccess('memory');
+var __indirect_function_table = Module['__indirect_function_table'] = makeInvalidEarlyAccess('__indirect_function_table');
+var wasmMemory = Module['wasmMemory'] = makeInvalidEarlyAccess('wasmMemory');
+var wasmTable = Module['wasmTable'] = makeInvalidEarlyAccess('wasmTable');
 
 function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['malloc'] != 'undefined', 'missing Wasm export: malloc');
@@ -9558,24 +9646,24 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['emscripten_stack_get_current'] != 'undefined', 'missing Wasm export: emscripten_stack_get_current');
   assert(typeof wasmExports['memory'] != 'undefined', 'missing Wasm export: memory');
   assert(typeof wasmExports['__indirect_function_table'] != 'undefined', 'missing Wasm export: __indirect_function_table');
-  _malloc = createExportWrapper('malloc', 1);
+  _malloc = Module['_malloc'] = createExportWrapper('malloc', 1);
   _SetWebRTCGuestConnected = Module['_SetWebRTCGuestConnected'] = createExportWrapper('SetWebRTCGuestConnected', 1);
   _SetWebRTCGuestPlayer2Input = Module['_SetWebRTCGuestPlayer2Input'] = createExportWrapper('SetWebRTCGuestPlayer2Input', 1);
   _main = Module['_main'] = createExportWrapper('__main_argc_argv', 2);
-  _strerror = createExportWrapper('strerror', 1);
-  ___funcs_on_exit = createExportWrapper('__funcs_on_exit', 0);
-  _fflush = createExportWrapper('fflush', 1);
-  _emscripten_stack_get_end = wasmExports['emscripten_stack_get_end'];
-  _emscripten_stack_get_base = wasmExports['emscripten_stack_get_base'];
-  _emscripten_builtin_memalign = createExportWrapper('emscripten_builtin_memalign', 2);
-  _setThrew = createExportWrapper('setThrew', 2);
-  _emscripten_stack_init = wasmExports['emscripten_stack_init'];
-  _emscripten_stack_get_free = wasmExports['emscripten_stack_get_free'];
-  __emscripten_stack_restore = wasmExports['_emscripten_stack_restore'];
-  __emscripten_stack_alloc = wasmExports['_emscripten_stack_alloc'];
-  _emscripten_stack_get_current = wasmExports['emscripten_stack_get_current'];
-  memory = wasmMemory = wasmExports['memory'];
-  __indirect_function_table = wasmTable = wasmExports['__indirect_function_table'];
+  _strerror = Module['_strerror'] = createExportWrapper('strerror', 1);
+  ___funcs_on_exit = Module['___funcs_on_exit'] = createExportWrapper('__funcs_on_exit', 0);
+  _fflush = Module['_fflush'] = createExportWrapper('fflush', 1);
+  _emscripten_stack_get_end = Module['_emscripten_stack_get_end'] = wasmExports['emscripten_stack_get_end'];
+  _emscripten_stack_get_base = Module['_emscripten_stack_get_base'] = wasmExports['emscripten_stack_get_base'];
+  _emscripten_builtin_memalign = Module['_emscripten_builtin_memalign'] = createExportWrapper('emscripten_builtin_memalign', 2);
+  _setThrew = Module['_setThrew'] = createExportWrapper('setThrew', 2);
+  _emscripten_stack_init = Module['_emscripten_stack_init'] = wasmExports['emscripten_stack_init'];
+  _emscripten_stack_get_free = Module['_emscripten_stack_get_free'] = wasmExports['emscripten_stack_get_free'];
+  __emscripten_stack_restore = Module['__emscripten_stack_restore'] = wasmExports['_emscripten_stack_restore'];
+  __emscripten_stack_alloc = Module['__emscripten_stack_alloc'] = wasmExports['_emscripten_stack_alloc'];
+  _emscripten_stack_get_current = Module['_emscripten_stack_get_current'] = wasmExports['emscripten_stack_get_current'];
+  memory = Module['memory'] = wasmMemory = wasmExports['memory'];
+  __indirect_function_table = Module['__indirect_function_table'] = wasmTable = wasmExports['__indirect_function_table'];
 }
 
 var wasmImports = {
