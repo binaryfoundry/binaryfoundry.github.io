@@ -1,5 +1,6 @@
 const SHADER_DURATION_MS = 6000;
-const RHYTHM_LEAD_MS = 68;
+const RHYTHM_LEAD_MS = 44;
+const DEFAULT_MODULATION_BOOST = 0.25;
 const ADAPTIVE_RENDER_SCALE_MIN = 0.62;
 const ADAPTIVE_RENDER_SCALE_MAX = 1.0;
 const ADAPTIVE_RENDER_STEP_DOWN = 0.08;
@@ -77,8 +78,8 @@ let lastRenderMs = performance.now();
 let frameNumber = 0;
 let paused = false;
 let pausedAtMs = 0;
-let modulationBoost = 1.4;
-let modulationBoostTarget = 1.4;
+let modulationBoost = DEFAULT_MODULATION_BOOST;
+let modulationBoostTarget = DEFAULT_MODULATION_BOOST;
 let renderScale = 1.0;
 let frameTimeEmaMs = 16.7;
 let lastScaleAdjustMs = 0;
@@ -124,7 +125,10 @@ const audioState = {
   fluxAvg: 0,
   beatIntervals: [],
   energyAvg: 0,
-  peakHold: 0
+  peakHold: 0,
+  syncEpochMs: 0,
+  syncPeriodMs: 625,
+  syncConfidence: 0
 };
 const uniformTweenState = {
   bass: 0,
@@ -139,7 +143,7 @@ const uniformTweenState = {
   swing: 0.5,
   barPhase: 0,
   bpm: 0,
-  modBoost: 1.4
+  modBoost: DEFAULT_MODULATION_BOOST
 };
 const spectrumBars = [];
 const levelTrail = new Array(AUDIO_TRAIL_SIZE).fill(0);
@@ -560,7 +564,7 @@ function formatBoostLabel(value) {
 }
 
 function setModulationBoost(value, persist = true) {
-  const next = Math.max(0.25, Math.min(11, Number.isFinite(value) ? value : 1.4));
+  const next = Math.max(0.25, Math.min(11, Number.isFinite(value) ? value : DEFAULT_MODULATION_BOOST));
   modulationBoostTarget = next;
 
   if (modBoostSliderEl) {
@@ -822,12 +826,13 @@ function updateTweenedUniformState(nowMs, deltaSec) {
   const dt = Math.min(0.1, Math.max(0.001, Number.isFinite(deltaSec) ? deltaSec : 1 / 60));
   const bpmDetected = audioState.bpm > 0 ? audioState.bpm : 96;
   const bpm = Math.min(190, Math.max(50, bpmDetected));
-  const beatPeriodMs = 60000 / bpm;
-  const leadMs = Math.min(120, Math.max(28, RHYTHM_LEAD_MS + (modulationBoostTarget - 1.0) * 12));
+  const beatPeriodMs = audioState.syncPeriodMs > 0 ? audioState.syncPeriodMs : 60000 / bpm;
+  const leadMs = RHYTHM_LEAD_MS;
+  const beatEpochMs = audioState.syncEpochMs > 0
+    ? audioState.syncEpochMs
+    : (audioState.lastBeatMs > 0 ? audioState.lastBeatMs : startMs);
 
-  const beatClockRaw = audioState.lastBeatMs > 0
-    ? (nowMs - audioState.lastBeatMs + leadMs) / beatPeriodMs
-    : (nowMs - startMs + leadMs) / beatPeriodMs;
+  const beatClockRaw = (nowMs - beatEpochMs + leadMs) / beatPeriodMs;
   const beatClock = Number.isFinite(beatClockRaw) ? beatClockRaw : 0;
   let beatPhase = beatClock % 1;
   if (beatPhase < 0) beatPhase += 1;
@@ -1045,6 +1050,9 @@ function resetAudioMetrics() {
   audioState.beatIntervals = [];
   audioState.energyAvg = 0;
   audioState.peakHold = 0;
+  audioState.syncEpochMs = 0;
+  audioState.syncPeriodMs = 625;
+  audioState.syncConfidence = 0;
 
   uniformTweenState.bass = 0;
   uniformTweenState.mid = 0;
@@ -1193,6 +1201,42 @@ function averageBand(data, sampleRate, lowHz, highHz) {
   return (sum / (high - low + 1)) / 255;
 }
 
+function updateBeatSyncClock(nowMs, beatNow, dt) {
+  const bpmRef = audioState.bpm > 0 ? audioState.bpm : 96;
+  const fallbackPeriod = 60000 / bpmRef;
+
+  if (!Number.isFinite(audioState.syncPeriodMs) || audioState.syncPeriodMs <= 0) {
+    audioState.syncPeriodMs = fallbackPeriod;
+  }
+
+  if (beatNow) {
+    if (audioState.syncEpochMs <= 0) {
+      audioState.syncEpochMs = nowMs;
+      audioState.syncConfidence = Math.min(1, audioState.syncConfidence + 0.30);
+    } else {
+      const beatsFromEpoch = (nowMs - audioState.syncEpochMs) / audioState.syncPeriodMs;
+      const nearestBeat = Math.max(0, Math.round(beatsFromEpoch));
+      const predictedMs = audioState.syncEpochMs + nearestBeat * audioState.syncPeriodMs;
+      const phaseErrMs = nowMs - predictedMs;
+      audioState.syncEpochMs += phaseErrMs * 0.62;
+      audioState.syncConfidence = Math.min(1, audioState.syncConfidence + 0.16);
+    }
+
+    if (audioState.beatIntervals.length > 0) {
+      const sorted = [...audioState.beatIntervals].sort((a, b) => a - b);
+      const median = sorted[Math.floor(sorted.length / 2)];
+      audioState.syncPeriodMs = lerp(audioState.syncPeriodMs, median, 0.26);
+    } else {
+      audioState.syncPeriodMs = lerp(audioState.syncPeriodMs, fallbackPeriod, 0.12);
+    }
+  } else {
+    audioState.syncConfidence = Math.max(0, audioState.syncConfidence - dt * 0.04);
+    audioState.syncPeriodMs = lerp(audioState.syncPeriodMs, fallbackPeriod, 0.035);
+  }
+
+  audioState.syncPeriodMs = Math.min(1200, Math.max(300, audioState.syncPeriodMs));
+}
+
 function updateAudioReactiveState(nowMs) {
   const dt = audioState.lastUpdateMs > 0
     ? Math.min(0.1, Math.max(0.001, (nowMs - audioState.lastUpdateMs) / 1000))
@@ -1277,17 +1321,19 @@ function updateAudioReactiveState(nowMs) {
     audioState.pulseTarget = 1;
   }
 
+  updateBeatSyncClock(nowMs, beatNow, dt);
+
   const onsetTarget = Math.min(1, flux * 4.8 + (beatNow ? 0.72 : 0));
   audioState.onset = smoothAsymmetric(audioState.onset, onsetTarget, 0.22, 0.09);
 
   const bpmForPhase = audioState.bpm > 0 ? audioState.bpm : 96;
-  const beatPeriodMs = 60000 / bpmForPhase;
-  const leadMs = Math.min(120, Math.max(28, RHYTHM_LEAD_MS + (modulationBoostTarget - 1.0) * 12));
-  if (audioState.lastBeatMs > 0 && Number.isFinite(beatPeriodMs) && beatPeriodMs > 0) {
-    const beatPhaseRaw = ((nowMs - audioState.lastBeatMs) / beatPeriodMs) % 1;
+  const beatPeriodMs = audioState.syncPeriodMs > 0 ? audioState.syncPeriodMs : 60000 / bpmForPhase;
+  const leadMs = RHYTHM_LEAD_MS;
+  const beatAnchorMs = audioState.syncEpochMs > 0 ? audioState.syncEpochMs : audioState.lastBeatMs;
+  if (beatAnchorMs > 0 && Number.isFinite(beatPeriodMs) && beatPeriodMs > 0) {
+    const beatPhaseRaw = ((nowMs - beatAnchorMs + leadMs) / beatPeriodMs) % 1;
     const beatPhase = beatPhaseRaw < 0 ? beatPhaseRaw + 1 : beatPhaseRaw;
-    const phaseTarget = (beatPhase + leadMs / beatPeriodMs) % 1;
-    audioState.phase = smoothPhase01(audioState.phase, phaseTarget, 13.5, dt);
+    audioState.phase = smoothPhase01(audioState.phase, beatPhase, 16.0, dt);
   } else {
     audioState.phase = (audioState.phase + dt * (bpmForPhase / 60)) % 1;
   }
@@ -1405,11 +1451,11 @@ try {
 }
 
 modBoostSliderEl?.addEventListener("input", (event) => {
-  const raw = Number(event.target?.value ?? 140);
+  const raw = Number(event.target?.value ?? Math.round(DEFAULT_MODULATION_BOOST * 100));
   setModulationBoost(raw / 100, true);
 });
 
-let initialBoost = 1.4;
+let initialBoost = DEFAULT_MODULATION_BOOST;
 try {
   const stored = Number(localStorage.getItem("modulationBoost"));
   if (Number.isFinite(stored) && stored >= 0.25) {
