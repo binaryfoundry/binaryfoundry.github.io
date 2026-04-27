@@ -1,0 +1,145 @@
+# Shader Compile + Requirement Report
+
+Generated: 2026-04-27T09:35:47.524Z
+
+## Summary
+
+- Total input shaders: 400
+- Animated non-gradient considered: 375
+- Analyzer GL context: webgl2
+- Playable after automated repairs: 210
+- Still failing: 165
+- Auto-play duration: 6000ms (player default)
+
+## Most Common Missing Requirements
+
+- 146x Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- 143x Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper.
+- 129x Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines.
+- 35x Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors). 
+- 23x Uses derivatives; may require OES_standard_derivatives extension.
+- 1x Requires WebGL2 texture functions not available in strict WebGL1 mode.
+
+## First 30 Failing Shaders
+
+- Plated (1985712293687009548)
+  - URL: https://x.com/XorDev/status/1985712293687009548
+  - Compile error: base: ERROR: 0:29: 'Fun' : undeclared identifier
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper.
+- Normalize (1971020064980689380)
+  - URL: https://x.com/XorDev/status/1971020064980689380
+  - Compile error: base: ERROR: 0:29: 'Normalize' : undeclared identifier
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper.
+- Bubbly (1969129755854111065)
+  - URL: https://x.com/XorDev/status/1969129755854111065
+  - Compile error: base: ERROR: 0:31: ')' : syntax error
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Storm (1968371860401500599)
+  - URL: https://x.com/XorDev/status/1968371860401500599
+  - Compile error: base: ERROR: 0:29: '"' : invalid character
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Fragments (1963618494861258842)
+  - URL: https://x.com/XorDev/status/1963618494861258842
+  - Compile error: base: ERROR: 0:31: 'PI2' : undeclared identifier
+  - Needed: Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Apple (1960509420321886657)
+  - URL: https://x.com/XorDev/status/1960509420321886657
+  - Compile error: base: ERROR: 0:29: 'I' : undeclared identifier
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper.
+- Tap (1958925058694586688)
+  - URL: https://x.com/XorDev/status/1958925058694586688
+  - Compile error: base: ERROR: 0:29: 'Shaders' : undeclared identifier
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Venom (1956388593066201126)
+  - URL: https://x.com/XorDev/status/1956388593066201126
+  - Compile error: base: ERROR: 0:29: '"' : invalid character
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Crystal 2 (1938959072201712022)
+  - URL: https://x.com/XorDev/status/1938959072201712022
+  - Compile error: base: ERROR: 0:29: 'Colorful' : undeclared identifier
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Remnant (1937591368240578818)
+  - URL: https://x.com/XorDev/status/1937591368240578818
+  - Compile error: base: ERROR: 0:29: 'rotate2D' : no matching overloaded function found
+  - Needed: Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Visions (1937585733419651465)
+  - URL: https://x.com/XorDev/status/1937585733419651465
+  - Compile error: base: ERROR: 0:29: 'rotate2D' : no matching overloaded function found
+  - Needed: Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Facility (1934380431173947533)
+  - URL: https://x.com/XorDev/status/1934380431173947533
+  - Compile error: base: ERROR: 0:29: 'rotate2D' : no matching overloaded function found
+  - Needed: Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Runner (1933624066776445381)
+  - URL: https://x.com/XorDev/status/1933624066776445381
+  - Compile error: base: ERROR: 0:29: 'rotate2D' : no matching overloaded function found
+  - Needed: Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Nova (1932913049133781062)
+  - URL: https://x.com/XorDev/status/1932913049133781062
+  - Compile error: base: ERROR: 0:29: 'Starting' : undeclared identifier
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper.
+- Diffusion (1926739421220528441)
+  - URL: https://x.com/XorDev/status/1926739421220528441
+  - Compile error: base: ERROR: 0:29: 'o1' : undeclared identifier
+  - Needed: Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Atlantic (1922716290545783182)
+  - URL: https://x.com/XorDev/status/1922716290545783182
+  - Compile error: base: ERROR: 0:29: 'rotate3D' : no matching overloaded function found
+  - Needed: Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Church 12 (1918764164153049480)
+  - URL: https://x.com/XorDev/status/1918764164153049480
+  - Compile error: base: ERROR: 0:29: 'rotate2D' : no matching overloaded function found
+  - Needed: Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Church 3 (1918759537323933895)
+  - URL: https://x.com/XorDev/status/1918759537323933895
+  - Compile error: base: ERROR: 0:29: 'rotate2D' : no matching overloaded function found
+  - Needed: Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Church 2 (1918757380696735875)
+  - URL: https://x.com/XorDev/status/1918757380696735875
+  - Compile error: base: ERROR: 0:29: 'rotate2D' : no matching overloaded function found
+  - Needed: Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Church 1 (1918756104785277081)
+  - URL: https://x.com/XorDev/status/1918756104785277081
+  - Compile error: base: ERROR: 0:29: 'PI' : undeclared identifier
+  - Needed: Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Church 6 (1918714352946868488)
+  - URL: https://x.com/XorDev/status/1918714352946868488
+  - Compile error: base: ERROR: 0:29: 'rotate2D' : no matching overloaded function found
+  - Needed: Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Church 5 (1918712899054260315)
+  - URL: https://x.com/XorDev/status/1918712899054260315
+  - Compile error: base: ERROR: 0:29: 'Loop' : undeclared identifier
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Church 9 (1918695626415497238)
+  - URL: https://x.com/XorDev/status/1918695626415497238
+  - Compile error: base: ERROR: 0:29: 'Making' : undeclared identifier
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Virus (1917293426854203778)
+  - URL: https://x.com/XorDev/status/1917293426854203778
+  - Compile error: base: ERROR: 0:29: 'rotate3D' : no matching overloaded function found
+  - Needed: Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Who? (1915755845473706361)
+  - URL: https://x.com/XorDev/status/1915755845473706361
+  - Compile error: base: ERROR: 0:29: 'rotate3D' : no matching overloaded function found
+  - Needed: Type mismatch from compact tweet code; usually needs small manual edits (vec/scalar casts, mat constructors).  | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Digital Angel (1915101233989234999)
+  - URL: https://x.com/XorDev/status/1915101233989234999
+  - Compile error: base: ERROR: 0:29: '"' : invalid character
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Angel (1915096542014300541)
+  - URL: https://x.com/XorDev/status/1915096542014300541
+  - Compile error: base: ERROR: 0:29: '"' : invalid character
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- 3D Fire (1915054299773645249)
+  - URL: https://x.com/XorDev/status/1915054299773645249
+  - Compile error: base: ERROR: 0:29: '"' : invalid character
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- Spellbound (1915024954556289314)
+  - URL: https://x.com/XorDev/status/1915024954556289314
+  - Compile error: base: ERROR: 0:29: '"' : invalid character
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+- String Theory (1914698293554139442)
+  - URL: https://x.com/XorDev/status/1914698293554139442
+  - Compile error: base: ERROR: 0:29: '"' : invalid character
+  - Needed: Likely truncated or malformed GLSL from tweet text; inspect thread/replies for missing lines. | Missing helper identifiers/macros; shader may depend on shorthand definitions not in the wrapper. | Loop form may exceed WebGL1 restrictions; may need WebGL2 or constant-bound loop rewrite.
+

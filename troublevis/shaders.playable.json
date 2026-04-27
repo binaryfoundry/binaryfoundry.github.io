@@ -1,0 +1,1472 @@
+[
+  {
+    "id": "2021331542543405210",
+    "title": "Orchard",
+    "url": "https://x.com/XorDev/status/2021331542543405210",
+    "code": "vec3 p,v=normalize(FC.rgb*2.-r.xyx),c=v/v.y;c.z+=.5*t;for(float z,i,b,g,m;i++<5e1;z+=.8*max(b=length((p.y-m)/1e2/(abs(sin(c.xz/.1))-.05/v.y)),min(4.-m,g=length(sin(p.xz)+1.-.1*(1.+sin(p.y-p.zx*.5))*m))-b),o.rgb+=(.7-v)/(g+b))p=z*v+1.,p.z-=t,m=abs(++p.y);o=tanh(o/5e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "2021258388038943162",
+    "title": "Reef",
+    "url": "https://x.com/XorDev/status/2021258388038943162",
+    "code": "for(float z,d,i;i++<5e1;z+=d,o+=(.9+sin(i*.1-vec4(6,1,2,0)))/d/d/z+d*z/vec4(4,2,1,0)){vec3 p=z*normalize(FC.rgb*2.-r.xyx);for(d=0.;d++<9.;)p+=.4*sin(p.yzx*d-z+t+i)/d+.5;d=length(vec4(abs(p.y+p.z*.5),sin(p-z)/7.))/(4.+z*z/1e2);}o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "2021248551678849313",
+    "title": "Port",
+    "url": "https://x.com/XorDev/status/2021248551678849313",
+    "code": "vec3 w,p;for(float z,d=.1,i,f;i++<1e2;o+=.03/abs(mix(p,w,.1).y+vec4(0,1,2,3)/1e2)*d,z+=d=.3*(length(cos(p.xz))-.4))for(p=z*(FC.rgb*2.-r.xyy)/r.y+1.,w=p,f=0.;f++<5.;)w+=sin(w.zxy*f-9.*exp(-d/.1)+t)/f;o=tanh(o);",
+    "strategy": "base"
+  },
+  {
+    "id": "2019209536352268572",
+    "title": "Drip",
+    "url": "https://x.com/XorDev/status/2019209536352268572",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y*vec2(10,1),\na=vec2(.5,.1),\nf=fract(vec2(p.x,p.y+t*4./PI+sin(ceil(p.x)/.1+t)))-a,\nm=1.-max(f/(1.-a),-f/a);\no+=tanh(.1/(1.-m.x))*m.x*m.y;",
+    "strategy": "compat"
+  },
+  {
+    "id": "2018817870495641914",
+    "title": "Particles",
+    "url": "https://x.com/XorDev/status/2018817870495641914",
+    "code": "vec3 p,v;for(float d,z,i,f;i++<6e1;p=z*normalize(FC.rgb*2.-r.xyy),p.z+=9.)z+=d=.4*max(f=abs(z-5.)*.05,length(vec4(dot(sin(p),sin(p/.6))-length(p)+5.,sin(p/.1+t)*cos(p.yzx/.1+t)*.3))-f),o+=(cos(p.y+i*.2+d/.2+vec4(0,1,2,3))+1.1)/d;o=tanh(o*o/3e5);",
+    "strategy": "base"
+  },
+  {
+    "id": "2018038820822773969",
+    "title": "Mainframe",
+    "url": "https://x.com/XorDev/status/2018038820822773969",
+    "code": "vec2 p=abs(FC.xy*2.-r)/r.y/.4,v;for(float i,l,f;i++<9.;o+=.02/(l=length(sin(v)))/l*(cos(i*.3+l-vec4(4,5,6,0))+1.))for(v=p-i*.2,f=0.;f++<7.;v=(v+sin(ceil(v.yx+i*.1)*9.+t)/f).yx);o=max(tanh(o+(o=texture(b,(FC.xy+r.y*.05*sin(FC.xy+FC.yx/.6))/r))*o),0.);",
+    "strategy": "compat"
+  },
+  {
+    "id": "2017237161821515940",
+    "title": "Buffer",
+    "url": "https://x.com/XorDev/status/2017237161821515940",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;\nfloat l=length(p)-.6,a=atan(p.y,p.x)+t*.5;\no=tanh(.3*(.7+vec4(-p,p))*dot(p,cos(t+vec2(0,2)))/length(vec2(min(l*4.,l)*4.,cos(a*8.)-.9)));",
+    "strategy": "base"
+  },
+  {
+    "id": "2016904976174317637",
+    "title": "Frames",
+    "url": "https://x.com/XorDev/status/2016904976174317637",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.4,v;for(float i,l,f;i++<9.;o+=.04/abs(l=length(v)-1.)*(cos(i*.3+.1/l+vec4(0,1,2,3))+1.))for(v=p,f=0.;f++<7.;v=(v+sin(v*f/.6+i*.3+cos(i+vec2(0,2)+t/2.))/f).yx);o=max(tanh(o+(o=texture(b,(FC.xy+r.y*.02*sin(FC.xy+FC.yx/.6))/r))*o),.0);",
+    "strategy": "compat"
+  },
+  {
+    "id": "2016630958070419569",
+    "title": "Phoenix",
+    "url": "https://x.com/XorDev/status/2016630958070419569",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.4,v;for(float i,l,f;i++<9.;o+=.01/(l=length(v*v.yx))*(cos(i/4.+v.y+vec4(0,1,2,4))+1.))for(v=p,f=0.;f++<9.;v+=cos(ceil(v.yx*f+i*.1)+t/2.)/f);o=max(tanh(o+(o=texture(b,(FC.xy+r.y*.05*sin(FC.xy+FC.yx/.6))/r))*o),.0);",
+    "strategy": "compat"
+  },
+  {
+    "id": "2016620111809876283",
+    "title": "Event 2",
+    "url": "https://x.com/XorDev/status/2016620111809876283",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.3,v;for(float i,l,f;i++<9.;o+=.1/abs(l=dot(p,p)-5.-2./v.y)*(cos(i/3.+.1/l+vec4(1,2,3,4))+1.))for(v=p,f=0.;f++<9.;v+=sin(ceil(v.yx*f+i*.3)+r-t/2.)/f);o=max(tanh(o+(o=texture(b,(FC.xy+r.y*.04*sin(FC.xy+FC.yx/.6))/r))*o),.0);",
+    "strategy": "compat"
+  },
+  {
+    "id": "2016617585538638194",
+    "title": "Event 1",
+    "url": "https://x.com/XorDev/status/2016617585538638194",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.3,v;for(float i,l,f;i++<9.;o+=.03/max(l=length(p)-2.-1./(v.y-v.x),-l*9.)*(cos(i/3.+.1/l+vec4(0,1,2,3))+1.))for(v=p,f=0.;f++<9.;v+=sin(ceil(v.yx*f+i*.7)+r-t/2.)/f);o=max(tanh(o+(o=texture(b,(FC.xy+r.y*.03*sin(FC.xy+FC.yx/.6))/r))*o),.0);",
+    "strategy": "compat"
+  },
+  {
+    "id": "2016531421926703247",
+    "title": "Observer",
+    "url": "https://x.com/XorDev/status/2016531421926703247",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.2,v;for(float i,l,f;i++<1e1;o+=.03/max(l=length(v)-i,-l*3.)*(cos(t-i*.4+.1/l+vec4(0,1,2,3))+1.1))for(v=p,f=0.;f++<9.;v+=sin(ceil(v*f+i*.9)-t/2.)/f);o=max(tanh(o+(o=texture(b,(FC.xy+r.y*.05*sin(FC.xy+FC.yx/.6))/r))*o),.0);",
+    "strategy": "compat"
+  },
+  {
+    "id": "2015813875833225715",
+    "title": "Rocaille",
+    "url": "https://x.com/XorDev/status/2015813875833225715",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.3,v;for(float i,f;i++<1e1;o+=(cos(i+vec4(0,1,2,3))+1.)/6./length(v))for(v=p,f=0.;f++<9.;v+=sin(v.yx*f+i+t)/f);o=tanh(o*o);",
+    "strategy": "base"
+  },
+  {
+    "id": "2011848145680974024",
+    "title": "Electro",
+    "url": "https://x.com/XorDev/status/2011848145680974024",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;\nfloat d=.9-dot(p,p);\no=tanh(.3/abs(tan(p.y*sqrt(max(d,-d*.1)/.3)+p.x+t+vec4(6,0,9,0))));",
+    "strategy": "base"
+  },
+  {
+    "id": "2011468487160463399",
+    "title": "Cleanse",
+    "url": "https://x.com/XorDev/status/2011468487160463399",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.3;for(float f;f++<1e2;p+=.02*sin(p.yx+.5*t))o+=(cos(f/27.+vec4(0,1,3,0))+1.1)/length(sin(p*sin(r+f)/.7));o=tanh(o*o/4e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "2008704893931188336",
+    "title": "Stairs",
+    "url": "https://x.com/XorDev/status/2008704893931188336",
+    "code": "for(float i,z,d;i++<55.;o+=vec4(9,4,2,1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);for(d=0.;d++<9.;p+=sin(ceil(p/9.).zxy+t));z+=d=.1*abs(p.z+40.);}o=tanh(o/6e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "2008361514684539306",
+    "title": "Artifacts",
+    "url": "https://x.com/XorDev/status/2008361514684539306",
+    "code": "for(float i,z,d;i++<77.;o+=vec4(z,z,9,1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.xy+=t;\nfor(d=0.;d++<9.;p+=sin(round(p)+d*3.).zxy);\nz+=d=abs(p.z/30.+.2);}o=tanh(o/8e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "2001733058949714173",
+    "title": "Scatter",
+    "url": "https://x.com/XorDev/status/2001733058949714173",
+    "code": "vec2 u=(r-2.*FC.xy)/r.y,c=ceil((u*1e2+sin(u*3e2-t))/(.1+length(u))),p=u+.01*tan(dot(c,sin(c.yx)));o=tanh(tanh(vec4(p-.3,p))*.1/(abs(length(p)-.6)));",
+    "strategy": "base"
+  },
+  {
+    "id": "1995634971030196401",
+    "title": "Combustion",
+    "url": "https://x.com/XorDev/status/1995634971030196401",
+    "code": "vec2 p=FC.xy*6./r.y;\nfor(float i;i++<1e1;i)\np+=sin(p.yx*i+i*i+t*i+r)/i;\no=tanh(.2/tan(p.y+vec4(0,.1,.3,0)));\no*=o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1992664828411007418",
+    "title": "Lily",
+    "url": "https://x.com/XorDev/status/1992664828411007418",
+    "code": "for(float i,z,d;i++<6e1;o+=vec4(z,9,1,1)/d/d){vec3 p=round(z*normalize(FC.rgb*2.-r.xyy)/.1)*.1;p.z-=9.;\nfor(d=0.;d++<9.;p+=.2*sin(p*d-t+z).yzx);z+=d=length(cos(p)-1.)/20.;}\no=tanh(o/3e5);",
+    "strategy": "base"
+  },
+  {
+    "id": "1992418787614937300",
+    "title": "Nether",
+    "url": "https://x.com/XorDev/status/1992418787614937300",
+    "code": "for(float i,z,d;i++<6e1;o+=vec4(19,z,1,1)/d/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t;p=round(p/.1)*.1;\nfor(d=0.;d++<9.;p+=.2*cos(p*d+z).zzx);z+=d=abs(abs(p.y)-3.)/20.;}\no=tanh(o/7e5);",
+    "strategy": "base"
+  },
+  {
+    "id": "1986182095614406664",
+    "title": "CYBERSPACE 2",
+    "url": "https://x.com/XorDev/status/1986182095614406664",
+    "code": "for(float i,z,d;z+i++<7e1;o+=vec4(z,1,9,1)/d)\n{vec3 p=abs(z*normalize(FC.rgb*2.-r.xyy));p.z+=t*5.;p+=sin(p+p);for(d=0.;d++<9.;p+=.4*cos(round(.2*d*p)+.2*t).zxy);z+=d=.1*sqrt(length(p.xyy*p.yxy));}\no=tanh(o/7e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1986176381680521639",
+    "title": "CYBERSPACE",
+    "url": "https://x.com/XorDev/status/1986176381680521639",
+    "code": "for(float i,z,d;z+i++<8e1;o+=vec4(z,4,1,1)/d)\n{vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=t/.1;p-=sin(p+p);for(d=0.;d++<9.;p+=.7*cos(round(.2*d*p)+t*.5).zxy);z+=d=.1*sqrt(length(p.xyy*p.yxy));}\no=tanh(o/5e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1986071686785986848",
+    "title": "Whirl",
+    "url": "https://x.com/XorDev/status/1986071686785986848",
+    "code": "for(float i,z,d,h;i++<8e1;o+=vec4(9,5,h+t,1)/d)\n{vec3 p=z*normalize(FC.rgb*2.-r.xyy),a;p.z+=9.;a=mix(dot(a+=.5,p)*a,p,sin(h=dot(p,p/p)-t))+cos(h)*cross(a,p);\nfor(d=0.;d++<9.;a+=.3*sin(a*d).zxy);z+=d=length(a.xz)/15.;}\no=tanh(o/1e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1985477218319909140",
+    "title": "Repulser",
+    "url": "https://x.com/XorDev/status/1985477218319909140",
+    "code": "for(float i,z,d,h;i++<4e1;o+=vec4(h,1,4,1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a;a.y++;p.z+=6.;a=mix(dot(a,p)*a,p,sin(h=t-length(p*p.yzx)))+cos(h)*cross(a,p);for(d=0.;d++<9.;a-=cos(round(a*d)+t).zxy/d);z+=d=.1*length(a.xz);h=p.y+4.;}o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1983553936159314148",
+    "title": "Depth",
+    "url": "https://x.com/XorDev/status/1983553936159314148",
+    "code": "vec3 p,v=vec3(1,2,1);for(float d,i,z;i++<4e1;o+=(cos(i/4.+vec4(2,1,6,0))+1.)/d/d)p=z*normalize(FC.rgb*2.-r.xyy),d=abs(z-3.+cos(t)/.7)/2e1,z+=d=.6*max(d,length(abs(fract(p/v)-.5)*v-.1)-d);o=tanh(o/3e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1983317936791285993",
+    "title": "Merge",
+    "url": "https://x.com/XorDev/status/1983317936791285993",
+    "code": "vec3 p;for(float d,i,z;i++<5e1;o+=(cos(z+vec4(2,1,0,0))+1.)/d/z)\np=z*normalize(FC.rgb*2.-r.xyy),p.z+=t,d=abs(.04*z-.4),z+=d=.4*max(d,length(min(p=cos(p+z),p.yzx))-d);o=tanh(o*o/6e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1982814385572569175",
+    "title": "Chords",
+    "url": "https://x.com/XorDev/status/1982814385572569175",
+    "code": "vec3 p;for(float d,i,z;i++<5e1;o+=(cos(i/9.+vec4(2,1,0,0))+1.)/d/z)\np=z*normalize(FC.rgb*2.-r.xyy),p.z-=t,d=abs(.01*z-.1),z+=d=max(d,.5*length(vec2(3.-abs(p.y)+dot(cos(p+.3*t),sin(.3*t-.6*p.yzx)),cos(p/.3-p.z)*.3))-d);\no=tanh(o/8e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1981737027948232741",
+    "title": "Bitdumb 4",
+    "url": "https://x.com/XorDev/status/1981737027948232741",
+    "code": "vec2 p=.5*(FC.xy-.5*r)/r.y,v;for(float i;i++<6.;o+=fract(length(round(p))/exp2(i/4.)-t*.5)*vec4(.1/abs(fract(p)-.5).yxx/i,1)*(1.-o.a))p*=mat2(2,2,-2,2);o=tanh(o*o+dot(o,o)/1e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1981735203430101486",
+    "title": "Bitdumb 3",
+    "url": "https://x.com/XorDev/status/1981735203430101486",
+    "code": "vec2 p=(FC.xy-.5*r)/r.y,v;for(float i;i++<6.;o+=fract(length(round(p))/exp2(i)-t*.5)*vec4(.04/abs(fract(p)-.5).xxy,1)*(1.-o.a))p+=p;o=tanh(o*o+dot(o,o)/1e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1981733290626240632",
+    "title": "Bitdumb 2",
+    "url": "https://x.com/XorDev/status/1981733290626240632",
+    "code": "vec2 p=(FC.xy-.5*r)/r.y,v;for(float i;i++<20.;o+=vec4(.03/abs(fract(p)-.5).xyx,fract(t*.2+length(round(p)+i)/i))*(1.-o.a))p+=vec2(p.y,-p);o=tanh(o*o+dot(o,o)/1e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1981728326533218310",
+    "title": "Bitdumb",
+    "url": "https://x.com/XorDev/status/1981728326533218310",
+    "code": "vec2 p=(round(FC.xy)-.5*r)/r.y,v;for(float i;i++<20.;o+=vec4(fwidth(v=ceil(p)).xyy,fract(length(v)/i-t*.2))*(1.-o.a))p+=p;",
+    "strategy": "base"
+  },
+  {
+    "id": "1981417928302960666",
+    "title": "Aperture 2",
+    "url": "https://x.com/XorDev/status/1981417928302960666",
+    "code": "vec3 p;\nfor(float d,i,z;i++<1e2;o+=(cos(z+vec4(0,1,2,0))+1.5)/d/z)\np=z*normalize(FC.rgb*2.-r.xyy),p.z-=t,d=abs(.01*z-.1),z+=d=max(d,.6*length(max(p=sin(p)*sin(p.yzx),p.yzx)-.7)-d);\no=tanh(o/1e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1981411411055026656",
+    "title": "Aperture",
+    "url": "https://x.com/XorDev/status/1981411411055026656",
+    "code": "vec3 p;\nfor(float d,i,z;i++<1e2;o+=(cos(z*.3+vec4(0,1,2,0))+2.)/d/z)\np=z*normalize(FC.rgb*2.-r.xyy),p.z-=t-z*.6,d=abs(.03*z-.3),z+=d=max(d,length(max(p=cos(p),p.yzx))-d);\no=tanh(o*o/9e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1981008713483014531",
+    "title": "Pulse",
+    "url": "https://x.com/XorDev/status/1981008713483014531",
+    "code": "vec3 p,v;for(float i,z,d;i++<5e1;o+=vec4(3,z,6,1)/d/z)\np=z*normalize(2.*FC.rgb-r.xyy),p.z+=9.,p=dot(v=normalize(cos((t+i)/2.+vec3(6,1,4))),p)*v+cross(v,p),z+=d=.2*length(p.xy/vec2(1,9));\no=tanh(o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1978147697652584721",
+    "title": "Cyclone 2",
+    "url": "https://x.com/XorDev/status/1978147697652584721",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.2;\nfor(float i;i++<2e1;o+=(cos(p.x*.5+vec4(0,2,4,0))+1.3)/length(sin(p-t+sin(p-t).yx))/.2)p*=mat2(9,-3,3,9)/9.;\no=tanh(o*o/9e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1978145003445653621",
+    "title": "Cyclone",
+    "url": "https://x.com/XorDev/status/1978145003445653621",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.1;\nfor(float i;i++<1e1;o+=(cos(p.x+vec4(2,1,0,0))+1.)/length(sin(p+sin(p+t).yx))/.2)p*=.1*mat2(8,-6,6,8);\no=tanh(o*o/2e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1978091803262783504",
+    "title": "Dispersion",
+    "url": "https://x.com/XorDev/status/1978091803262783504",
+    "code": "for(float i,z,d,s;i++<2e1;o+=(cos(s-z+vec4(0,1,8,0))+1.)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=p;\nfor(d=2.;d++<7.;)a-=sin(a*d+t+i).yzx/d;z+=d=abs(2.-max(p=abs(p),p.y).x)+abs(cos(s=a.z+a.y-t))/7.;}\no=tanh(o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1976028322363834762",
+    "title": "Thermal",
+    "url": "https://x.com/XorDev/status/1976028322363834762",
+    "code": "for(float i,z,d,s;i++<3e1;o+=(cos(s-t+vec4(0,1,8,0))+1.)/d)\n{vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=p;p.z+=5.;\nfor(d=2.;d++<7.;)a-=sin(ceil(a*d+t)).yzx/d;z+=d=abs(max(p=abs(p),max(p.y,p.z)).x-2.)*.4+.2*abs(cos(s=a.y+t));}\no=tanh(o/3e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1975230424982183956",
+    "title": "Lapse 2",
+    "url": "https://x.com/XorDev/status/1975230424982183956",
+    "code": "for(float i,z,d,h;i++<5e1;o+=vec4(3,z,i,1)/d)\n{vec3 p=z*normalize(FC.rgb*2.-r.xyy),a;a.y++;p.z+=7.;a=mix(dot(a,p)*a,p,sin(h=length(p)-t))+cos(h)*cross(a,p);\nfor(d=0.;d++<9.;a+=sin(round(a*d)-t).zxy/d);z+=d=.1*length(a.xz);}\no=tanh(o/1e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1974294599423467913",
+    "title": "Aurora",
+    "url": "https://x.com/XorDev/status/1974294599423467913",
+    "code": "for(float i,z,d;i++<1e2;o+=(cos(i*.1+vec4(0,1,2,3))+1.)/d/d/d*z)\n{vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(sin(t/4.+i*.04+vec3(2,4,0)));p.z-=3.;a=dot(a,p)*a+cross(a,p);z+=d=length(sin(a*.1)*cos(a.yzx/7.));}\no=tanh(o/1e5);",
+    "strategy": "base"
+  },
+  {
+    "id": "1974272123863507003",
+    "title": "Inferno",
+    "url": "https://x.com/XorDev/status/1974272123863507003",
+    "code": "for(float i,z,d;i++<8e1;o+=vec4(i,9,z,1)/d)\n{vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(sin(t/3.+z+vec3(0,2,4)));p.z+=3.;a=dot(a,p)*a+cross(a,p);\nfor(d=3.;d++<9.;a+=sin(ceil(a*d)/.4-t).yzx/d);z+=d=.1*length((p=sin(a))*p.yzx);}\no=tanh(o/3e5);",
+    "strategy": "base"
+  },
+  {
+    "id": "1973424137403244927",
+    "title": "Magnetic",
+    "url": "https://x.com/XorDev/status/1973424137403244927",
+    "code": "for(float i,z,d,l;i++<6e1;o+=vec4(l,2,z,1)/d/l/z){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=p-.9*p.xzy;p.z+=5.;\nfor(d=1.;d++<9.;a+=sin(round(a*d).yzx+t)/d);z+=d=length(vec4(sin(a*a)*.3,cos((l=length(p))/.3)))/6.;}\no=tanh(o*o/1e6);",
+    "strategy": "base"
+  },
+  {
+    "id": "1972423422711111894",
+    "title": "Vectors",
+    "url": "https://x.com/XorDev/status/1972423422711111894",
+    "code": "for(float i,z,d;i++<7e1;o+=vec4(9,i,z,1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(sin(t/4.+vec3(0,2,4))),v;p.z+=7.;v=a=dot(a,p)*a+cross(a,p);\nfor(d=2.;d++<9.;a+=sin(ceil(a*d)-t).yzx/d);z+=d=.1*length(sin(a*a))*sqrt(length(v*sin(v.yzx)));}\no=tanh(o/6e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1971696159401169277",
+    "title": "Helios",
+    "url": "https://x.com/XorDev/status/1971696159401169277",
+    "code": "for(float i,z,d;i++<6e1;o+=vec4(z,3,1,1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=p;p.z+=8.;\nfor(d=1.;d++<9.;a+=sin(a*d+t+i).yzx/d);\nz+=d=max(d=length(p)-5.,-d/3.)*.5+length(sin(a/.3+z)+1.)/4e1;}\no=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1971666820710203814",
+    "title": "Turbine",
+    "url": "https://x.com/XorDev/status/1971666820710203814",
+    "code": "for(float i,z,d,s;i++<1e2;o+=vec4(z,1,s,1)/s/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a;p.z+=5.;a.x--;a=mix(dot(a,p)*a,p,sin(s-=t-z))+cos(s)*cross(a,p);for(d=1.;d++<9.;a+=sin(ceil(a*d)-t).yzx/d);s=sqrt(length(a.yz));z+=d=length(sin(a))*s/2e1;}o=tanh(o/5e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1971305040385122512",
+    "title": "Moire",
+    "url": "https://x.com/XorDev/status/1971305040385122512",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y*3e1;\nfor(float i;++i<9.;o+=sin(p.x+vec4(0,1,2,0)+t))p*=.1*mat2(6,-8,8,6);\no=tanh(o*.4)*.5+.5;",
+    "strategy": "base"
+  },
+  {
+    "id": "1970235131240817039",
+    "title": "Quasar 3",
+    "url": "https://x.com/XorDev/status/1970235131240817039",
+    "code": "for(float i,z,d,s;i++<9e1;o+=vec4(s,1,z/5.,1)/s/s*i){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a;p.z+=9.;a=mix(dot(a-=.6,p)*a,p,cos(s-=t))-sin(s)*cross(a,p);s=sqrt(length(a-a.zxy));for(d=0.;d++<9.;a+=cos(a*d+t).yzx/d);z+=sqrt(max(d=dot(a,a/a),-d*.1))*s/14.;}o=tanh(o*o/4e6);",
+    "strategy": "base"
+  },
+  {
+    "id": "1970220265360765203",
+    "title": "Accelerator",
+    "url": "https://x.com/XorDev/status/1970220265360765203",
+    "code": "for(float i,z,d,s;i++<8e1;o+=vec4(s,2,z,1)/s/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a;p.z+=9.;a=dot(a+=.57,p)*a*cross(a,p);s=sqrt(length(a.xz-a.y-.8));for(d=2.;d++<9.;a+=sin(round(a*d)-t).yzx/d);z+=d=length(sin(a/.1))*s/2e1;}o=tanh(o/4e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1968828619435782446",
+    "title": "Quasar 2",
+    "url": "https://x.com/XorDev/status/1968828619435782446",
+    "code": "for(float i,z,d,s;i++<7e1;o+=vec4(z,2,s,1)/s/d)\n{vec3 p=z*normalize(FC.rgb*2.-r.xyy),a;p.z+=9.;a=mix(dot(a-=.57,p)*a,p,cos(s-=t))-sin(s)*cross(a,p);s=sqrt(length(a.xz-a.y));\nfor(d=1.;d++<9.;a+=sin(a*d-t).yzx/d);z+=d=length(sin(a)+dot(a,a/a)*.2)*s/2e1;}\no=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1968820674341810276",
+    "title": "Quasar",
+    "url": "https://x.com/XorDev/status/1968820674341810276",
+    "code": "for(float i,z,d,s;i++<1e2;o+=vec4(z,4,1,1)/d)\n{vec3 p=z*normalize(FC.rgb*2.-r.xyy),a;p.z+=9.;s=length(a=mix(dot(a+=.57,p)*a,p,cos(s-=t))-sin(s)*cross(a,p));\nfor(d=1.;d++<9.;a+=sin(a*d-t).yzx/d);\nz+=d=length(sin(a-t)+.7)*length(p.xy-p.z)/4e1;}\no=tanh(o/2e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1968006142334017736",
+    "title": "Spectral",
+    "url": "https://x.com/XorDev/status/1968006142334017736",
+    "code": "vec3 p=(FC.xy*2.-r)/r.y*mat3x2(-8,0,4,7,4,-7)/4.,\nf=abs(fract(p)-.5);\no=tanh(tan(t-4.*length(p)+(max(f.x,max(f.y,f.z))/.1)+vec4(0,.2,.5,1)));\no*=o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1968003087152689331",
+    "title": "Portals",
+    "url": "https://x.com/XorDev/status/1968003087152689331",
+    "code": "vec3 p=(FC.xy*2.-r)/r.y*mat3x2(-8,0,4,7,4,-7)*.1,f=fract(p+.5)-.5;o=tanh(.3*tan(3.*p.y-t+sin(dot(f,f)*4e1)+vec4(0,.2,.3,0)));o*=o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1965433065439887432",
+    "title": "Marbles",
+    "url": "https://x.com/XorDev/status/1965433065439887432",
+    "code": "vec3 p=(FC.xy*2.-r)/r.y*mat3x2(-8,0,4,7,4,-7),\nf=fract(p/3.+.5)-.5;\no=tanh(.5/tan(p.y-t+5.*sqrt(abs(.4-dot(f,f)))+vec4(6,0,.2,0)));\no*=o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1964488165647143241",
+    "title": "Shower",
+    "url": "https://x.com/XorDev/status/1964488165647143241",
+    "code": "vec3 c,p;for(float i,z,f,l;i++<6e1;z+=f=.03+min(max(f=3.-abs(c+c+p).y/9.+dot(cos(p*=.2),sin(p.yzx)),-f*.1),l=length(cos(c/vec3(4,22,3)-z*.1+t))*5.)/3.,o+=vec4(3,1,l,1)/l/l/f/z)for(c=p=z*normalize(FC.rgb*2.-r.xyy)+3.,f=0.;f++<6.;p+=sin(p*f-t+5./l).yzx/f);o=tanh(o/2e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1964476899473907910",
+    "title": "Jetstream",
+    "url": "https://x.com/XorDev/status/1964476899473907910",
+    "code": "vec3 c,p;for(float i,z,f,l;i++<6e1;z+=f=.01+min(max(f=8.-length((c+p).xy),-f*.2),l=length(c+4.*sin(t+vec3(0,8,4))))/7.,o+=vec4(5,1,l,1)/l/l/f/z)for(c=p=z*normalize(FC.rgb*2.-r.xyy),p.z-=t/.2,c.z+=9.,f=0.;f++<7.;p+=sin(p*f+z*.2+1./l).yzx/f);o=tanh(o/3e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1963951696100348366",
+    "title": "Sketch",
+    "url": "https://x.com/XorDev/status/1963951696100348366",
+    "code": "vec3 p;\nfor(float i,z,f;i++<3e1;z+=f=(p.y-z*.5-2.-length(cos(p.xz+.5*z)))/5.,o+=9./f)\nfor(p=z*normalize(FC.rgb*2.-r.xyy),p.z+=t,f=1.;f++<6.;p+=sin(ceil(p.z*2e1+f*vec3(1,2,3))/6.*f)/f);\no=tanh(5e6/o/o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1963624559447244810",
+    "title": "Fiber",
+    "url": "https://x.com/XorDev/status/1963624559447244810",
+    "code": "vec3 p;\nfor(float i,z,f;i++<3e1;z+=f=.001+abs(length(p.xy)-5.+dot(cos(p),sin(p).yzx))/9.,o+=(1.+sin((i+z+t)*.3+vec4(6,1,2,0)))/f)\nfor(p=z*normalize(FC.rgb*2.-r.xyy),p.z-=t,f=1.;f++<6.;p+=sin(round(p.z*3e1)/6.*f+vec3(0,1,4)+t/4.)/f);\no=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1963399052600512553",
+    "title": "Tensor",
+    "url": "https://x.com/XorDev/status/1963399052600512553",
+    "code": "vec3 p;\nfor(float i,z,f;i++<4e1;z+=f=.003+abs(length(p.xy)+dot(cos(p),sin(p/.6).yzx)-5.)/7.,o.grb+=(1.5-p/z)/f)\nfor(p=z*(FC.rgb*2.-r.xyy)/r.y,p.z-=t,f=1.;f++<6.;p+=sin(round(p*6.)/6.*f-t*.5)/f);\no=tanh(o/3e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1963365613415621101",
+    "title": "Flutter",
+    "url": "https://x.com/XorDev/status/1963365613415621101",
+    "code": "vec3 p;\nfor(float i,z,f;i++<5e1;z+=f=.003+.1*abs(length(p)-5.),o.rgb+=(p/z+.8)/f)\nfor(p=z*(FC.rgb*2.-r.xyy)/r.y,p.z+=9.,f=1.;f++<7.;p+=sin(round(p.zxy/.1)*.1*f-t)/f);\no=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1961150728262582560",
+    "title": "Equinox",
+    "url": "https://x.com/XorDev/status/1961150728262582560",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;\no=sin(t+p.y*(1.-sqrt(abs(1.-dot(p,p))))+vec4(4,5,6,0));",
+    "strategy": "base"
+  },
+  {
+    "id": "1961130223531090414",
+    "title": "Pivotal",
+    "url": "https://x.com/XorDev/status/1961130223531090414",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.2,c=fract(p)-.5-p*.2;o=cos(atan(c.y,c.x)+vec4(0,1,2,0)+t);",
+    "strategy": "base"
+  },
+  {
+    "id": "1958547349547987250",
+    "title": "Aberrations",
+    "url": "https://x.com/XorDev/status/1958547349547987250",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y*4.;\no=tanh(.3*cos(p.x/.6-p.y+vec4(6,1,2,0))*cos(p.x-t*cos(round(p.y/PI)*PI))/cos(p.y));",
+    "strategy": "compat"
+  },
+  {
+    "id": "1958540536970666451",
+    "title": "Tile",
+    "url": "https://x.com/XorDev/status/1958540536970666451",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y*5.;\no=cos(length(tan(p)+p)-t+vec4(0,.7,1,3));",
+    "strategy": "base"
+  },
+  {
+    "id": "1958193141573353887",
+    "title": "Paradise 3",
+    "url": "https://x.com/XorDev/status/1958193141573353887",
+    "code": "vec3 c,p;for(float i,z,f;i++<5e1;p+=c,z+=f=length(cos(p/p.y)/8.+sin(p.y/7.)*.4),o+=(cos(c.y/14.-vec4(7,2,3,0))+1.)*z*z/(.9+p.y*f)/max(length(c.xy/z-.6)-.1,.1))for(p=z*(FC.rgb/.4-r.xyy)/r.y,p.y=abs(p.y+2.),c=p,p.x*=f=.2;f++<9.;p+=cos(p.yzx*f-t/4.)/f);o=tanh(o/1e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1958178511107088799",
+    "title": "Sonata",
+    "url": "https://x.com/XorDev/status/1958178511107088799",
+    "code": "vec3 s,c,p;\nfor(float i,z,f;i++<3e1;p+=c,z+=f=abs(p.y+7.)*.5+.2,o+=vec4(1,2,4,1)/f/(z*.3+p*p).x)\nfor(c=p=z*(2.*FC.rgb-r.xyy)/r.y,p.x*=f=s.y=.3;f++<3.;p+=cos(p.yzx*f+z+t)/f);\no=tanh(.1*o/length((c/p.z+s).xy));",
+    "strategy": "base"
+  },
+  {
+    "id": "1958006235866771650",
+    "title": "Wired",
+    "url": "https://x.com/XorDev/status/1958006235866771650",
+    "code": "vec3 c,p;for(float i,z,f;i++<4e1;p=mix(c,p,.3),z+=f=.2*abs(dot(cos(p),sin(p.yzx/.6))+abs(p.y)-3.),o+=(cos(z+vec4(6,1,2,0))+2.)/f/z)for(c=p=z*normalize(FC.rgb*2.-r.xyy),p.z-=t,c=p,f=.3;f++<5.;p+=cos(p.yzx*f+i/.4)/f);o=tanh(o/8e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1957906463793328462",
+    "title": "Paradise",
+    "url": "https://x.com/XorDev/status/1957906463793328462",
+    "code": "vec3 c,p;\nfor(float i,z,f;i++<1e2;p+=c,z+=f=length(cos(p/6.+z)*.1+sin(p.y/9.)*.4),o+=(cos(c.y/z/.6+vec4(6,1,2,0))+1.1)*f*f)\nfor(p=z*(FC.rgb/.4-r.xyy)/r.y,p.y=abs(p.y+7.),c=p,p.x*=f=.3;f++<6.;p+=cos(p.yzx*f-t)/f);\no=tanh(o/4e1/length(c.xy/p.z+.3));",
+    "strategy": "base"
+  },
+  {
+    "id": "1957832841762398583",
+    "title": "Falls",
+    "url": "https://x.com/XorDev/status/1957832841762398583",
+    "code": "vec3 x,c,p;x.x+=9.;\nfor(float i,z,f;i++<5e1;p=mix(c,p,.3),z+=f=.2*(abs(p.z+p.x+16.+tanh(p.y)/.1)+sin(p.x-p.z+t+t)+1.),o+=(cos(p.x*.2+f+vec4(6,1,2,0))+2.)/f/z)\nfor(c=p=z*normalize(FC.rgb*2.-r.xyy),p.y*=f=.3;f++<5.;p+=cos(p.yzx*f+i+z+x*t)/f);\no=tanh(o/3e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1957435605140250928",
+    "title": "Ash",
+    "url": "https://x.com/XorDev/status/1957435605140250928",
+    "code": "vec3 p;for(float i,z,f;i++<1e2;z+=f=.02+.1*max(f=5.-.2*z-max(p,-p*.4).y,-f*.5),o+=f/z)for(p=z*normalize(FC.rgb*2.-r.xyy),p.x*=f=.5;f++<9.;p+=sin(p.yzx*f-t/4.)/f);o=smoothstep(4.,7.,o/vec4(.7,.8,1,1));",
+    "strategy": "base"
+  },
+  {
+    "id": "1956882623000649856",
+    "title": "Vapor 2",
+    "url": "https://x.com/XorDev/status/1956882623000649856",
+    "code": "vec3 p;\nfor(float i,z,f;i++<1e2;o+=sin(p.y-t+vec4(6,1,2,3))*f+f){p=z*normalize(FC.rgb*2.-r.xyy);\nfor(f=1.;f++<9.;p+=sin(p.zxy*f+f-t)/f);\nz+=f=.01+.1*abs(dot(sin(p*.7),cos(p).yzx));}\no=tanh(o*o/1e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1956752377849037274",
+    "title": "Horizon",
+    "url": "https://x.com/XorDev/status/1956752377849037274",
+    "code": "vec3 c,p;for(float i,z=.1,f;i++<1e2;o+=vec4(9,4,2,0)/f/length(c.xy/z)){p=c=z*normalize(FC.rgb*2.-r.xyy);for(p.x*=f=.6;f++<9.;p+=sin(p.yzx*f+.5*z-t/4.)/f);z+=f=.03+.1*max(f=6.-.2*z+min(f=(p+c).y,-f*.2),-f*.6);}o=tanh(o*o/9e8);",
+    "strategy": "base"
+  },
+  {
+    "id": "1956393985737441791",
+    "title": "Swarm",
+    "url": "https://x.com/XorDev/status/1956393985737441791",
+    "code": "vec3 p;\nfor(float i,z,f;i++<1e2;z+=f=.1*abs(dot(cos(p*.5),cos(p/.7))),o+=.1*f)\nfor(p=z*(FC.rgb*2.-r.xyy)/r.y,f=1.;f++<9.;p+=sin(round(p.zxy/.1-z)*.1*f-t)/f);",
+    "strategy": "base"
+  },
+  {
+    "id": "1956386724767990070",
+    "title": "Vapor",
+    "url": "https://x.com/XorDev/status/1956386724767990070",
+    "code": "vec3 p;\nfor(float i,z,f;i++<1e2;o.rgb+=(sin(p+p+z)+z)/z*f){\np=z*normalize(FC.rgb*2.-r.xyy);for(f=1.;f++<9.;p+=sin(p.zxy*f+f-t)/f);\nz+=f=.01+.1*abs(dot(sin(p*.7),cos(p).yzx));}\no=tanh(.02*o*o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1956380416551932030",
+    "title": "Pillars",
+    "url": "https://x.com/XorDev/status/1956380416551932030",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.3+t*vec2(2./PI,1),w=mod(p,2.)-1.;o=sin(p.y-sqrt(1.-w*w).x*cos(ceil(p.x*.5)*PI)+vec4(0,1,2,0));",
+    "strategy": "compat"
+  },
+  {
+    "id": "1956072859392205074",
+    "title": "Interference",
+    "url": "https://x.com/XorDev/status/1956072859392205074",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y,\nv=p-clamp(p,-.3,.3),\nl=vec2(atan(p.y,p.x),length(v));\no=tanh((cos(l.x+sin(l.x/.2)*sin(l.y/.02-t)*.4+t+vec4(0,2,4,0))+1.2)*\nexp(cos(l.x/.2)*cos(l.y/.02-t))/l.y/3e1)*clamp(l*r*.1,0.,1.).y;",
+    "strategy": "base"
+  },
+  {
+    "id": "1956070340414558241",
+    "title": "Tri",
+    "url": "https://x.com/XorDev/status/1956070340414558241",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y,b=vec2(.58*clamp(.4-p.y,0.,.8),.4),v=p-clamp(p,-b,b),l;l+=length(v);o=tanh((cos(atan(p.y,p.x)+t+vec4(0,2,4,0))+1.1)/l.y/3e1)*min(l*r*.2,1.).y;",
+    "strategy": "base"
+  },
+  {
+    "id": "1955651692529377339",
+    "title": "Focal",
+    "url": "https://x.com/XorDev/status/1955651692529377339",
+    "code": "vec3 p;\nfor(float i,z,d;i++<1e2;\no+=vec4(3.+3.*d,4.+d+d,6.+d,1)/length(p+cross(cos(t+vec3(0,1,5)),p)/.1))\np=z*normalize(FC.rgb*2.-r.xyy),p.z+=5.,\nz+=d=min(abs(length(p)-2.),abs(p.y+2.))*.5+.01;\no=tanh(o*o/5e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1955363029505413337",
+    "title": "Siri",
+    "url": "https://x.com/XorDev/status/1955363029505413337",
+    "code": "vec3 p,a;for(float i,z,d,s;z+i++<2e2;o+=max(cos(p.x*.4+vec4(0,2,4,0)),5./s/s)/d/d)p=z*normalize(FC.rgb*2.-r.xyy),p.z+=9.,s=length(p=dot(a=normalize(cos(vec3(0,2,4)-t*.5+s*.3)),p)*a-cross(a,p)),z+=d=min(abs(dot(p,sin(p).yzx))*.2+max(d=s-5.,.1),abs(--d)+.2)*.2;o=tanh(o/3e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1955094212828966992",
+    "title": "Deathbeam",
+    "url": "https://x.com/XorDev/status/1955094212828966992",
+    "code": "vec3 p;for(float i,z,d,b;i++<6e1;o+=vec4(1,5,2,0)/b-(dFdx(z)*r.y-z)/exp(d/.1))p=z*(FC.rgb*2.-r.xyy)/r.y-1.,p.z+=8.,z+=min(b=length(abs(p*=.1*mat3(9,0,3,0,9,2,-7,-2,8)).xy+min(.4*p.z-2.6,0.))/(cos(d/.1-t)+2.),d=max(d=length(p)-5.,d-length(p.xy)+1.-cos(d/.1)*.1))*.5;o=tanh(o/4e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1953620412648014334",
+    "title": "Deathstar",
+    "url": "https://x.com/XorDev/status/1953620412648014334",
+    "code": "for(float i,z,d,f;i++<1e2;o+=vec4(4,6,8.+z,0)/f-min(dFdx(z)*r.y+z,0.)/exp(d*d/.1)){vec3 p=z*(FC.rgb*2.-r.xyy)/r.y,c=p;p.z+=8.;c.z*=3.;for(f=1.;f++<9.;c+=sin(c.yzx*f+z+t*.5)/f);z+=min(f=.1+abs(.2*c.y+abs(p.y+.8)),d=max(length(p)-3.,.9-length(p-vec3(-1,1,3))))/7.;}o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1953489521934246016",
+    "title": "HOME",
+    "url": "https://x.com/XorDev/status/1953489521934246016",
+    "code": "vec3 p;\nfor(float i,z,d,l;i++<6e1;o+=(vec4(5,9,2.+d*5e1,0)/l)/z)\np=z*normalize(FC.rgb*2.-r.xyy)-cos(.5*t),\np.z+=5.,p.xz*=mat2(cos(t+p.y*.4-vec4(0,33,11,0))),\nd=length(p),z+=d=min(l=length(cos(p/d/.1)+p.y+d),d-.8-exp(-p*p/.1).y)/9.;\no=tanh(o*o/7e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1953172456396452035",
+    "title": "Satellites",
+    "url": "https://x.com/XorDev/status/1953172456396452035",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.1,s=vec2(3,2.-sin(t/4.)),v,i;for(mat2 m=mat2(cos(t/4.+vec4(0,33,11,0)));i.x++<9.;m*=.1*mat2(8,-6,6,8))o+=smoothstep(.1,.0,length((fract(v=m*(p/s))-.5)*m*s)-.2*sin(length(v)-t)-.2)*(cos(i.x+vec4(-6,0,6,0))+1.)*.5*(1.-o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1953128872435745272",
+    "title": "IGNITE",
+    "url": "https://x.com/XorDev/status/1953128872435745272",
+    "code": "for(float i,z,d,f;i++<1e2;o+=(3.+vec4(9,4,f,0))*d/z/f){vec3 p=z*normalize(FC.rgb*2.-r.xyy),c;p.z+=7.;c=p;for(f=1.;f++<9.;c+=sin(c.zxy*f+f+t)/f);z+=d=min(f=.1+length(c)+c.y,min(length(p.xz)+tanh(.6*p.y-2.),length(max(c=sin(p*5.),c.yzx)-1.2+p.x/8.)))/6.;}o=tanh(o*o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1952748649047285781",
+    "title": "Bokeh 3",
+    "url": "https://x.com/XorDev/status/1952748649047285781",
+    "code": "for(float i=9.+fract(-t/.1),j;i<5e1;o+=(cos(FC.y/r.y*7.+i+t*9.+vec4(0,1,2,3))+1.)*exp(cos(j=tan((j=round(i+t/.1))*9.))*cos(.3*t/j))*smoothstep(j=j*j+3.,-j,length(mod(FC.xy+r*tan(j/.1+vec2(0,8))/i,r)-r*.5)-.1*r.y)/sqrt(j))i+=.2;o=sqrt(tanh(.1*o));",
+    "strategy": "base"
+  },
+  {
+    "id": "1952745213258080695",
+    "title": "Bokeh 2",
+    "url": "https://x.com/XorDev/status/1952745213258080695",
+    "code": "for(float i=fract(-t/.1),j;i<1e2;o+=(cos((j=round(i+t/.1))+vec4(0,1,2,3))+1.)*exp(cos(j=tan(j*9.))*cos(.3*t/j))*smoothstep(j=j*j+3.,-j,length(FC.xy-r*.5+r*tan(j/.1+vec2(0,8))/i)-r.y/i)/sqrt(j))i+=.2;o=sqrt(tanh(.1*o));",
+    "strategy": "base"
+  },
+  {
+    "id": "1952540800547774848",
+    "title": "Bokeh 1",
+    "url": "https://x.com/XorDev/status/1952540800547774848",
+    "code": "vec2 p=FC.xy/r.y;for(float i,f,g;i++<9.;o+=(cos(p.y+p.x/.6+g+vec4(0,1,2,0))+1.)*smoothstep(-9.,9.,(.3-length(cos(p++/.3+t*.2)))*r.y/exp(f=sin(i)*i+i))/exp(f/3.+sin(i+g+t))*(g=cos(p/.4).x)*g)p*=mat2(8,-6,6,8)/9.;o=sqrt(tanh(.2*o));",
+    "strategy": "base"
+  },
+  {
+    "id": "1951031020909895817",
+    "title": "ATC",
+    "url": "https://x.com/XorDev/status/1951031020909895817",
+    "code": "vec3 p,v=vec3(1,2,6);for(float i,z,d,f;i++<5e1;o.rgb+=(cos((p.x+z+v)*.1)+1.)/d/f/z)p=z*normalize(FC.rgb*2.-r.xyy),p.xz*=mat2(cos((p+sin(p)).y*.4+vec4(0,33,11,0))),p.x+=t/.2,z+=d=length(cos(p/v)*v+v.zxx/7.)/(f=2.+d/exp(p.y*.2));o=tanh(.2*o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1950959775396606136",
+    "title": "Cathedral",
+    "url": "https://x.com/XorDev/status/1950959775396606136",
+    "code": "vec3 p;for(float i,z,d;i++<5e1;o+=(sin(p.y+vec4(6,1,2,3))+2.)/d/z)p=z*normalize(FC.rgb*2.-r.xyx)+t,z+=d=length(vec2(length(cos(sin(.5*p)+p).xy+1.)-2.,min(d=p.z-t+9.,d*.1)*.5));o=tanh(o/5e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1950699117367189854",
+    "title": "LAUNCH",
+    "url": "https://x.com/XorDev/status/1950699117367189854",
+    "code": "for(float i,z,d,f;i++<1e2;o+=vec4(3,1,d,z/f)/z){vec3 v=vec3(0,-2,7),p=z*normalize(FC.rgb*2.-r.xyx)+v,a=p;a.y*=.3;for(d=1.;d++<9.;)a-=.1*sin((a.zxy+t*v+d)*d)*p.y/d;z+=d=min(max(-p.y,length(a)-2.),f=.2+abs(length(a.xz-cos(a.zx*6.))+max(p.y/.1,-.6)))/8.;}o=tanh(o*o.a/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1950588855020581080",
+    "title": "Radial 2",
+    "url": "https://x.com/XorDev/status/1950588855020581080",
+    "code": "vec2 p=FC.xy-r*.5;for(float i,a;i++<9.;o+=.03/(max(a=i*i/8e1-length(p)/r.y,-a*3.)+2./r.y)*smoothstep(a=cos(i-t),2.,cos(a=atan(p.y,p.x)+a+i*i))*(1.2+sin(a+i+vec4(0,2,4,0))));o=tanh(o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1950559975765688804",
+    "title": "Neutrino",
+    "url": "https://x.com/XorDev/status/1950559975765688804",
+    "code": "for(float i,z,d,s;i++<2e2;o+=(cos(s+vec4(0,2,4,0))+2.)/d/s){vec3 v=vec3(.3,.7,2),p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(v-t+s));p.z+=9.,s=length(a=a*dot(a,p)-cross(a,p)),z+=d=.03+abs(length(sin(a*v+v)/v)-2.)/7.;}o=tanh(o*o/2e6);",
+    "strategy": "base"
+  },
+  {
+    "id": "1950328339241316751",
+    "title": "Radial",
+    "url": "https://x.com/XorDev/status/1950328339241316751",
+    "code": "vec2 p=FC.xy-r*.5;for(float i,a;i++<7.;o+=.02/(max(a=length(p)/r.y-i*i/5e1,-a*4.)+2./r.y)*smoothstep(0.,.6,cos(a=atan(p.y,p.x)*3.+t*sin(i*i)+i*i))*(1.+sin(a-i+vec4(0,.2,.5,0))));o=tanh(o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1949897576435581439",
+    "title": "Phosphor 3",
+    "url": "https://x.com/XorDev/status/1949897576435581439",
+    "code": "for(float i,z,d,s;i++<8e1;o+=(cos(s+vec4(0,1,8,0))+1.)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(5,0,1)+t-d*4.));p.z+=5.,a=a*dot(a,p)-cross(a,p);for(d=1.;d++<9.;)a-=sin(a*d+t).zxy/d;z+=d=.1*abs(length(p)-3.)+.07*abs(cos(s=a.y));}o=tanh(o/5e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1948410522455453854",
+    "title": "Lanterns",
+    "url": "https://x.com/XorDev/status/1948410522455453854",
+    "code": "vec3 s=normalize(FC.rgb*2.1-r.xyx),p,v,c=s/s.y;v.y++;for(float i,d,z;i++<3e1;o+=(9.-cos(p.y/.2)/(.1+d))/d/z)p=s*z+v,p.z-=t,p.y-=d=min(p+p,0.).y,p+=.03*sin(length(c-2.)/.1)*d,z+=d=.01+.6*abs(length(sin(p+=p*v-sin(p.zxy*.6-t*.2))-v)-.1);o=tanh(vec4(9,3,1,0)*o/6e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1948389886299353489",
+    "title": "Fireflies",
+    "url": "https://x.com/XorDev/status/1948389886299353489",
+    "code": "vec3 s=normalize(FC.rgb*2.1-r.xyx),p,c=s/s.y;for(float i,d,z;i++<3e1;o.rgb+=(1.1-sin(p))/d)p=s*z,p.z-=t,p.y=abs(mod((d=++p.y)-2.,4.)-2.),p+=.03*sin(dot(cos(c),sin(c/.6-t))/.1)*(p.y-d),z+=d=.7*length(vec3(cos(p.z/.1)*.1,p+sin(p.z*vec3(.7,1,0)+t))-.1);o=tanh(o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1948114653323624810",
+    "title": "Geode",
+    "url": "https://x.com/XorDev/status/1948114653323624810",
+    "code": "vec3 p,v;for(float i,z,d;i++<4e1;o+=(cos(i*.2+t+vec4(0,1,3,0))+1.)/d)p=dot(v=normalize(cos(t/4.+vec3(0,1,4))),p=z*normalize(FC.rgb*2.-r.xyy))*v+cross(v,p),p.z-=t,z+=d=.3*length(min(p+=(p=abs(fract(p)-.5)).yzx-sin(z*.7),p.yzx));o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1948097372350722290",
+    "title": "Gigabit",
+    "url": "https://x.com/XorDev/status/1948097372350722290",
+    "code": "vec3 p,v;for(float i,z,d,l;i++<8e1;o+=(cos(i*.1+t+vec4(6,1,2,0))+1.)/d/z)p=z*normalize(FC.rgb*2.-r.xyy),p=dot(v=normalize(cos(t/4.-z*.1+vec3(0,2,4))),p)*v+cross(v,p),z+=d=.5*length(vec2(cos(p.z+t/.1)*.1,length(cos(p.xy))-.6));o=tanh(o/3e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1948016291413217752",
+    "title": "Nucleus",
+    "url": "https://x.com/XorDev/status/1948016291413217752",
+    "code": "for(float i,z,d;i++<1e2;o+=vec4(3,8,z,0)/d/9e4){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(4,2,0)+t-d/.1));p.z+=8.,a=a*dot(a,p)-cross(a,p);for(d=1.;d++<5.;)a+=sin(a*d+t).yzx/d;z+=d=abs(length(a)-5.)/6.;}",
+    "strategy": "base"
+  },
+  {
+    "id": "1947773858678751675",
+    "title": "Lab",
+    "url": "https://x.com/XorDev/status/1947773858678751675",
+    "code": "vec3 s=normalize(FC.rgb*2.1-r.xyy),p,c=s;c/=abs(c.y);c.z-=t;for(float i,d,z;i++<3e1;o.rgb+=(+1.1-sin(p))/d)p=s*z,p.z-=t,p.y=abs(mod((d=++p.y)-2.,4.)-2.),p+=.03*sin(c/.04)*abs(p.y-d),z+=d=.6*abs(length(cos(p.xz))-.4)+.1*abs(cos(p.y+z));o=tanh(o/4e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1947685461826195605",
+    "title": "Radiant 2",
+    "url": "https://x.com/XorDev/status/1947685461826195605",
+    "code": "vec3 p,v;for(float i,z,d,l;i++<5e1;o+=(cos(i*.1+t+vec4(6,1,2,0))+1.)/d/z)p=z*normalize(FC.rgb*2.-r.xyy),p.z+=9.,v=abs(p=dot(v=normalize(cos(t+vec3(0,3,0))),p)*v+cross(v,p)),z+=d=abs(d=(l=length(v))-4.)/8.+.2*length(max(v=sin(v/l*15.+t),v.yzx)-.9);o=tanh(o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1947652770393153850",
+    "title": "Radiant",
+    "url": "https://x.com/XorDev/status/1947652770393153850",
+    "code": "vec3 p,v;for(float i,z,d;i++<5e1;o+=vec4(z,2,1,1)/d/z)p=z*normalize(FC.rgb*2.-r.xyy),p.z+=6.,p=abs(dot(v=normalize(cos(t/4.+vec3(0,2,4))),p)*v+cross(v,p)),z+=d=.1*abs(max(p.x,max(p.y,p.z))-2.)+.1*length(min(v=p+sin(min(p,2.)*6.),v.yzx)-1.);o=tanh(o/4e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1947302262629380126",
+    "title": "Qubit",
+    "url": "https://x.com/XorDev/status/1947302262629380126",
+    "code": "vec3 p,v;for(float i,z,d;i++<5e1;o.rgb+=v/d/z)p=z*normalize(FC.rgb*2.-r.xyy),p.z+=6.,v=max(v=abs(p=dot(v=normalize(cos(t*.5+vec3(0,2,4))),p)*v+cross(v,p)),max(v.y,v.z)),z+=d=.2*abs(v.x-2.)+.1*length(min(v=abs(p)+sin(p/v.x*6.+t+t),v.yzx)-1.);o=tanh(o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1945585500183564634",
+    "title": "Network",
+    "url": "https://x.com/XorDev/status/1945585500183564634",
+    "code": "vec3 p,v;for(float i,z,d;i++<5e1;o.rgb+=(v+1.5)/d/z)p=z*normalize(FC.rgb*2.-r.xyy)-9.,p.z-=t/.1,z+=d=.3*length(min(v=cos(p+sin(p*4.-t/.3)),v.yzx)+1.)+max(d=3.-dot(cos(p+=sin(p)*.1-.9*p),sin(p).yzx)/.4,-d*.3);o=tanh(.1*o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1945504914253205515",
+    "title": "Phosphor 2",
+    "url": "https://x.com/XorDev/status/1945504914253205515",
+    "code": "for(float i,z,d,s;i++<8e1;o+=(cos(s+vec4(0,1,2,0))+1.)/d*z){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(1,2,0)+t-d*8.));p.z+=5.,a=a*dot(a,p)-cross(a,p);for(d=1.;d++<9.;)a+=sin(a*d+t).yzx/d;z+=d=.1*abs(length(p)-3.)+.04*abs(s=a.y);}o=tanh(o/3e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1945488644157890932",
+    "title": "Tetris",
+    "url": "https://x.com/XorDev/status/1945488644157890932",
+    "code": "vec3 p,v;for(float i,z,d;i++<1e2;o+=(cos(p.z+vec4(0,2,4,0))+1.5)/(1./length(tan(p/.1))+d*d*1e2+z/1e2))p=z*normalize(FC.rgb*2.-r.xyy),p.z-=t,p.xy*=mat2(cos(.1*z+vec4(0,33,11,0))),z+=d=.2*dot(cos(v=p-sin(p/.1)/8.),sin(v.yzx/.4))+.3;o=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1944904754787697095",
+    "title": "Neon",
+    "url": "https://x.com/XorDev/status/1944904754787697095",
+    "code": "vec3 c,p,v;for(float i,z,d;i++<5e1;o.rgb+=-c*d*d/z/z+(cos(p.y+vec3(6,1,2))+1.1)/(length(tan(p.y/.3)/cos(p.xz/.1))+d*d/.01)/z)c=normalize(FC.rgb*2.-r.xxy),p=z*c,p.xz-=t,z+=d=.4*max(dot(cos(v=p-sin(p).xxz).xz,sin(v.zx/.6))+.6,v.y+3.);o=tanh(.1*o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1944887042317705725",
+    "title": "Cyber",
+    "url": "https://x.com/XorDev/status/1944887042317705725",
+    "code": "vec3 p,v;for(float i,z,d;i++<3e1;o+=(p.y+z)/z*vec4(5,1,2,1)*d/z)p=z*normalize(FC.rgb*2.-r.xyy),p.x+=t,v=tanh(sin(p-p.yzx)/.1+2.)*.1,z+=d=min(p.y+5.,max(p.z+6.,.4*max(dot(cos(p.xz+v.y),sin(p.zx/.7))+.7-cos(p-v).x,p.y-4.-v.z)));o=tanh(o*o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1944864524043214860",
+    "title": "Hive",
+    "url": "https://x.com/XorDev/status/1944864524043214860",
+    "code": "vec3 p;for(float i,z,d;i++<2e1;o+=(cos(2e1*p.y/z+vec4(6,1,2,0))+1.)*d/z/4.)p=z*normalize(FC.rgb*2.-r.xyy),p.x-=t,p.xy*=.4,z+=d=max(p.z+6.,dot(cos(p.xy),sin(p.yx/.4)));o=tanh(o*o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1944159853145944210",
+    "title": "Dusty",
+    "url": "https://x.com/XorDev/status/1944159853145944210",
+    "code": "vec3 p;for(float i,z,d;i++<2e1;o+=(cos(p.y/(.1+.05*z)+vec4(6,5,4,0))+1.)*d/z/7.)p=z*normalize(FC.rgb*2.-r.xyy),p.x-=t,p.xy*=.4,z+=d=(dot(cos(p/.6),sin(p+sin(p*7.)/4.).zyx)*.4+p.y/.7+.7);o=tanh(o*o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1944131286764855701",
+    "title": "Twist",
+    "url": "https://x.com/XorDev/status/1944131286764855701",
+    "code": "for(float i,z,d,s;i++<1e2;){vec3 c=vec3(1,3,5)+s/50.,p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(c));p.z+=30.;a=a*dot(a,p)-cross(a,p),a.xy*=mat2(cos(t+vec4(0,33,11,0))),a=abs(a);z+=d=.05+.1*abs(abs(a.z-20.)-cos(s=a.x+a.y));o.rgb+=(cos(.1*i-c)+1.)/d/d;}o=tanh(o/6e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1944114058149400804",
+    "title": "Aquifier",
+    "url": "https://x.com/XorDev/status/1944114058149400804",
+    "code": "for(float i,z,d,s;i++<1e2;o+=(cos(.1*i+vec4(0,1,2,0))+2.)/d*z){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(0,2,4)+t-s*.3));p.z+=9.;s=log(length(a=a*dot(a,p)-cross(a,p)))*5.;z+=d=.01+.1*abs(a.x+sin(s/.2-t/.2)*.2);}o=tanh(o/5e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1943750402387648778",
+    "title": "Shard",
+    "url": "https://x.com/XorDev/status/1943750402387648778",
+    "code": "for(float i,z,d;i++<1e2;){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(0,2,4)+t/4.));p.z+=8.,a=a*dot(a,p)-cross(a,p);z+=d=.01+.3*abs(max(sin(dot(cos(a),sin(a/.6).yzx)/.3),length(a)-5.)-i/8e1);o+=sin(i*.3)/d;}o=tanh(.7+o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1943747695501320447",
+    "title": "Juice",
+    "url": "https://x.com/XorDev/status/1943747695501320447",
+    "code": "for(float z,d,i;i++<1e2;){vec4 c;vec3 p=z*normalize(FC.rgb*2.-r.xyx);p.z+=9.;p.xy*=mat2(c=cos(i*.1+vec4(0,33,11,0)));for(d=1.;d<7.;d++)p+=sin(p.yzx*d+t-i*.1)/d;z+=d=.2*length(cos(p+i*.3)+1.);o+=(c+1.)/d*z;}o=tanh(o*o/1e8);",
+    "strategy": "base"
+  },
+  {
+    "id": "1942753949167100407",
+    "title": "Spinner 2",
+    "url": "https://x.com/XorDev/status/1942753949167100407",
+    "code": "for(float i,z,d;i++<1e2;o+=(cos(i*.2+vec4(0,1,2,0))+1.)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(0,2,3)+t/2.-i/1e2));p.z+=9.;a=abs(a*dot(a,p)-cross(a,p));z+=d=abs(cos(length(a+a)))/4.+a.y/1e2;}o=tanh(o/4e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1942746323440062613",
+    "title": "Spinner",
+    "url": "https://x.com/XorDev/status/1942746323440062613",
+    "code": "for(float i,z,d,s;i++<1e2;o+=(cos(i*.4+vec4(0,1,2,0))+1.)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(0,1,4)+t-.4*s-i/1e2));p.z+=9.;a=abs(a*dot(a,p)-cross(a,p));s=length(a);z+=d=.1*(abs(sin(s*4.-t))+a.y);}o=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1941609261248786535",
+    "title": "Poof",
+    "url": "https://x.com/XorDev/status/1941609261248786535",
+    "code": "vec3 p;for(float i,z,d,n;i++<2e2;o+=(cos(t+vec4(0,2,4,0))+2.)/d/d)n=fract(.5*t+pow(fract(d*1e4),.1)),p=z*normalize(FC.rgb*2.-r.xyy)+vec3(n,n*(n+n-3.)/.1+9.,7),d=length(p),z+=d=.1*length(vec3(d*.3-n*n*n,cos(n+atan(vec2(p.z,d),p.xy)*mat2(4,-3,3,4))*.3*n*n));o=tanh(o/6e5);",
+    "strategy": "base"
+  },
+  {
+    "id": "1941600881838895128",
+    "title": "Hollow",
+    "url": "https://x.com/XorDev/status/1941600881838895128",
+    "code": "for(float i,z,d,n;i++<1e2;o+=(cos(t+vec4(0,2,4,0))+9.-n*8.)/d/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=7.;n=fract(.3*t+pow(fract(d*1e2),.1));p.y+=n*(n+n-3.)/.1+9.;d=length(p);z+=d=.3*length(vec3(d*.3-n*n*n,cos(n+atan(vec2(p.z,d),p.xy)*mat2(4,-3,3,4))*.3));}o=tanh(o/1e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1941576023650492704",
+    "title": "Protostar 2",
+    "url": "https://x.com/XorDev/status/1941576023650492704",
+    "code": "for(float i,z,d,s;i++<2e2;o+=(cos(s/.6+vec4(0,1,2,0))+1.1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(0,1,0)+t-.4*s));p.z+=9.,a=a*dot(a,p)-cross(a,p);for(d=1.;d++<6.;)s=length(a+=cos(a*d+t).yzx/d);z+=d=.1*(abs(sin(s-t))+abs(a.y)/6.);}o=tanh(o*o/2e7);",
+    "strategy": "base"
+  },
+  {
+    "id": "1940766471753466124",
+    "title": "Protostar",
+    "url": "https://x.com/XorDev/status/1940766471753466124",
+    "code": "for(float i,z,d,s;i++<1e2;o+=(cos(s+vec4(0,2,3,0))+1.2)/d/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(7,5,0)+t-.5*s));p.z+=9.,a=a*dot(a,p)-cross(a,p);for(d=1.;d++<9.;)a+=sin(a*d+t).yzx/d;z+=d=.03*abs(sin(s=length(a)))+.2*abs(a.y);}o=tanh(o/3e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1940762971309068613",
+    "title": "Muons",
+    "url": "https://x.com/XorDev/status/1940762971309068613",
+    "code": "for(float i,z,d,s;i++<1e1;o+=(cos(z/.03+t+vec4(0,2,3,0))+1.)/d/s){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(7,1,0)+t-s));p.z+=9.,a=a*dot(a,p)-cross(a,p);for(d=1.;d++<9.;)a+=sin(a*d+t).yzx/d;z+=d=.03*abs(sin(s=length(a)));}o=tanh(o/3e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1940496912718991572",
+    "title": "Neutron",
+    "url": "https://x.com/XorDev/status/1940496912718991572",
+    "code": "for(float i,z,d,s;i++<1e2;o+=(cos(s+vec4(0,1,2,0))+1.)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(7,1,0)+t-.3*s));p.z+=9.,a=a*dot(a,p)-cross(a,p);for(d=.5;d++<9.;)a+=sin(a*d+t).yzx/d;z+=d=.01*abs(s=length(a)-5.)+.05*abs(a.y);}o=tanh(o/3e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1940448131671580897",
+    "title": "Phosphor",
+    "url": "https://x.com/XorDev/status/1940448131671580897",
+    "code": "for(float i,z,d;i++<8e1;o+=(cos(d/.1+vec4(0,2,4,0))+1.)/d*z){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(4,2,0)+t-d*8.));p.z+=5.,a=a*dot(a,p)-cross(a,p);for(d=1.;d++<9.;)a+=sin(a*d+t).yzx/d;z+=d=.05*abs(length(p)-3.)+.04*abs(a.y);}o=tanh(o/1e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1940439494492307633",
+    "title": "Mirrors",
+    "url": "https://x.com/XorDev/status/1940439494492307633",
+    "code": "for(float i,z,d;i++<5e1;o+=(cos(.2*z+vec4(0,2,3,0))+1.)/d/z){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(0,2,4)+t));p.z+=4.,a=abs(a*dot(a,p)-cross(a,p));z+=d=.3*length(cos(max(a,a.yzx)));}o=tanh(o/1e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1940165549717328159",
+    "title": "Watch",
+    "url": "https://x.com/XorDev/status/1940165549717328159",
+    "code": "for(float z,d,i;i++<1e2;o+=(cos(.1*i+vec4(0,1,4,0))+1.1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p.xy*=mat2(cos(.2*z-i*.3+vec4(0,33,11,0)));p.z+=t;for(d=1.;d<9.;d++)p+=cos(p*d).yzx/d;z+=d=.1*length(cos(p)+1.);}o=tanh(o*o/1e6);",
+    "strategy": "base"
+  },
+  {
+    "id": "1940095924283507166",
+    "title": "Sines",
+    "url": "https://x.com/XorDev/status/1940095924283507166",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;for(float i=1.;i<8e1;i/=.8)o+=(cos(5.*sqrt(i)+vec4(2,4,0,0))+1.1)/(abs(sin(p.x*i+t)/i-p.y)+.002)/i;o=tanh(o/5e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1938766218313224463",
+    "title": "Crystal",
+    "url": "https://x.com/XorDev/status/1938766218313224463",
+    "code": "for(float z,d,i;i++<1e2;o+=(cos(i*.2+vec4(0,1,2,0))+1.)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=normalize(cos(vec3(0,2,4)+t));p.z+=4.;a=abs(a*dot(a,p)-cross(a,p));z+=d=.01+.2*abs(max(max(a+=.6*a.yzx,a.y).x,a.z)-2.);}o=tanh(o*o/3e7);",
+    "strategy": "base"
+  },
+  {
+    "id": "1938757795102314979",
+    "title": "Dode",
+    "url": "https://x.com/XorDev/status/1938757795102314979",
+    "code": "for(float z,d,i;i++<5e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=vec3(.6,.8,0);p.z+=4.;a=abs(mix(a*dot(a,p),p,cos(t))-sin(t)*cross(a,p));z+=d=.01+.3*abs(length(max(a+=.5*a.yzx,a.yzx)-2.)-.2);o+=vec4(5,1,2,0)/d/z;}o=tanh(o/6e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1938750363445723420",
+    "title": "Hashtag",
+    "url": "https://x.com/XorDev/status/1938750363445723420",
+    "code": "for(float z,d,i;i++<5e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyy),a=vec3(0,.8,.6);p.z+=6.;a=abs(mix(a*dot(a,p),p,cos(t))-sin(t)*cross(a,p))-1.;z+=d=.5*length(max(min(a,a.yzx),a.zxy-2.));o.rgb+=(1.5-cos(a))/d/z;}o=tanh(o/3e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1938723605048668247",
+    "title": "Stingray",
+    "url": "https://x.com/XorDev/status/1938723605048668247",
+    "code": "for(float z,d,i;i++<5e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p=vec3(p.y+5.-.6*z,t-atan(p.x,p.z+=9.)*4.,length(p));for(d=1.;d<7.;d++)p+=sin(p.zxy*d+t+i*.2)/d;z+=d=.1*length(vec4(cos(p)-1.,p));o+=(cos(sin(i)+p.y+vec4(2,4,5,0))+1.)/d;}o=tanh(o*o/2e5);",
+    "strategy": "base"
+  },
+  {
+    "id": "1938412395245834611",
+    "title": "Torque",
+    "url": "https://x.com/XorDev/status/1938412395245834611",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;p=p*mat2(9,-8,-8,9)*5./(4.+dot(p,p))+fract(dot(FC,sin(FC.yxyx+t)))+t/.1;o=tanh(.1*exp(sin(t+p.x+p.y))/(sin(dot(cos(p+p.x/7.),sin(p.yx*.61))+(cos(p.x*.1)+1.)*vec4(0,.1,.2,0))+1.));",
+    "strategy": "base"
+  },
+  {
+    "id": "1938307833084215524",
+    "title": "Axes",
+    "url": "https://x.com/XorDev/status/1938307833084215524",
+    "code": "vec3 p=vec3(FC.xy*2.-r,0)/r.y,s=vec3(sqrt(max(.5-dot(p,p),0.)),p),a=cos(t+vec3(0,11,-t));o.rgb=.1/abs(mix(a*dot(a,s),s,.8)-.6*cross(a,s))/(1.+dot(p,p));o=tanh(o+length(o*.2));",
+    "strategy": "base"
+  },
+  {
+    "id": "1938254250372374690",
+    "title": "Gamma",
+    "url": "https://x.com/XorDev/status/1938254250372374690",
+    "code": "for(float z,d,i;i++<4e1;){vec3 P=z*normalize(FC.rgb*2.-r.xyx),p=vec3(atan(P.z+=9.,P.x+.1)*2.-.3*P.y,.6*P.y-t,length(P.xz)-4.);for(d=1.;d<9.;d++)p+=sin(p.yzx*d-t+.4*i)/d;z+=d=.2*length(vec4(cos(p+P.y*.2)-1.,p.z));o+=vec4(4,z,2,0)/d/d/z;}o=tanh(o/4e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1938247188167147579",
+    "title": "Firewall",
+    "url": "https://x.com/XorDev/status/1938247188167147579",
+    "code": "for(float z,d,i;i++<4e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p=vec3(atan(p.z+=9.,p.x+1.)*2.,.6*p.y+t+t,length(p.xz)-3.);for(d=1.;d<7.;d++)p+=sin(p.yzx*d+t+.5*i)/d;z+=d=.4*length(vec4(.3*cos(p)-.3,p.z));o+=(cos(p.y+i*.4+vec4(6,1,2,0))+1.)/d;}o=tanh(o*o/6e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1938039566252097898",
+    "title": "Glass",
+    "url": "https://x.com/XorDev/status/1938039566252097898",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.9;float l=length(p)-1.;o=.5+.5*tanh(.1/max(l/.1,-l)-sin(l+p.y*max(1.,-l/.1)+t+vec4(0,1,2,0)));",
+    "strategy": "base"
+  },
+  {
+    "id": "1938036074183594311",
+    "title": "Halo",
+    "url": "https://x.com/XorDev/status/1938036074183594311",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.6;float l=length(p)-1.,a=atan(p.y,p.x);o=tanh((cos(p.x+.5*t+vec4(1,2,3,3))+1.5)*max(.2/l,-.02-.02/l)/(2.+cos(a*8.+cos(a*5.+t))*sin(a*4.-t)));",
+    "strategy": "base"
+  },
+  {
+    "id": "1937901574141149484",
+    "title": "New Shape?",
+    "url": "https://x.com/XorDev/status/1937901574141149484",
+    "code": "vec3 p,a;for(float z,d,i;i++<1e2;o+=(cos(i*.1+vec4(0,1,2,0))+1.)/d/d/z)p=z*normalize(FC.rgb*2.-r.xyy),p.z+=7.,p.xz*=mat2(cos(t+vec4(0,33,11,0))),z+=d=.01+.1*abs(length(clamp(p,a=abs(p).yzx-2.,-a)-p)-2.);o=tanh(o/3e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1937896448391069797",
+    "title": "Solar",
+    "url": "https://x.com/XorDev/status/1937896448391069797",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;float l=2.-length(p-1.);o=tanh(vec4(1,.4,.2,0)/max(l,-l*1e1)/exp(mod(dot(FC,sin(FC.yxyx))+t,2.)+sin(t+sin(t/.6+p.y))));",
+    "strategy": "base"
+  },
+  {
+    "id": "1937225020398309665",
+    "title": "Digital Maelstrom",
+    "url": "https://x.com/XorDev/status/1937225020398309665",
+    "code": "for(float z,d,i;i++<90.;){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p=vec3(atan(p.y,p.x),p.z/3.-t,length(p.xy)-9.);for(d=0.;d++<5.;)p+=sin(ceil(p.yzx*d-i*vec3(.2,0,0)))/d;z+=d=.2*length(vec4(.2*cos(6.*p)-.2,p.z));o+=(cos(p.x+vec4(0,.5,1,0))+1.)/d/z;}o=tanh(o*o/8e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1937221326327963657",
+    "title": "Maelstrom",
+    "url": "https://x.com/XorDev/status/1937221326327963657",
+    "code": "for(float z,d,i;i++<90.;){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p=vec3(atan(p.y,p.x),p.z/8.-t,length(p.xy)-9.);for(d=0.;d++<7.;)p+=sin(p.yzx*d+t+i*.2)/d;z+=d=.2*length(vec4(.2*cos(6.*p)-.2,p.z));o+=(cos(p.x+vec4(0,.5,1,0))+1.)/d/z;}o=tanh(o*o/3e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1936894143029981434",
+    "title": "Roadway",
+    "url": "https://x.com/XorDev/status/1936894143029981434",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.1;o=tanh(.4/abs(min(p.y,p.y/.3)/cos(p.x+cos(p.x*.6-t)+vec4(0,.3,.6,1))/sin(p.x*.4-t)));",
+    "strategy": "base"
+  },
+  {
+    "id": "1936884244128661986",
+    "title": "Accretion",
+    "url": "https://x.com/XorDev/status/1936884244128661986",
+    "code": "for(float z,d,i;i++<2e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p=vec3(atan(p.y/.2,p.x)*2.,p.z/3.,length(p.xy)-5.-z*.2);for(d=1.;d<7.;d++)p+=sin(p.yzx*d+t+.3*i)/d;z+=d=length(vec4(.4*cos(p)-.4,p.z));o+=(cos(p.x+i*.4+z+vec4(6,1,2,0))+1.)/d;}o=tanh(o*o/4e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1936174781352517638",
+    "title": "Surf 2",
+    "url": "https://x.com/XorDev/status/1936174781352517638",
+    "code": "for(float z,d,i;i++<1e2;o+=(1.+cos(i*.7+t+vec4(6,1,2,0)))/d/i){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p=vec3(atan(p.y,p.x)*2.,p.z/3.,length(p.xy)-6.);for(d=1.;d<9.;d++)p+=sin(p.yzx*d-t+.2*i)/d;z+=d=.2*length(vec4(.1*cos(p*3.)-.1,p.z));}o=tanh(o*o/9e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1936158948630974583",
+    "title": "Surf",
+    "url": "https://x.com/XorDev/status/1936158948630974583",
+    "code": "for(float z,d,i;i++<1e2;z+=d,o+=(1.-sin((z+i)/2e1+vec4(6,1,2,0)))/d){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p=vec3(atan(p.y+=3.-i*.2,p.x)*3.+i*.1,p.z*.3,length(p.xy)-i*.1-6.);for(d=1.;d<9.;d++)p+=sin(p.yzx*d-t+.2*i)/d;d=.1*length(vec4(p.z*5.,cos(p)-1.));}o=tanh(o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1936080043681120406",
+    "title": "Lens",
+    "url": "https://x.com/XorDev/status/1936080043681120406",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;float l=.8-length(p);o=tanh((3.+sin((p.x+p.y)*max(l/.1,1.+l/.3)+t+vec4(0,1,2,0)))*.2*(.1/max(l,-l/.2)+.1/length(p*l-.1)));o*=o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1935737142405202429",
+    "title": "Revive",
+    "url": "https://x.com/XorDev/status/1935737142405202429",
+    "code": "vec3 p,P;for(float z,d,i;i++<1e2;z+=d,o+=(1.2-sin(t+z/vec4(8,7,6,0)))/d){p=z*normalize(FC.rgb*2.-r.xyx),P=vec3(atan(p.y-=7.,p.x)*3.,p.z*.3,length(p.xy)-11.);for(d=1.;d<9.;d++)P+=sin(P.yzx*d+.1*z-t)/d;d=length(vec4(P.z*5.,cos(P)-1.))/2e1;}o=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1935730294625059139",
+    "title": "Centrifuge 2",
+    "url": "https://x.com/XorDev/status/1935730294625059139",
+    "code": "vec3 p,P;for(float z,d,i;i++<5e1;z+=d,o+=(1.2-cos(p.z/vec4(5,1e8,3,0)))/d)p=z*normalize(FC.rgb*2.-r.xyy),P=vec3(atan(p.y-=7.,p.x)/.1+t,p.z*.2-5.*t,length(p.xy)-11.),d=length(vec4(P.z,cos(P+cos(P/.2))-1.))*.5-.1;o=tanh(o/2e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1935723736197738914",
+    "title": "Centrifuge",
+    "url": "https://x.com/XorDev/status/1935723736197738914",
+    "code": "vec3 p,P;for(float z,d,i,b;i++<5e1;z+=d,o+=(cos(z*vec4(2,1,0,0))+1.2)/d)p=z*normalize(FC.rgb*2.-r.xyy),P=vec3(atan(p.z,p.y-=9.)/.2+t,p.xx),d=abs(length(p.yz)-11.-cos(b=dot(round(P),ceil(P+cos(P)))))/80.*(7.+z);o=tanh(o/3e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1935426052039618648",
+    "title": "Fiber Optic",
+    "url": "https://x.com/XorDev/status/1935426052039618648",
+    "code": "vec3 p;for(float z,d,i;i++<7e1;z+=d,o+=.1*(cos(z+sin(p.z)+vec4(6,1,2,0))+1.2)/d/z)p=z*normalize(FC.rgb*2.-r.xyy),p.z-=t/.1,d=.01+.5*length(vec2(cos(atan(p.y,p.x)*5.+.2*p.z)+.5,length(p.xy+sin(p.z*.2+vec2(0,1)))-5.));o=tanh(o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1935335881835167834",
+    "title": "Jupiter",
+    "url": "https://x.com/XorDev/status/1935335881835167834",
+    "code": "vec2 p=(FC.rg*2.-r)/r.y,c,s;vec3 z=vec3(p,sqrt(1.-dot(p,p)));c=vec2(atan(z.x,z.z),z.y/=-.6),s=vec2(.2/dot(z-.6,z-.5)+sin(c.y*7.),.5*t);for(float f=8.;f<1e2;f/=.7)c+=sin(c.yx*f+s)/f;o+=z.z*.5*(cos(.3*s.x+vec4(.4,.6,.7,0)-sin(c.y/vec4(.34,.32,.3,1)))+1.);",
+    "strategy": "base"
+  },
+  {
+    "id": "1934693567584457176",
+    "title": "Split",
+    "url": "https://x.com/XorDev/status/1934693567584457176",
+    "code": "vec2 p=(2.*FC.xy-r)/r.y,c=4.*p/(3.-p.y)+t;p=5.*p/(2.+fract(dot(cos(round(c)+r),sin(ceil(c+cos(c/.1)))))-p.y)+t;o=tanh(.2/abs(sin(p.x+p.y+vec4(1,.7,.6,0)*sin(p.y))));o*=o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1934686286100496829",
+    "title": "Painted",
+    "url": "https://x.com/XorDev/status/1934686286100496829",
+    "code": "vec2 p=(2.*FC.xy-r)/r.y;p=p/.1/(3.-p.y)+t;o+=sin(sin(dot(ceil(p+sin(p*3.).yx),vec2(17,79)))*7e3+vec4(0,1,2,0))+.5;",
+    "strategy": "base"
+  },
+  {
+    "id": "1934679946976481767",
+    "title": "Bitmap",
+    "url": "https://x.com/XorDev/status/1934679946976481767",
+    "code": "vec2 p=FC.xy/r.y/.1;p.x+=t;o+=fract(sin(dot(ceil(p+sin(p*5.)),vec2(79,17)))*4e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1933598086334415324",
+    "title": "Underpass",
+    "url": "https://x.com/XorDev/status/1933598086334415324",
+    "code": "for(float i,z,d;i++<2e1;o+=.1*vec4(4,2,1,0)*d/z){vec3 c,p=z*normalize(FC.rgb*2.-r.xyy);p.x-=t,c=cos(p+sin(p.zzx*.3));z+=d=min(min(length(vec3(c.xz,max(--p.y,0.)))-.2,length(max(abs(vec2(p.y,c))-vec2(.2,c.y-.4),0.))),p.y+3.+.4*c.x*c.z);}o=tanh(o*o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1933296192286568756",
+    "title": "Microbe",
+    "url": "https://x.com/XorDev/status/1933296192286568756",
+    "code": "vec2 p=3.*(FC.xy*2.-r)/r.y,v=p/dot(p,p)*(4.+fract(dot(FC,cos(t+FC.yxyx))));v.x+=t;o=tanh(.2/cos(vec4(0,.1,0,0)+4.*length(cos(v+cos(.6*v).yx))));o*=o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1933267977136443558",
+    "title": "Mosaic",
+    "url": "https://x.com/XorDev/status/1933267977136443558",
+    "code": "vec2 p=3.*(FC.xy*2.-r)/r.y,v=p+p+(t+r)*cos(r+ceil(p+sin(p*5.))).yx;o=tanh(.1*(cos(.6*p.x+.3*sin(v.y)+vec4(0,1,2,3))+1.)/length(.9+sin(v)));",
+    "strategy": "base"
+  },
+  {
+    "id": "1933180530742214954",
+    "title": "Squircle 2",
+    "url": "https://x.com/XorDev/status/1933180530742214954",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y,c=p*mat2(cos(t/4.-sin(t)/4.+vec4(0,33,11,0)));float l=cos(sqrt(length(c*c))/.1-t);o+=tanh((.6+.5*sin(3.*length(c)+2.*c.y+t+vec4(6,1,2,0)))/max(l/.2,-l));",
+    "strategy": "base"
+  },
+  {
+    "id": "1932928552124756124",
+    "title": "Hillside",
+    "url": "https://x.com/XorDev/status/1932928552124756124",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;o=tanh(.2/abs(p.y+.3*cos(t+.1*fract(dot(FC,sin(FC.yxyx)))+p.x*vec4(.7,1,1.3,0)+vec4(0,1,2,0))));",
+    "strategy": "base"
+  },
+  {
+    "id": "1932923547673911446",
+    "title": "Squircle",
+    "url": "https://x.com/XorDev/status/1932923547673911446",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y;float l=length(p*p)-.4;o+=tanh(dot(p*p*p,cos(t+vec2(0,11)))/(.51-l)*(1.-tanh(.5*l*r.y))+vec4(1.+p,1.-p))*.5+.5;",
+    "strategy": "base"
+  },
+  {
+    "id": "1932825187017281897",
+    "title": "String Theory",
+    "url": "https://x.com/XorDev/status/1932825187017281897",
+    "code": "for(float i,z=fract(dot(FC,sin(FC))),d;i++<1e2;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=9.;for(d=.7;d<4.;d/=.9)p+=cos(p.yzx*d-t/vec3(2,1,5))/d;z+=d=.002+abs(p.z)/2e1;o+=(sin(z+4.*p.z+vec4(0,1,5,0))+1.2)/d;}o=tanh(o/1e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1932461552868720941",
+    "title": "Extinguish",
+    "url": "https://x.com/XorDev/status/1932461552868720941",
+    "code": "for(float i,z,d;i++<5e1;o+=.001/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=8.;for(d=1.;d<9.;d/=.8)p+=cos(p.yzx*d-vec3(t+t,t,0))/d;z+=d=.01+.1*length(p.xz);}o=tanh(o);",
+    "strategy": "base"
+  },
+  {
+    "id": "1932212347491205611",
+    "title": "Liquid Glass",
+    "url": "https://x.com/XorDev/status/1932212347491205611",
+    "code": "vec2 c=FC.xy/r.x*3.,b=ceil(c),p=fract(c-.5*vec2(t*b.y,0))-.5,l,s=sqrt(smoothstep(.5,.2,max(l+=length(p),(l-.4)*r/4e1))),e=s*(2.-s-s);o=tanh(pow(e.y/.5,9.)-.2*tanh(cos(vec4(0,4,8,0)*e.y*e.y+4.*cos(length(cos(c+=p*e)-c)*3.))/.1/(1.+s.y/.1))+1.7);o*=o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1930633822715990114",
+    "title": "Digital Vortex",
+    "url": "https://x.com/XorDev/status/1930633822715990114",
+    "code": "for(float i,z=fract(dot(FC,sin(FC))),d;i++<1e2;o+=(sin(z-t+vec4(6,2,4,0))+1.5)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=6.;for(d=1.;d<9.;d/=.8)p+=cos(ceil(p.yzx*d-t))/d;z+=d=.002+abs(length(p)-.5)/4e1;}o=tanh(o/7e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1930600792899125680",
+    "title": "Bits 2",
+    "url": "https://x.com/XorDev/status/1930600792899125680",
+    "code": "for(float i,z,d;i++<1e2;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.y+=t;for(d=.6;d<9.;d/=.7)p+=cos(round(p.zxy*d)-.5*t)/d;z+=d=.002+abs(abs(p.z+8.)-.5)/4e1;o+=(sin(z+p.y+vec4(0,1,3,0))+1.5)/d;}o=tanh(o/9e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1930594981963505793",
+    "title": "Vortex",
+    "url": "https://x.com/XorDev/status/1930594981963505793",
+    "code": "for(float i,z=fract(dot(FC,sin(FC))),d;i++<1e2;o+=(sin(z-t+vec4(6,2,4,0))+1.5)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=6.;for(d=1.;d<9.;d/=.8)p+=cos(p.yzx*d-t)/d;z+=d=.002+abs(length(p)-.5)/4e1;}o=tanh(o/7e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1929956178454311413",
+    "title": "Hyperspace 2",
+    "url": "https://x.com/XorDev/status/1929956178454311413",
+    "code": "for(float i,z,d,s;i++<1e1;){vec3 l=vec3(FC.rg*2.-r,0),p=z*normalize(l);for(d=6.;d<2e2;d+=d)p+=sin(p.yzx*d-t)/d;z+=d=.005+abs(s=.3-abs(p.y))/4.;o+=tanh(length(l)*2./r.y)*(cos(s/.1+p.x/.2+t-vec4(6,1,2,3)-3.)+1.5)/d;}o=tanh(o*o/1e6);",
+    "strategy": "base"
+  },
+  {
+    "id": "1929952145068978601",
+    "title": "Hyperspace",
+    "url": "https://x.com/XorDev/status/1929952145068978601",
+    "code": "for(float i,z,d,s;i++<1e2;){vec3 p=z*normalize(vec3(FC.rg*2.-r,0));for(d=6.;d<2e2;d+=d)p+=sin(p.yzx*d-t)/d;z+=d=.005+abs(s=.3-abs(p.y))/4.;o+=(cos(s/.1+p.x+t-vec4(0,1,2,3)-3.)+1.5)*exp(s*9.)/d;}o=tanh(o*o/2e8);",
+    "strategy": "base"
+  },
+  {
+    "id": "1929917731719065836",
+    "title": "Ripples",
+    "url": "https://x.com/XorDev/status/1929917731719065836",
+    "code": "for(float i,d,z;i++<1e2;o+=(cos(z+vec4(3,4,5,0))+2.)/d/z){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=2.;d=max(-p.y,0.);p.y+=d+d;z+=d=.2*(.01+.1*d+length(cos(p.yz/dot(p,p)/.1-t/4.))/++d);}o=tanh(o/8e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1928924281737490767",
+    "title": "Contours",
+    "url": "https://x.com/XorDev/status/1928924281737490767",
+    "code": "for(float i,z=fract(dot(FC,FC)/9.),d;i++<3e1;o+=vec4(2,2,3,1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t;z+=d=.01+.3*abs(cos(dot(cos(p),sin(p.yzx/.6+.1*sin(p.zxy/.1))/.1)));}o=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1928504290290635042",
+    "title": "Fluorescent",
+    "url": "https://x.com/XorDev/status/1928504290290635042",
+    "code": "for(float i,d,z,s;i++<6e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p.yz*=.1*mat2(8,-6,6,8);p.z+=8.;s=length(p),z+=d=.1+.1*abs(s-1.2);o+=(cos(tanh(s-6.)*6.-vec4(2,3,4,0))+1.)*pow(dot(cos(p/++s/.1-t),sin(p/s/.04+t).yzx),4.)/z;}o=tanh(o/2e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1927869795304669566",
+    "title": "Titan",
+    "url": "https://x.com/XorDev/status/1927869795304669566",
+    "code": "for(float i,d,z,s,b;i++<4e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p.yz*=.1*mat2(8,6,-6,8);p.z+=8.;z+=d=.02+.2*abs(s=length(p)-6.);b=max(dot(p.xz,cos(t*.5+vec2(0,11)))-p.y+s,.1);o+=(cos(tanh(s+s)*3.+b*.3-vec4(0,1,2,0)-2.)+1.)/d/z*b;}o=tanh(o/4e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1927863403722281110",
+    "title": "Gimbal",
+    "url": "https://x.com/XorDev/status/1927863403722281110",
+    "code": "for(float i,d,z,l;i++<1e2;o+=(cos(l+vec4(0,1,3,0))+1.5)/d/l){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=8.;z+=d=.01+.1*abs(dot(p,normalize(sin(t*.2+ceil(l=4.*length(p))*vec3(7,8,9)))));}o=tanh(o/7e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1927753848048779616",
+    "title": "Focus 2",
+    "url": "https://x.com/XorDev/status/1927753848048779616",
+    "code": "vec2 p,f=(FC.xy-.5*r).yy/5e2;for(float i=1.;i<16.;i+=1./i)f*=mat2(0,.061,1.413, 0)-.737,o+=vec4(1.-f,2.+f)*fract(dot(cos(round(p=(FC.xy-r*.5+f*i)/(2.-FC.y/r.y)*mat2(8,-6,6,8)/r.y-t*.5)),sin(round(p/.6)+.2*t).yx));o=sqrt(tanh(o/1e2));",
+    "strategy": "base"
+  },
+  {
+    "id": "1927749355466895809",
+    "title": "Focus",
+    "url": "https://x.com/XorDev/status/1927749355466895809",
+    "code": "vec2 p=FC.xy,f=(p-.5*r).yy/5e2;for(float i=1.;i<16.;i+=1./i)f*=mat2(0,.061,1.413, 0)-.737,o+=vec4(1.-f,1.+f)*max(cos(dot(cos(p=(FC.xy-r*.5+f*i)/r.y/.1-t*.5),sin(p/.4+t).yx)/.2+p.y/.6),0.);o=sqrt(tanh(o/60.));",
+    "strategy": "base"
+  },
+  {
+    "id": "1925548343054496239",
+    "title": "Xor Bits",
+    "url": "https://x.com/XorDev/status/1925548343054496239",
+    "code": "for(float i,d,z;i++<1e2;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t;for(d=.4;d<3e1;d+=d)p+=cos(round(p*d)-z*.1).yzx/d;z+=d=length(sin(p.xy))*.1;o+=(cos(z+vec4(6,1,2,3))+1.)/d;}o=tanh(o/5e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1924858683886117349",
+    "title": "Wisps",
+    "url": "https://x.com/XorDev/status/1924858683886117349",
+    "code": "for(float i,d,z,f;i++<1e2;){vec3 l=normalize(FC.rgb*2.-r.xyy),p=z*l+.5;p.z-=t;f=max(-p.y,0.);p.y+=f+f;for(d=1.;d<3e1;d+=d)p+=cos(p*d-z*.1).yzx/d;z+=d=(f+5.*length(sin(p.xy))/(.5+f))/1e2;o.rgb-=--l/d/z;}o=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1924174429279416825",
+    "title": "Ascend",
+    "url": "https://x.com/XorDev/status/1924174429279416825",
+    "code": "for(float i,d,z;i++<3e1;){vec3 s=normalize(FC.rgb*2.1-r.xyy),p=z*s,c=abs(s);c/=c.y;c.z+=t;p.z-=t;s=++p;p.y=abs(mod(p.y-2.,4.)-2.);z+=d=.01+.5*length(sin(p+p).xz+p.y*.4)+.1*exp(sin(length(sin(c))*40.+p.z))*length(p-s);o.rgb+=(sin(p*.6)+1.1)/d/z;}o=tanh(o/5e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1923882930834751520",
+    "title": "Corridor",
+    "url": "https://x.com/XorDev/status/1923882930834751520",
+    "code": "for(float i,d,z;i++<3e1;){vec3 s=normalize(FC.rgb*2.-r.xyy),p=z*s,c=abs(s);c/=max(c.x,c.y);c.z+=t;p.z-=t;s=++p;z+=d=.01+length((p.xy=abs(mod(p.xy-2.,4.)-2.))-1.+cos(p.z/vec2(PI,2)))+.1*exp(dot(cos(ceil(c/=.3)),sin(c/.6).yzx))*length(p-s);o.rgb+=(cos(p)+1.4)/d/z;}o=tanh(o/7e1);",
+    "strategy": "compat"
+  },
+  {
+    "id": "1923511169312047429",
+    "title": "Orbital",
+    "url": "https://x.com/XorDev/status/1923511169312047429",
+    "code": "for(float i,z,d;i++<1e2;o+=(cos(z+vec4(4,5,7,0))+1.)/d/z){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=8.;p.xz*=mat2(cos(.5*t+vec4(0,33,11,0)));z+=d=.1*(.1+abs(length(p)-3.-dot(cos(p=round(p+.6*sin(p))),sin(p/.6).yzx)));}o=tanh(o/8e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1923048330059227477",
+    "title": "Neon",
+    "url": "https://x.com/XorDev/status/1923048330059227477",
+    "code": "for(float i,d,z;i++<1e2;){vec3 p=z*normalize(r.xyy-FC.rgb*2.)-1.;d=max(p.y,0.);p.y-=d+d;p.z+=t;z+=d=.3*(.1*d+.01+length(vec2(cos(p.z*6.)/6.,1.-dot(cos(p),sin(p).yzx)))/++d/d);o+=(cos(p.z+vec4(0,1,3,0))+1.5)/d/z;}o=tanh(o/8e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1923037860485075114",
+    "title": "Laser Dance",
+    "url": "https://x.com/XorDev/status/1923037860485075114",
+    "code": "for(float i,d,z;i++<1e2;o+=(cos(z+vec4(0,2,3,0))+1.5)/d/z){vec3 p=z*normalize(FC.rgb*2.-r.xyy)+.8;d=max(-p.y,0.);p.y+=d+d-1.;z+=d=.3*(.01+.1*d+length(min(p=cos(p+t)+cos(p/.6).yzx,p.zxy))/++d/d);}o=tanh(o/7e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1922025965275824484",
+    "title": "LED Cube 2",
+    "url": "https://x.com/XorDev/status/1922025965275824484",
+    "code": "for(float i,z,d,s,c;i++<5e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=8.;p.xz*=mat2(cos(t/4.+vec4(0,33,11,0)));z+=d=max(length(cos(p/.2))/8.,length(clamp(p,-3.,3.)-p));o+=(cos(dot(cos(p),sin(p/.6).yzx)+t+vec4(0,1,2,3))+1.1)/d/z;}o=tanh(o/7e1);",
+    "strategy": "base"
+  },
+  {
+    "id": "1921224922166104360",
+    "title": "Ionize",
+    "url": "https://x.com/XorDev/status/1921224922166104360",
+    "code": "for(float i,z,d,s;i++<1e2;){vec3 v,p=z*normalize(FC.rgb*2.-r.xyy);p.z+=9.;v=p;for(d=1.;d<9.;d+=d)p+=.5*sin(p.yzx*d+t)/d;z+=d=.2*(.01+abs(s=dot(cos(p),sin(p/.7).yzx))-min(d=6.-length(v),-d*.1));o+=(cos(s/.1+z+t+vec4(2,4,5,0))+1.2)/d/z;}o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1920855494861672654",
+    "title": "Simplex",
+    "url": "https://x.com/XorDev/status/1920855494861672654",
+    "code": "for(float i,z,d;i++<5e1;){vec3 v,p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t;z+=d=.5*length(max(v=cos(p)-sin(p).yzx,v.yzx*.2));o.rgb+=(cos(p)+1.2)/d;}o/=o+1e3;",
+    "strategy": "base"
+  },
+  {
+    "id": "1920524330775048413",
+    "title": "Loading",
+    "url": "https://x.com/XorDev/status/1920524330775048413",
+    "code": "for(float i,z,d,s;i++<8e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=7.;p.zx*=mat2(cos(t+vec4(0,11,33,0)));z+=d=.2*max(.1+abs(s=1.4+dot(cos(p),cos(p.yzx/.6))),length(p)-4.);o+=(cos(p.x+vec4(0,2,4,0))+1.2)/d;}o=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1920522578000523712",
+    "title": "Rollin",
+    "url": "https://x.com/XorDev/status/1920522578000523712",
+    "code": "for(float i,z,d,s;i++<5e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyx);p.z+=8.;p.yz*=mat2(cos(t+vec4(0,11,33,0)));z+=d=.2*max(.2+abs(s=dot(cos(p),cos(p.yzx/.6))),length(p)-4.);o+=(cos(p.y+vec4(6,1,3,0))+1.5)/d;}o=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1920508035954249883",
+    "title": "Orb",
+    "url": "https://x.com/XorDev/status/1920508035954249883",
+    "code": "for(float i,z,d,s;i++<1e2;){vec3 v,p=z*normalize(FC.rgb*2.-r.xyy);p.z+=2.;p.zx*=mat2(cos(p.y+t+vec4(0,11,33,0)));v=p;for(d=1.;d<i;d+=d)p+=sin(p.yzx*d)/d;z+=d=.2*max(.03+abs(s=cos(3.*p.y))*.1,length(v)-1.);o+=(cos(s/.4+p.y+vec4(6,1,3,0))+1.5)/d/z;}o=tanh(o/1e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1920505484206895334",
+    "title": "CUBE",
+    "url": "https://x.com/XorDev/status/1920505484206895334",
+    "code": "for(float i,z,d,s;i++<1e2;){vec3 v,p=z*normalize(FC.rgb*2.-r.xyy);p.z+=2.;p.zx*=mat2(cos(.5*t+vec4(0,11,33,0)));v=p;for(d=1.;d<i;d+=d)p+=sin(p.yzx*d)/d;z+=d=.2*max(.02+abs(s=cos(p.y*3.))/7.,length(v-clamp(v,-1.,1.)));o+=(cos(p.y/.5+s+s-vec4(9,4,5,0))+1.5)/d;}o=tanh(o*o/2e8);",
+    "strategy": "base"
+  },
+  {
+    "id": "1918766627828515190",
+    "title": "Nebula 3",
+    "url": "https://x.com/XorDev/status/1918766627828515190",
+    "code": "for(float i,z,d,s;i++<1e2;o+=(cos(s+s-vec4(5,0,1,3))+1.4)/d/z){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=.4*t;for(d=1.;d<64.;d+=d)p+=.7*cos(p.yzx*d)/d;p.xy*=mat2(cos(z*.2+vec4(0,11,33,0)));z+=d=.03+.1*max(s=3.-abs(p.x),-s*.2);}o=tanh(o*o/4e5);",
+    "strategy": "base"
+  },
+  {
+    "id": "1918718365100581183",
+    "title": "Church 8",
+    "url": "https://x.com/XorDev/status/1918718365100581183",
+    "code": "for(float i,z,d;i++<1e2;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.x+=t*PI/10.;for(d=1.;d<64.;d+=d)p+=.7*cos(p.yzx*d+d)/d;z+=d=(.01+.1*abs(abs(p.y-.5)-1.5));o+=(cos(p.y/.2-vec4(0,1,2,3)-2.)+1.5)/d;}o=tanh(o/5e3);",
+    "strategy": "compat"
+  },
+  {
+    "id": "1918718189145309365",
+    "title": "Church 7",
+    "url": "https://x.com/XorDev/status/1918718189145309365",
+    "code": "for(float i,z,d;i++<1e2;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);for(d=1.;d<64.;d+=d)p+=.7*cos(p.yzx*d+t*PI/10.+d)/d;z+=d=(.03+.1*abs(abs(p.y)-1.1));o+=(cos(p.y/.2-vec4(0,1,2,3)*.3)+1.5)/d;}o=tanh(o/5e3);",
+    "strategy": "compat"
+  },
+  {
+    "id": "1918705116816749019",
+    "title": "Church 4",
+    "url": "https://x.com/XorDev/status/1918705116816749019",
+    "code": "for(float i,z,d;i++<2e2;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t*PI/10.;for(d=1.;d<4.;d+=d)p+=cos(p.yzx*d)/d;z+=d=.5*(.03+.1*max(d=1.-abs(p.y)+dot(cos(p+p),sin(p.yzx)),-d*.2));o+=(cos(p.y/.5-vec4(0,1,3,3)-3.)+1.1)/d;}o=tanh(o/1e4);",
+    "strategy": "compat"
+  },
+  {
+    "id": "1918701621627809915",
+    "title": "Church 11",
+    "url": "https://x.com/XorDev/status/1918701621627809915",
+    "code": "for(float i,z,d;i++<1e2;){vec3 p=z*normalize(FC.rgb*2.-r.xxy);for(d=1.;d<64.;d+=d)p+=.5*sin(p.yzx*d-t*d*PI/10.)*vec3(1,2,1)/d;z+=d=(.05+.1*abs(abs(p.y)-1.5))*.5;o+=(cos(p.y/.4+z-vec4(0,1,2,3)/.5-8.)+1.7)/d;}o=tanh(o/5e3);",
+    "strategy": "compat"
+  },
+  {
+    "id": "1918698128204517712",
+    "title": "Church 10",
+    "url": "https://x.com/XorDev/status/1918698128204517712",
+    "code": "for(float i,z,d;i++<1e2;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t*PI/10.;for(d=1.;d<64.;d+=d)p+=.5*sin(p.yzx*d-t*d*PI/10.)/d;z+=d=(.03+.1*abs(abs(p.y)-1.5));o+=(cos(p.y/.4-vec4(0,1,2,3)-3.)+1.5)/d;}o=tanh(o/5e3);",
+    "strategy": "compat"
+  },
+  {
+    "id": "1918680610127659112",
+    "title": "Cloud Compute",
+    "url": "https://x.com/XorDev/status/1918680610127659112",
+    "code": "for(float i,z,d;i++<8e1;){vec3 p=z*normalize(FC.rgb*2.-r.xxy);p.xz-=t;p.y=4.-abs(p.y);for(d=.7;d<2e1;d/=.5)p+=cos(round(p.yzx*d)-.2*t)/d;z+=d=.01+abs(p.y)/15.;o+=(cos(vec4(0,1,2,0)-p.y*2.)+1.1)/z/d;}o=tanh(o/7e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1918666116869575076",
+    "title": "Nebula 2",
+    "url": "https://x.com/XorDev/status/1918666116869575076",
+    "code": "for(float i,z,d;i++<8e1;){vec3 p=z*normalize(FC.rgb*2.-r.xxy);p.y=length(cos(p*.2+z*.2))*4.-abs(p.y);for(d=1.4;d<1e2;d/=.5)p+=cos(p.yzx*d-vec3(3,d*t,t/3.))/d;z+=d=.01+.1*max(p,-p*.3).y;o+=(cos(vec4(5,7,9,0)-p.y)+1.1)/z/d;}o=tanh(o/7e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1918659329017757793",
+    "title": "Helix",
+    "url": "https://x.com/XorDev/status/1918659329017757793",
+    "code": "vec3 p;for(float i,z,d;i++<7e1;o+=(cos(p.y+z+vec4(0,2,5,3))+1.2)/d)p=z*normalize(FC.rgb*2.-r.xyy),p.z+=2.,z+=d*=.1*length(cos(vec2(log(d=length(p.xz)),p.y/d+atan(p.x,p.z)*.5+t)*4.));o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1918326669884178888",
+    "title": "Nebula",
+    "url": "https://x.com/XorDev/status/1918326669884178888",
+    "code": "for(float i,z,d;i++<8e1;){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t;p.xy*=mat2(cos(z*.2+vec4(0,11,33,0)));p.y=abs(p.y);for(d=1.;d<9.;d/=.7)p+=.5*cos(p.yzx*d-t*.2)/d;z+=d=.02+.1*abs(4.-p.y);o+=(cos(p.y+p.x*.1+vec4(1,3,5,3))+1.1)/d;}o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1917920907235824112",
+    "title": "Prisms",
+    "url": "https://x.com/XorDev/status/1917920907235824112",
+    "code": "vec3 v,p;for(float i,z,d;i++<7e1;o+=(cos(p.y+z+vec4(4,6,8,0))+1.2)/d)p=z*normalize(FC.rgb*2.-r.xyy),p.xz-=t,z+=d=.001+length(max(v=cos(p+sin(p/.4+vec3(0,0,t)))+.5,v.yzy*.5))/5.;o=tanh(o/7e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1917591780746240394",
+    "title": "Heavenly 2",
+    "url": "https://x.com/XorDev/status/1917591780746240394",
+    "code": "for(float i,z,d;i++<1e2;o+=(cos(z+t+vec4(0,1,2,3))+1.1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t;for(d=1.;d<9.;d/=.7)p+=cos(p.yzx*d+z*.2-t*.1)/d;z+=d=.02+.1*abs(p.y+1.);}o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1917585503630618885",
+    "title": "Bitwise",
+    "url": "https://x.com/XorDev/status/1917585503630618885",
+    "code": "for(float i,z,d,f;i++<5e1;o+=exp(-z/vec4(2,9,4,9))/d){vec3 s,p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t;for(d=f=1.;f<1e2;f+=f)d=min(d,dot(s=sin(p*f+vec3(f,-f,0)),s.yzx)/f);z+=d=.004+.5*abs(d);}o=tanh(o/1e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1917268381616534000",
+    "title": "Heavenly",
+    "url": "https://x.com/XorDev/status/1917268381616534000",
+    "code": "for(float i,z,d;i++<1e2;o+=(cos(z+t+vec4(6,1,2,3))+1.)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=t;for(d=1.;d<9.;d/=.7)p+=cos(p.yzx*d+z*.2)/d;z+=d=.02+.1*abs(3.-length(p.xy));}o=tanh(o/3e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1915763936957264357",
+    "title": "Ghosts",
+    "url": "https://x.com/XorDev/status/1915763936957264357",
+    "code": "for(float i,z,d;i++<1e2;o+=vec4(z/7.,2,3,1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z-=5.*t;p.xy*=mat2(cos(z*.1+t*.1+vec4(0,33,11,0)));for(d=1.;d<9.;d/=.7)p+=cos(p.yzx*d+t)/d;z+=d=.02+abs(2.-dot(cos(p),sin(p.yzx*.6)))/8.;}o=tanh(o*o/1e7);",
+    "strategy": "base"
+  },
+  {
+    "id": "1915432769385005095",
+    "title": "Ghost Town",
+    "url": "https://x.com/XorDev/status/1915432769385005095",
+    "code": "vec3 a=vec3(0,0,1),q,p=a*t;for(float d,i,l;l++<5e1;d=abs(d)+1e-3,o+=(cos(.1*l+vec4(4,5,6,3))+1.)/d,p-=normalize(FC.rgb*2.-r.xxy)*d)for(q=p,d=-1.-q.y,i=9.;i>.2;i*=.6)q.xz*=mat2(8,-6,6,8)*.1,d=max(d,min(-max(q=i*.6-abs(mod(q,i+i)-i),-q.y).x,q.z));o=tanh(o/2e4);",
+    "strategy": "base"
+  },
+  {
+    "id": "1915419934328267031",
+    "title": "Ether",
+    "url": "https://x.com/XorDev/status/1915419934328267031",
+    "code": "for(float i,z,d;i++<8e1;o+=max(sin(z*.4+t+vec4(6,2,4,0))+.7,.2)/d){vec3 p=z*normalize(FC.rgb*2.-r.xxy);p.z-=5.*t;for(d=1.;d<15.;d/=.6)p+=.6*cos(p.yzx*d-vec3(t*.6,d,t))/d;z+=d=.01+abs(p.y*.3+dot(cos(p),sin(p.yzx*.6))+2.)/3.;}o=tanh(o/2e3);",
+    "strategy": "base"
+  },
+  {
+    "id": "1915218469894713359",
+    "title": "Sauron",
+    "url": "https://x.com/XorDev/status/1915218469894713359",
+    "code": "for(float i,z,d;i++<6e1;o+=(sin(z*.5+vec4(6,1,2,0))+1.1)/d){vec3 p=z*normalize(FC.rgb*2.-r.xyy);p.z+=6.;p.xy*=mat2(cos(p.z*.4+vec4(0,33,11,0)));for(d=2.;d<15.;d/=.6)p+=cos((p.yzx+t*3.)*d)/d;z+=d=.02+abs(min(length(p.xy)-3.,4.-length(p)))/8.;}o=tanh(o/15e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1890511315027763660",
+    "title": "Hearts 2",
+    "url": "https://x.com/XorDev/status/1890511315027763660",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y,a;for(float i;i++<6.;i,o+=(cos(sin(i+t)*vec4(1,3,2,1))+1.)/abs(length(a-.5*min(a+a.yx,.2))-.1+.02/exp(abs(cos(t/.2+i)-.5))))a=(fract(p*i-.5)-.5),a=vec2(a.y,abs(a));o=tanh(o/3e2);",
+    "strategy": "base"
+  },
+  {
+    "id": "1884708080941715517",
+    "title": "Vortex 2",
+    "url": "https://x.com/XorDev/status/1884708080941715517",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y*2e1;for(float i;i++<1e2;o+=sqrt(cos(i*.1+vec4(0,1,3,0))+1.)/(abs(i-50.)*.3+4e2*length(cos(p+i*.3+t)-.99)))p*=mat2(9,2,-2,9)/9.5;o*=o;o/=.2+o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1884705463972905453",
+    "title": "Vortex 1",
+    "url": "https://x.com/XorDev/status/1884705463972905453",
+    "code": "vec2 p=(FC.xy*2.-r)/r.y/.1;for(float i;i++<1e2;o+=sqrt(cos(i+vec4(0,2,3,0))+1.)/(abs(i-70.)*.3+2e2*length(cos(p+i+t)-.99)))p*=mat2(99,2,-2,99)/1e2;o*=o;o/=.6+o;",
+    "strategy": "base"
+  },
+  {
+    "id": "1723889881619873797",
+    "title": "Gyroid Slice",
+    "url": "https://x.com/XorDev/status/1723889881619873797",
+    "code": "vec3 p=FC.xy*mat3x2(2,1,2,-1,0,-2)/.1/r.y+t;o+=cos(dot(sin(p.yzx),cos(p))/.4)*.5+.5;o+=dFdx(o)*vec4(8,4,0,0);",
+    "strategy": "base"
+  }
+]
